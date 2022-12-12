@@ -7,7 +7,7 @@
  */
 
 
-require 'connection.php';
+require 'databaseconnection.php';
 
 function Connection($person_id, $username, $email, $password, $first_name, $last_name, $phoneNumber) : bool{
     
