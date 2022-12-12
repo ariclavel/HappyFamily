@@ -5,7 +5,7 @@ function connection(){
     $serverName = "localhost";
     $username = "root";
     $passwd = "";
-    $DBName = "HappyFamily";
+    $DBName = "happyfamily";
 
     return new PDO("mysql:host=$serverName;dbname=$DBName", $username, $passwd);
     

@@ -9,9 +9,9 @@
 
 require 'connection.php';
 
-function Connection() : bool{
+function Connection($person_id, $username, $email, $password, $first_name, $last_name, $phoneNumber) : bool{
     
-    $conn = connection($person_id, $username, $email, $password, $first_name, $last_name, $phoneNumber);
+    $conn = connection();
     if($conn){
     
         $request = "INSERT INTO Person(person_id, username, email, password, first_name, last_name, phoneNumber,activation_code) VALUES (:value1, :value2, :value3, :value4, :value5, :value6, :value7, :value8)";

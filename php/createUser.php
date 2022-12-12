@@ -3,14 +3,14 @@
 include 'users.php';
 
 
-$person_id = "1",
-$username = "Ariana", 
-$email = "ari.clavel19@gmail.com",
-$password = "1234",
+$person_id = $_GET['email'];
+$username = $_GET['email']; 
+$email = $_GET['email'];
+$password = $_GET['pss1'];
 $first_name = "Ariana",
 $last_name = "Ayaviri",
 $phoneNumber = "11111"
 
 
-$result = SaveAirCraft($aircraft, $company, $capacity);
+$result = Connection($person_id, $username, $email, $password, $first_name, $last_name, $phoneNumber);
 ?>
