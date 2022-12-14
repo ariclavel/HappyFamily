@@ -12,5 +12,5 @@ $last_name = "Ayaviri";
 $phoneNumber = "11111";
 
 
-$result = Connection($person_id, $username, $email, $password, $first_name, $last_name, $phoneNumber);
+$result = Conn($person_id, $username, $email, $password, $first_name, $last_name, $phoneNumber);
 ?>
