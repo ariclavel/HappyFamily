@@ -28,6 +28,7 @@ function Connection($person_id, $username, $email, $password, $first_name, $last
 
         return $statement->execute();
     }else{
+        echo "caca0";
         return false;
     }
 }
