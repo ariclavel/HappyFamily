@@ -77,9 +77,9 @@ try {
      <html>
         <body style="width: 50%; margin: 0 auto; box-shadow: 0 0 50px #ccc; padding-top: 25px; padding-right: 15px; padding-left: 15px; border-style:ridge; border-width:5px; border-color:pink; border-radius:5px;">
             <h2>Dear '.$name.',</h2>
-                <p style="style="color:#080;font-size:18px;"><a href="http://localhost/HappyFamily-main/src/View/verify_success.php?verification='.$code.'" style=" padding:4px 7px 4px 7px; border-radius:5px; background-color:#0099FF; color:#ffffff; float:center; text-decoration:none;">Click here to verify account</a>.</p>
+                <p style="style="color:#080;font-size:18px;"><a href="http://localhost/HappyFamily/Victor/View/verify_success.php?verification='.$code.'" style=" padding:4px 7px 4px 7px; border-radius:5px; background-color:#0099FF; color:#ffffff; float:center; text-decoration:none;">Click here to verify account</a>.</p>
 
-                <p style="style="color:#080;font-size:18px;">Or copy and paste this link on your browser to activate account <a href="http://localhost/HappyFamily-main/src/View/verify_success.php?verification='.$code.'">http://localhost/HappyFamily-main/src/View/verify_success.php?verification='.$code.'</a></p>
+                <p style="style="color:#080;font-size:18px;">Or copy and paste this link on your browser to activate account <a href="http://localhost/HappyFamily/Victor/View/verify_success.php?verification='.$code.'">http://localhost/HappyFamily/Victor/View/verify_success.php?verification='.$code.'</a></p>
             
         </body>
     </html>
