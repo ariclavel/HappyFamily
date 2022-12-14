@@ -33,7 +33,11 @@
         <a href="#" class="active">Dashboard</a>
         <a href="userprofile.php">Profile</a>
         <a href="editpet.php">Pets</a>
+<<<<<<< Updated upstream
         <a href="devices.php">Devices</a>
+=======
+        <a href="../../html/devices.html">Devices</a>
+>>>>>>> Stashed changes
         <a href="history.php">History</a>
         <a href="history.php">Scheduler</a>
         <a href="logout.php">logout</a>
