@@ -5,7 +5,7 @@ include("header.php");
 ?>
 <body>
   <div class="container">
- <img class="logo_image" src="Logo.jpeg">
+ <img class="logo_image" src="../img/Logo.jpeg">
    <div class="header">Smart Home 
 	 <a href="logout.php"><button class="logout_button">Logout</button></a>
 	 <button class="logout_button">Contact Us</button> 
