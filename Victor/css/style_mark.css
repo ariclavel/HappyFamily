@@ -1,252 +1,319 @@
 /*Header and container style*/
 body {
-    font-family: 'Montserrat', sans-serif;
-    background: #ffffff; /* Цвет фона */
-   }
-   h2 {
+  font-family: 'Montserrat', sans-serif;
+  background: #ffffff; /* Цвет фона */
+ }
+ h2 {
 
-    font-size: 18px; /* Размер шрифта в заголовке */
-    color: #080808; /* Цвет заголовка */
-    margin-top: 3px; /* Отступ сверху */
-   }
-   .container {
-    width: auto; /* Ширина слоя */
-    margin: 0 auto; /* Выравнивнить весь блок по центру */
-    background: #fff; /* Цвет фона левой колонки */
-   }
-   .header {
-    font-size: 38px; /* Размер текста в шапке */
-    font-weight: bold;
-   padding: 11px; /* Отступы внутри блока шапки */
-    background: #ffffff; /* Цвет фона шапки */
-    color: #ff672b; /* Цвет текста */
-	   margin-left: 50px;
-    cursor: pointer;
-	   
+  font-size: 18px; /* Размер шрифта в заголовке */
+  color: #080808; /* Цвет заголовка */
+  margin-top: 3px; /* Отступ сверху */
+ }
+ .container {
+  width: auto; /* Ширина слоя */
+  margin: 0 auto; /* Выравнивнить весь блок по центру */
+  background: #fff; /* Цвет фона левой колонки */
+ }
+ .header {
+  font-size: 38px; /* Размер текста в шапке */
+  font-weight: bold;
+ padding: 11px; /* Отступы внутри блока шапки */
+  background: #ffffff; /* Цвет фона шапки */
+  color: #ff672b; /* Цвет текста */
+   margin-left: 50px;
+  cursor: pointer;
+   
 
-   }
+ }
 /*Logo*/
 
 .logo_image{
-	width: 65px;
-	height: 65px;
-	padding: 0 15px;
-	float: left;
-	cursor: pointer;
-	
+width: 65px;
+height: 65px;
+padding: 0 15px;
+float: left;
+cursor: pointer;
+
 }
 /*Buttons in header*/
 
 .logout_button {
-  display: inline-block;
-  padding: 7px 25px;
-  font-size: 24px;
+display: inline-block;
+padding: 7px 25px;
+font-size: 24px;
 font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: #ff672b;
-  background-color: #fff;
-	margin-left: 7px;
-	margin-top: 3px;
-  border: none;
-  border-radius: 15px;
-	float: right;
+cursor: pointer;
+text-align: center;
+text-decoration: none;
+outline: none;
+color: #ff672b;
+background-color: #fff;
+margin-left: 7px;
+margin-top: 3px;
+border: none;
+border-radius: 15px;
+float: right
 }
 .shadow{
-	width: auto;
-	height: 3px;
-	box-shadow: -3px 6px 4px 0px #ccc/*rgba(0,0,0,0.5)*/;
+width: auto;
+height: 3px;
+box-shadow: -3px 6px 4px 0px #ccc/*rgba(0,0,0,0.5)*/;
 }
 /*Navigation Buttons*/
 
 .buttons{
-  display: inline-block;
-  border-radius: 4px;
-  background-color: #ff672b;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 22px;
-  padding: 20px;
-  width: 150px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
+display: inline-block;
+border-radius: 4px;
+background-color: #ff672b;
+border: none;
+color: #FFFFFF;
+text-align: center;
+font-size: 22px;
+padding: 20px;
+width: 150px;
+transition: all 0.5s;
+cursor: pointer;
+margin: 5px;
 }
 .buttons span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
+cursor: pointer;
+display: inline-block;
+position: relative;
+transition: 0.5s;
 }
 .buttons span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
+content: '\00bb';
+position: absolute;
+opacity: 0;
+top: 0;
+right: -20px;
+transition: 0.5s;
 }
 .buttons:hover span {
-  padding-right: 25px;
+padding-right: 25px;
 }
 .buttons:hover span:after {
-  opacity: 1;
-  right: 0;
+opacity: 1;
+right: 0;
 }
- .sidebar {
+.sidebar {
 margin-bottom: 10px;
 width: 257px; /* Ширина блока */
 padding: 0 10px; /* Отступы внутри левого блока */
 float: left; /* Обтекание блока по правому краю */
 margin-top: 54px;
-   }
+ }
 /*Main content*/
 
-   .content {
-    margin-left: 225px; /* Отступ слева */
-     /* Отступы внутри правого блока */
-     /* Цвет фона правого блока */
-   }
-  .footer {
-    background: #ff672b; /* Цвет фона нижнего блока-подвала */
-    color: #fff; /* Цвет текста подвала */
-    padding: 5px 5px 5px 5px; /* Отступы внутри блока */
-    clear: left; /* Отменяем действие float */
-	   position: absolute;
-    bottom: 0;
-    left: 0;
-   }
+ .content {
+  margin-left: 225px; /* Отступ слева */
+   /* Отступы внутри правого блока */
+   /* Цвет фона правого блока */
+ }
+.footer {
+  background: #ff672b; /* Цвет фона нижнего блока-подвала */
+  color: #fff; /* Цвет текста подвала */
+  padding: 5px 5px 5px 5px; /* Отступы внутри блока */
+  clear: left; /* Отменяем действие float */
+   position: absolute;
+  bottom: 0;
+  left: 0;
+ }
 .h2{
 color: #ff672b;	
-	  font-weight: bold;
-	font-size: 24px;
-	margin-left: -25px;
-	margin-top: 15px;
+  font-weight: bold;
+font-size: 24px;
+margin-left: -25px;
+margin-top: 15px;
 }
+.h3{
+  color: #ff672b;	
+        
+      font-size: 20px;
+      margin-left: -25px;
+      margin-top: 15px;
+  }
 
 
 .wrap{
-  display: flex;
-  flex-wrap:wrap;
-  align-items: center;
- flex-direction: row;
-	
-  border: 1px solid #ffffff;
-	margin-top: 20px;
-	
+display: flex;
+flex-wrap:wrap;
+align-items: center;
+flex-direction: row;
+
+border: 1px solid #ffffff;
+margin-top: 20px;
+
 }
 
 
 .box{
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: auto;
-	margin-bottom: auto;
-	border-radius: 5px;
-  width: 260px;
-  height: 260px;
-	margin:20px;
-	
-  /*margin: 45px;*/
-  border: 1px solid #ccc;
+margin-left: auto;
+margin-right: auto;
+margin-top: auto;
+margin-bottom: auto;
+border-radius: 5px;
+width: 260px;
+height: 260px;
+margin:20px;
+
+/*margin: 45px;*/
+border: 1px solid #ccc;
 }
 .box_header{
-	font-size: 28px; /* Размер текста в шапке */
-    font-weight: bold;
-	text-align: center;
-   padding: 11px; /* Отступы внутри блока шапки */
-    color: #ff672b; /* Цвет текста */
-	 
+font-size: 28px; /* Размер текста в шапке */
+  font-weight: bold;
+text-align: center;
+ padding: 11px; /* Отступы внутри блока шапки */
+  color: #ff672b; /* Цвет текста */
+ 
 }
 .box_content{
-	height: 160px;
-	width: 160px;
-	text-align: center;
-	display: block;
-	margin: 0 auto;
-	vertical-align: middle;
-	
-    
+height: 160px;
+width: 160px;
+text-align: center;
+display: block;
+margin: 0 auto;
+vertical-align: middle;
+
+  
 }
 .switch {
-  position: relative;
-  display: inline-block;
-	align-content: center;
-  width: 60px;
-  height: 34px;
-	margin-left: 100px;
+position: relative;
+display: inline-block;
+align-content: center;
+width: 60px;
+height: 34px;
+margin-left: 100px;
 }
 
 .switch input {display:none;}
 
 .slider {
-	align-content: center;
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+align-content: center;
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+-webkit-transition: .4s;
+transition: .4s;
 }
 
 .slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+position: absolute;
+content: "";
+height: 26px;
+width: 26px;
+left: 4px;
+bottom: 4px;
+background-color: white;
+-webkit-transition: .4s;
+transition: .4s;
 }
 
 input:checked + .slider {
-  background-color: #4CAF50;
+background-color: #4CAF50;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #4CAF50;
+box-shadow: 0 0 1px #4CAF50;
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+-webkit-transform: translateX(26px);
+-ms-transform: translateX(26px);
+transform: translateX(26px);
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+border-radius: 34px;
 }
 
 .slider.round:before {
-  border-radius: 50%;
+border-radius: 50%;
 }
- 
+
 
 
 .add_button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-	
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 26px;
-    margin-left: 20px;
-	border-radius: 50%;
-	cursor: pointer;
-	width: 50px;
-	height: 50px;
-	
-  
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 26px;
+  margin-left: 20px;
+border-radius: 50%;
+cursor: pointer;
+width: 50px;
+height: 50px;
+
+
+}
+.hystory_box{
+margin-left: auto;
+margin-right: auto;
+margin-top: auto;
+margin-bottom: auto;
+border-radius: 5px;
+width: 1100px;
+height: 500px;
+margin:20px;
+
+/*margin: 45px;*/
+border: 3px solid #ccc;
+font-size: 20px; /* Размер текста в шапке */
+font-weight: bold;
+padding: 10px; /* Отступы внутри блока шапки */
+background: #ffffff; /* Цвет фона шапки */
+color: #ff672b; /* Цвет текста */
+   margin-left: 50px;
+}
+.table,th,td{
+  border:1px solid #ccc;
+  border-radius: 5px;
 }
 
+.select{
+  width: 180px;
+}
+.submit{
+  display: inline-block;
+padding: 5px 2px;
+width: 100px;
+height: 20px;
+font-size: 14px;
+cursor: pointer;
+text-align: center;
+text-decoration: none;
+outline: none;
+color: #fff;
+background-color: #4CAF50;
+border: none;
+border-radius: 15px;
+
+}
+.submit:hover{
+  background-color: #3e8e41
+}
+.submit:active{
+background-color: #3e8e41;
+box-shadow: 0 5px #666;
+transform: translateY(4px);
+}
+.pet_image{
+ margin-right: 100px; 
+
+
+float: right;
+}
+.text{
+  font-size: 20px; /* Размер текста в шапке */
+  font-weight: bold;
+}
