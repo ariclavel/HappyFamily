@@ -1,6 +1,4 @@
 <?php
-//require 'connection.php';
-
 function connection(){
     $serverName = "localhost";
     $username = "root";
