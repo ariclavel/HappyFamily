@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, inicial-scale=1">
+   <link rel="stylesheet" href="./css.css"> 
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:ital,wght@0,100;0,200;1,400;1,600&display=swap" rel="stylesheet">
+   <title>Happy Home</title> 
+</head>
+
+ <body>
+
+  <div class="container">
+ <img class="logo_image" src=".x/logo11.png">
+   <div class="header">Smart Home 
+	 <button class="logout_button">Logout</button>
+	  <button class="logout_button">Contact Us</button> 
+	  </div>
+   
+   <div class="sidebar">
+
+	<p class="buttons" style="vertical-align:middle"><span>Home </span></p>
+    
+    <p class="buttons" style="vertical-align:middle"><span>Profile </span></p>
+
+    <p class="buttons" style="vertical-align:middle"><span>Pet </span></p>
+	   
+	<p class="buttons" style="vertical-align:middle"><span>Electric Equipment </span></p>
+	   
+	<p class="buttons" style="vertical-align:middle"><span>History </span></p>
+
+   </div>
+
+   <div class="content">
+    <meta name="viewport" content="width=device-width">
+    <style>
+    html {
+      font-family: sans-serif;
+    }
+
+    table {
+      border-collapse: collapse;
+      border: 2px solid rgb(200,200,200);
+      letter-spacing: 1px;
+      font-size: 0.8rem;
+    }
+
+    td, th {
+      border: 1px solid rgb(190,190,190);
+      padding: 10px 100px;
+    }
+
+    td {
+      text-align: center;
+    }
+
+    caption {
+      padding: 10px;
+    }
+    </style>
+	
+  </head>
+  <body>
+  
+    <h1><center><div style="color:orange;font-size:50px">
+	History
+	</div></center></h1>
+	
+	<table style="border:1px solid black; margin-left:auto;margin-right:auto;">
+      
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>History</th>
+      </tr>
+      <tr>
+        <td width="30px">&nbsp;</td>
+        <td width="10px">&nbsp;</td>
+        <td width="60px">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+
+    </table>
+	
+	</br>
+	
+	<style>
+	ul.pagination {
+		display: inline-block;
+		padding: 0;
+		margin: 0;
+	}
+
+	ul.pagination li {display: inline;}
+
+	ul.pagination li a {
+		color: black;
+		float: left;
+		padding: 8px 16px;
+		text-decoration: none;
+		transition: background-color .3s;
+		border: 1px solid #ddd;
+	}
+
+	.pagination li:first-child a {
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+	}
+
+	.pagination li:last-child a {
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+	}
+
+	ul.pagination li a.active {
+		background-color: #F39C12;
+		color: white;
+		border: 1px solid #F39C12;
+	}
+
+	ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+	div.center {text-align: center;}
+
+	</style>
+	</head>
+	<body>
+
+
+	<div class="center">
+	<ul class="pagination">
+		<li><a href="#">«</a></li>
+		<li><a  class="active" href="#">1</a></li>
+		<li><a href="#">2</a></li>
+		<li><a href="#">3</a></li>
+		<li><a href="#">4</a></li>
+		<li><a href="#">5</a></li>
+		<li><a href="#">6</a></li>
+		<li><a href="#">7</a></li>
+		<li><a href="#">»</a></li>
+	</ul>
+	</div>
+  </body>
+</html>
+
+
+
+
+
+
+</div>
+
+<div class="footer">&copy; Smart Home group - Smarthome.com</div>
+
+</div>
+
+
+
+
+
+
+	</body>
+</html>
