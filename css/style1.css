@@ -7,7 +7,7 @@ body {
 
     font-size: 18px; /* Размер шрифта в заголовке */
     color: #080808; /* Цвет заголовка */
-    margin-top: 3px; /* Отступ сверху */
+    margin-top: 0; /* Отступ сверху */
    }
    .container {
     width: auto; /* Ширина слоя */
@@ -22,8 +22,6 @@ body {
     color: #ff672b; /* Цвет текста */
 	   margin-left: 50px;
     cursor: pointer;
-	   
-
    }
 /*Logo*/
 
@@ -33,7 +31,6 @@ body {
 	padding: 0 15px;
 	float: left;
 	cursor: pointer;
-	
 }
 /*Buttons in header*/
 
@@ -52,12 +49,7 @@ font-weight: 600;
 	margin-top: 3px;
   border: none;
   border-radius: 15px;
-	float: right;
-}
-.shadow{
-	width: auto;
-	height: 3px;
-	box-shadow: -3px 6px 4px 0px #ccc/*rgba(0,0,0,0.5)*/;
+	float: right
 }
 /*Navigation Buttons*/
 
@@ -70,7 +62,7 @@ font-weight: 600;
   text-align: center;
   font-size: 22px;
   padding: 20px;
-  width: 150px;
+  width: 130px;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
@@ -81,6 +73,7 @@ font-weight: 600;
   position: relative;
   transition: 0.5s;
 }
+
 .buttons span:after {
   content: '\00bb';
   position: absolute;
@@ -89,164 +82,124 @@ font-weight: 600;
   right: -20px;
   transition: 0.5s;
 }
+
 .buttons:hover span {
   padding-right: 25px;
 }
+
 .buttons:hover span:after {
   opacity: 1;
   right: 0;
 }
- .sidebar {
-margin-bottom: 10px;
-width: 257px; /* Ширина блока */
-padding: 0 10px; /* Отступы внутри левого блока */
-float: left; /* Обтекание блока по правому краю */
-margin-top: 54px;
+   .sidebar {
+	margin-bottom: 10px;
+    width: 170px; /* Ширина блока */
+    padding: 0 10px; /* Отступы внутри левого блока */
+    float: left; /* Обтекание блока по правому краю */
+	   margin-top: 10px;
    }
 /*Main content*/
 
-   .content {
-    margin-left: 225px; /* Отступ слева */
-     /* Отступы внутри правого блока */
-     /* Цвет фона правого блока */
-   }
-  .footer {
-    background: #ff672b; /* Цвет фона нижнего блока-подвала */
-    color: #fff; /* Цвет текста подвала */
-    padding: 5px 5px 5px 5px; /* Отступы внутри блока */
-    clear: left; /* Отменяем действие float */
-	   position: absolute;
-    bottom: 0;
-    left: 0;
-   }
+.content {
+    margin-left: 200px; /* Отступ слева */
+    padding: 10px; /* Отступы внутри правого блока */
+    background: #fff; /* Цвет фона правого блока */
+}
+.footer {
+  background: #ff672b; /* Цвет фона нижнего блока-подвала */
+  color: #fff; /* Цвет текста подвала */
+  padding: 5px 5px 5px 5px; /* Отступы внутри блока */
+  clear: left; /* Отменяем действие float */
+	position: fixed;
+  bottom: 0;
+  left: 0;
+}
 .h2{
 color: #ff672b;	
 	  font-weight: bold;
 	font-size: 24px;
-	margin-left: -25px;
-	margin-top: 15px;
 }
 
-
-.wrap{
-  display: flex;
-  flex-wrap:wrap;
-  align-items: center;
- flex-direction: row;
-	
-  border: 1px solid #ffffff;
-	margin-top: 20px;
-	
+.box{/*内容板块*/
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  position:relative;
 }
-
-
-.box{
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: auto;
-	margin-bottom: auto;
-	border-radius: 5px;
-  width: 260px;
-  height: 260px;
-	margin:20px;
-	
-  /*margin: 45px;*/
-  border: 1px solid #ccc;
+.box img{/*HOMEPAGE底图用*/
+  width: 100%;
+  height: 100%;
 }
-.box_header{
-	font-size: 28px; /* Размер текста в шапке */
-    font-weight: bold;
-	text-align: center;
-   padding: 11px; /* Отступы внутри блока шапки */
-    color: #ff672b; /* Цвет текста */
-	 
-}
-.box_content{
-	height: 160px;
-	width: 160px;
-	text-align: center;
-	display: block;
-	margin: 0 auto;
-	vertical-align: middle;
-	
-    
-}
-.switch {
+.switch {/*开关按钮*/
+  width: 52px;
+  height: 31px;
   position: relative;
+  border: 1px solid #dfdfdf;
+  background-color: #fdfdfd;
+  box-shadow: #dfdfdf 0 0 0 0 inset;
+  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-clip: content-box;
   display: inline-block;
-	align-content: center;
-  width: 60px;
-  height: 34px;
-	margin-left: 100px;
+  -webkit-appearance: none;
+  user-select: none;
+  outline: none; 
 }
-
-.switch input {display:none;}
-
-.slider {
-	align-content: center;
+.switch:before {
+  content: '';
+  width: 29px;
+  height: 29px;
   position: absolute;
-  cursor: pointer;
-  top: 0;
+  top: 0px;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); 
+}
+.switch:checked {/*开关ON*/
+  border-color: #ff672b;
+  box-shadow: #ff672b 0 0 0 16px inset;
+  background-color: #ff672b; 
+}
+.switch:checked:before {
+  left: 21px; 
+}
+.contentfont{/*内容字体(测试中)*/
+  font-size: medium;
+  font-weight: bold;
+  color: #ff672b;
+  text-align: center;
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+.center{
+  text-align: center;
 }
 
-input:checked + .slider {
-  background-color: #4CAF50;
-}
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #4CAF50;
-}
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
+.column {
+  float: left;
+  width: 50%;
+  text-align: center;
 }
  
-
-
-.add_button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-	
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 26px;
-    margin-left: 20px;
-	border-radius: 50%;
-	cursor: pointer;
-	width: 50px;
-	height: 50px;
-	
-  
+/* 列后清除浮动 */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
-
+ 
+/* 响应式布局 - 小于 600 px 时改为上下布局 */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
