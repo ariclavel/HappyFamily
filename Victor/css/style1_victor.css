@@ -1,0 +1,144 @@
+/*Header and container style*/
+* {
+    padding: 0;
+    margin: 0;
+  }
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #ffffff; /* Цвет фона */
+   }
+   h2 {
+
+    font-size: 18px; /* Размер шрифта в заголовке */
+    color: #080808; /* Цвет заголовка */
+    margin-top: 0; /* Отступ сверху */
+   }
+   .container {
+    width: auto; /* Ширина слоя */
+    margin: 0 auto; /* Выравнивнить весь блок по центру */
+    background: #fff; /* Цвет фона левой колонки */
+    box-shadow: 0 0 50px -10px rgb(0 0 0 / 10%);
+
+   }
+   .header {
+    font-size: 38px; /* Размер текста в шапке */
+    font-weight: bold;
+   padding: 11px; /* Отступы внутри блока шапки */
+    background: #ffffff; /* Цвет фона шапки */
+    color: #080808; /* Цвет текста */
+    cursor: pointer;
+    box-shadow: 0 0 50px -10px rgb(0 0 0 / 10%);
+    z-index: 4;
+   }
+/*Logo*/
+
+.logo_image{
+	width: 65px;
+	height: 65px;
+	padding: 0 15px;
+	float: left;
+	cursor: pointer;
+}
+/*Buttons in header*/
+
+.logout_button {
+  display: inline-block;
+  padding: 7px 25px;
+  font-size: 24px;
+font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #ff672b;
+  background-color: #fff;
+	margin-left: 7px;
+	margin-top: 3px;
+  border: none;
+  border-radius: 15px;
+	float: right
+}
+/*Navigation Buttons*/
+
+.buttons{
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #ff672b;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 22px;
+  padding: 20px;
+  width: 130px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+.buttons span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.buttons span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.buttons:hover span {
+  padding-right: 25px;
+}
+
+.buttons:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+   .sidebar {
+	margin-bottom: 10px;
+    width: 170px; /* Ширина блока */
+    padding: 0 10px; /* Отступы внутри левого блока */
+    float: left; /* Обтекание блока по правому краю */
+	   margin-top: 10px;
+   }
+/*Main content*/
+
+   .content {
+    margin-left: 200px; /* Отступ слева */
+    padding: 10px; /* Отступы внутри правого блока */
+    background: #fff; /* Цвет фона правого блока */
+   }
+  .footer {
+    background: #ff672b; /* Цвет фона нижнего блока-подвала */
+    color: #fff; /* Цвет текста подвала */
+    padding: 5px 5px 5px 5px; /* Отступы внутри блока */
+    clear: left; /* Отменяем действие float */
+	   position: absolute;
+    bottom: 0;
+    left: 0;
+   }
+.h2{
+color: #ff672b;	
+	  font-weight: bold;
+	font-size: 24px;
+}
+
+.text-right{
+  margin-left:20px;
+}
+
+.profile_pxx{
+  
+   background-color: rgb(255, 255, 255);
+   width: 200px;
+}
+.image2{
+  margin:20px;
+  border-radius: 50%;
+  border: 5px solid rgb(255, 255, 255);
+
+}
