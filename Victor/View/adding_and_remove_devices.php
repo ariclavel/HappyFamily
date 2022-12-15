@@ -1,5 +1,3 @@
-
-<html lang="en">
 <?php
 include("header.php");
 include("../Model/device.query.php");
@@ -25,7 +23,7 @@ require '../Model/conn.php';
         <input type="text" placeholder ="Enter description optional" class="txtbox" id="ds" name="ds"></br>
         <input type="text" placeholder ="Enter type" id="type" class="txtbox" name="type"></br>
         <input type="text" placeholder ="Enter room id" class="txtbox" id="roomid" name="roomid"></br>
-        <a href="room.html"><button type= "submit" form="form1" class= "Add_button">Add</button></a>
+        <button type= "submit" form="form1" class= "Add_button">Add</button>
         
         <br/>
        
@@ -46,7 +44,7 @@ require '../Model/conn.php';
     $resultado = '<html><h2>Devices:</h2><p>';
 
     for ($i=0; $i<count($rows); $i++){
-        $resultado.='<button class= "Device1_button">'.$rows[i].'</button><br>';
+        $resultado.='<button class= "Device1_button">'.$rows[0][$i].'</button><br>';
         //echo $rows[i];
     }
 
