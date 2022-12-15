@@ -1,9 +1,4 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-  }
+
 .profile{
     display: flex;
     justify-content: flex-start;
@@ -12,6 +7,7 @@
     box-shadow: 0 0 50px -10px rgb(0 0 0 / 10%);
 
 }
+
 
 .head{
     background-color: rgb(239, 247, 246);
@@ -45,7 +41,7 @@
 .btnn,.update_photo{
         display: inline-block;
         font-size: 12px;
-        background: transparent;
+        background: #f85508;
         border: 2px solid;
         font-weight: 500;
         padding: 10px 20px;

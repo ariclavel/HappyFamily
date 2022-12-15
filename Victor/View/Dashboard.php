@@ -9,39 +9,16 @@
   <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
-  <header class="header">
-    <div class="logo">
-      <a class="tit" href="#">Happyfamily</a>
-      <div class="search_box">
-        <input type="text" placeholder="Search happyfamily">
-        <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
-      </div>
-    </div>
+<?php
+include("Dashboard_header.php");
+?>
 
-    <div class="header-icons">
-      <i class="fas fa-bell"></i>
-      <div class="account">
-      <img class="logo_image" src="../img/logo11.png">
-        <h4>Vik Habila</h4>
-      </div>
-    </div>
-  </header>
+ 
   <div class="container">
-    <nav>
-      <div class="side_navbar">
-        <span>Main Menu</span>
-        <a href="#" class="active">Dashboard</a>
-        <a href="userprofile.php">Profile</a>
-        <a href="editpet.php">Pets</a>
-        <a href="../../html/devices.html">Devices</a>
-        <a href="history.php">History</a>
-        <a href="history.php">Scheduler</a>
-        <a href="logout.php">logout</a>
-      
-
-        
-      </div>
-    </nav>
+  <?php
+include("Dashboard_left_menu.php");
+?>
+   
 
     <div class="main-body">
       <h2>Dashboard</h2>
@@ -173,36 +150,9 @@
       </div>
     </div>
 
-    <div class="sidebar">
-      <h4>Our Services</h4>
-      
-      <div class="balance">
-        <i class="fas fa-database icon"></i>
-        <div class="info">
-          <p>Smart Data</p>
-         
-        </div>
-      </div>
-      
-      <div class="balance">
-        <i class="fa-solid fa-desktop icon"></i>
-        <div class="info">
-          <p>Smart Systems</p>
-          
-        </div>
-      </div>
-
-      <div class="balance">
-        <i class="fas fa-euro icon"></i>
-        <div class="info">
-          <p>Software management</p>
-          
-        </div>
-      </div>
-
-      
-
-    </div>
+    <?php
+include("Dashboard_right_menu.php");
+?>
   </div>
 </body>
 </html>
