@@ -2,7 +2,7 @@
 session_start();
 date_default_timezone_set("Etc/GMT+8");
 
-
+unset($_SESSION['message']);
 if(isset($_SESSION['id']))
 {
    header("Location:../home.php");
@@ -56,7 +56,7 @@ if(isset($verify))
                $_SESSION['name']= $row['first_name'];
                $_SESSION['surname']= $row['last_name'];
                $_SESSION['type']= $row['type'];
-              header("Location:dashboard.php");
+              header("Location:Dashboard.php");
         }
         else
         {
