@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <?php
 include("header.php");
+include("../Model/device.query.php");
+require '../Model/conn.php';
 ?>
-<body>
+<body ng-controller="testCtrl">
   <div class="container">
  <img class="logo_image" src="../img/logo5.png">
    <div class="header">Smart Home 
@@ -13,21 +15,39 @@ include("header.php");
    
     <?php
        include("side_menu.php");
-        ?>
+       
+    ?>
 
-   <div class="content">
-    <a href="room.html"><button class= "Add_button">Add</button></a>
-    <button class= "Remove_button">Remove</button>
+    <div class="content">
+    <form action = "../Model/addDevice.php" id="form1" method="POST">
+        <input type="text" placeholder ="Enter Device name" class="txtbox" id="sname" name="sname"></br>
+        <input type="text" placeholder ="Enter Device mode" class="txtbox" id="mode" name="mode"></br>
+        <input type="text" placeholder ="Enter description optional" class="txtbox" id="ds" name="ds"></br>
+        <input type="text" placeholder ="Enter type" id="type" class="txtbox" name="type"></br>
+        <input type="text" placeholder ="Enter room id" class="txtbox" id="roomid" name="roomid"></br>
+        <a href="room.html"><button type= "submit" form="form1" class= "Add_button">Add</button></a>
+        
+        <br/>
+       
+    </form>
+    
+    
 
     <?php 
-    $_POST["productos"] = array('hola','mundo','con','implode');
+
+    $rows = [];
+    
+    $_POST["productos"] = device_get($db,"3");
+    while($row = mysqli_fetch_array($_POST["productos"])) {
+      $rows[] = $row;
+    }
     //$resultado = '<html><h2>Productos:</h2><p><b>'.implode("<b></b>", $_POST["productos"])'</b></p></html>';
     /*Inicializar variable sobre la cual se irá concatenando*/
     $resultado = '<html><h2>Devices:</h2><p>';
 
-    for ($i=0; $i<count($_POST["productos"]); $i++){
-        $resultado.='<button class= "Device1_button">'.$_POST["productos"][$i].'</button><br>';
-
+    for ($i=0; $i<count($rows); $i++){
+        $resultado.='<button class= "Device1_button">'.$rows[i].'</button><br>';
+        //echo $rows[i];
     }
 
     $resultado.='</p></html>';
