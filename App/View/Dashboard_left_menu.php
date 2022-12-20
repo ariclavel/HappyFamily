@@ -9,8 +9,5 @@
         <a href="history.php">Scheduler</a>
         <a href="history.php">Reports</a>
         <a href="logout.php">logout</a>
-      
-
-        
       </div>
     </nav>
