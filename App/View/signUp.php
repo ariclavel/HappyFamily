@@ -1,4 +1,5 @@
-<?php date_default_timezone_set("Etc/GMT+8");
+<?php 
+date_default_timezone_set("Etc/GMT+8");
 
 session_start();
 use PHPMailer\PHPMailer\PHPMailer;
@@ -153,7 +154,7 @@ $_SESSION['message'] = "<div class='alert alert-info'>we've sent a verification 
    
            
           
-               <div class="loggin"><a href="signUp.php"><button name="submit" type="submit" >Register</button></a></div><br/>
+               <div class="loggin"><a href="signUp.php"><button name="submit" type="submit">Register</button></a></div><br/>
              <a href="login.php">Click to sign-in</a>
            <br/>
            <?php 
