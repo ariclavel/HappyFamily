@@ -22,7 +22,7 @@ include("Dashboard_left_menu.php");
    
 
     <div class="main-body">
-      <h2>Devices</h2>
+      
       <div class="promo_card">
         <h1>Welcome to HappyFamily</h1>
         <span>Experience smart life that is pet friendly.</span>
