@@ -4,6 +4,11 @@ require_once'../Model/rooms.php';
 
 session_start();
 
+// if(isset($_GET['msg']))
+// {
+//     $msg=$_GET['msg'];
+//     $_SESSION['message']=$msg;
+// }
 
  
     
@@ -128,6 +133,14 @@ session_start();
         display: block;
         text-align: center;
     }
+
+      
+   .text-danger{
+    color:red;
+   }
+   .alert-info{
+    color:green;
+   }
    
 }
 </style>
@@ -176,7 +189,7 @@ include("Dashboard_left_menu.php");
                                                 <div class="container timeBar ys1" data=<?php echo $fetch['duration']?> ></div>
                                                 </td>
                                                 <td>
-                                                <a href=""><i class="fa-solid fa-pen-to-square"></i></a>  <a href="">  <i class="fa-sharp fa-solid fa-delete-left"></i></a>
+                                                <a href="editSchedule.php?id=<?php echo $fetch['scheduler_id']?>"><i class="fa-solid fa-pen-to-square"></i></a> <a href="deleteSchedule.php?id=<?php echo $fetch['scheduler_id']?>"><i class="fa-sharp fa-solid fa-delete-left"></i></a>
                                                 </td>
                                             </tr>
 										
@@ -185,6 +198,7 @@ include("Dashboard_left_menu.php");
 										?>
                                     </tbody>
                                 </table>
+                               
     
  
               
@@ -201,6 +215,22 @@ include("Dashboard_left_menu.php");
 
   </div>
   
+    <!-- delete account-->
+    <div class="modal">
+               <div class="modal-content">
+                   <span class="close-button">×</span>
+                   <h3>Update profile photo</h3>
+                
+               </div>
+              
+										
+                   
+           </div>
+
+           
+
+
+
 
 <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <script src="countdown.js"></script>
@@ -307,5 +337,7 @@ include("Dashboard_left_menu.php");
 })(jQuery);
     
 </script>
+
+
 </body>
 </html>

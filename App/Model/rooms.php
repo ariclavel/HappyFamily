@@ -104,7 +104,36 @@ function check_activation_status($dbb,$activationCode){
             }
         }
 
+        function update_schedule($dbb,$s_id,$from,$to,$duration,$device_id,$room_id){
+			$query=$dbb->prepare("UPDATE `scheduler` SET `from`=?, `to`=?, `duration`=?,`device_id`=?,`room_id`=? WHERE `scheduler_id`=?") or die($this->conn->error);
+			$query->bind_param("sssiii",$from, $to, $duration,$device_id,$room_id,$s_id);
+			
+			if($query->execute()){
+				
+				return true;
+			}
+		}
 
+        function get_schedule($dbb, $user_id)
+        {
+            $query=$dbb->prepare("SELECT * FROM scheduler INNER JOIN `device` ON scheduler.device_id=device.device_id INNER JOIN `Rooms` ON scheduler.room_id=Rooms.room_id WHERE scheduler_id=?") or die($this->conn->error);
+            $query->bind_param("i", $user_id);
+            if($query->execute()){
+                $result=$query->get_result();
+                return $result;
+                
+            
+            }
+        }
+
+         function delete_schedule($dbb, $user_id){
+			$query=$dbb->prepare("DELETE FROM `scheduler` WHERE scheduler_id=?") or die($this->conn->error);
+			$query->bind_param("i", $user_id);
+            if($query->execute()){
+				
+				return true;
+			}
+		}
       
 
 
