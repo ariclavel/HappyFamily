@@ -61,24 +61,52 @@ function check_activation_status($dbb,$activationCode){
         }
 
 
-         function update_user($dbb,$u_id, $fname, $lname, $phoneNo){
-			$query=$dbb->prepare("UPDATE `registration` SET `first_name`=?, `last_name`=?, `phoneNumber`=? WHERE `reg_id`=?") or die($this->conn->error);
-			$query->bind_param("sssi",$fname, $lname, $phoneNo,$u_id);
-			
-			if($query->execute()){
-				
-				return true;
-			}
-		}
+        function display_rooms($dbb)
+        {
+            $query=$dbb->prepare("SELECT * FROM rooms ") or die($this->conn->error);
+            if($query->execute()){
+                $result=$query->get_result();
+                return $result;
+                
+            
+            }
+        }
 
-        function add_user_address($dbb,$address,$country,$city,$zip_code,$reg_id){
-			$query="INSERT INTO `address` (`address`,`country`,`city`,`zip_code`, `reg_id`)VALUES(?,?, ?, ?, ?)" or die($this->conn->error);
+        function display_device($dbb)
+        {
+            $query=$dbb->prepare("SELECT * FROM device ") or die($this->conn->error);
+            if($query->execute()){
+                $result=$query->get_result();
+                return $result;
+                
+            
+            }
+        }
+
+        function add_schedule($dbb,$from,$to,$duration,$device_id,$room_id,$user_id){
+			$query="INSERT INTO `scheduler` (`from`, `to`,`duration`, `device_id`, `room_id`,`reg_id`) VALUES(?, ?, ?, ?, ?,?)" or die($this->conn->error);
 			$data = $dbb->prepare($query);
             
-            $data->bind_param("ssssi",$address,$country,$city, $zip_code, $reg_id);
+            $data->bind_param("ssiiii",$from, $to, $duration, $device_id,$room_id,$user_id);
             return $data->execute();
 	
         }
 
-    
+        function display_schedule($dbb, $user_id)
+        {
+            $query=$dbb->prepare("SELECT * FROM scheduler INNER JOIN `device` ON scheduler.device_id=device.device_id INNER JOIN `Rooms` ON scheduler.room_id=Rooms.room_id WHERE reg_id=?") or die($this->conn->error);
+            $query->bind_param("i", $user_id);
+            if($query->execute()){
+                $result=$query->get_result();
+                return $result;
+                
+            
+            }
+        }
+
+
+      
+
+
+
 ?>

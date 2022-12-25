@@ -63,11 +63,6 @@ include("Dashboard_left_menu.php");
    
    
 <div class="profile">
-      
-      
-     
-
-
   <div class="middle_part">
         <div class="settings">
             <h4 class="text-right">Edit pet</h4>
@@ -76,7 +71,8 @@ include("Dashboard_left_menu.php");
         <form name="form1" id="form1" action="/action_page.php">
         <div class="both">
              <div class="both_1">
-                    <div class="col-md-12"><select class="form-control" name="subject" id="subject">
+                    <div class="col-md-12">
+                      <select class="form-control" name="subject" id="subject">
                         <option value="" selected="selected">Select category</option>
                         <option value="" >Dogs</option>
                         <option value="" >Cats</option>

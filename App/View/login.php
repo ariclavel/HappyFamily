@@ -99,8 +99,8 @@ if(isset($verify))
          </div>
       <form  method="POST" id="form">
         
-        <input type="email" placeholder ="enter email" class="txtbox"  name="email"><br>
-        <input type="password" placeholder ="enter password" class="txtbox"  name="password"><br/>
+        <input type="email" placeholder ="Email" class="txtbox"  name="email"><br>
+        <input type="password" placeholder ="Password" class="txtbox"  name="password"><br/>
        
         
         <div class="loggin"><button type="submit" name="login" >Login</button></div><br/>
