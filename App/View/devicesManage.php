@@ -19,7 +19,7 @@
         ?>
         <div class="main-body">
             <h2>Devices</h2>
-          
+            <p>Do not forget to asign the device to an existant room!</p>
             <div class="promo_card">
               <form action = "../Model/addDevice.php" method="POST">
                   <input type="text" placeholder ="Enter Device name" class="txtbox" id="sname" name="sname"></br>
@@ -42,16 +42,31 @@
                   $resultado = '<html><h2>Devices:</h2><p>';
 
                   for ($i=0; $i<count($rows); $i++){
-                      $resultado.='<button class= "Device1_button">'.$rows[0][$i].'</button><br>';
+                      $m = $i+1;
+                      
+                      $resultado.='<a href="devicesManage.php?click='.$m.'" class="btn">delete    </a><a class="btn">'.$rows[0][$i].'</a>';
                       //echo $rows[i];
                   }
 
                   $resultado.='</p></html>';
+                  if($_GET['click']??=""){
+                    delete($_GET['click']);
+                    echo '<script type="text/javascript">
+
+                                window.onload = function () { alert("Your device has been deleted!"); }
+
+                    </script>';
+                  }
+      
                   /*Imprimimos la variable*/
                   echo $resultado;
+                  
               ?>
               
+              
             </div>
+
+            
         </div>
 
           <?php
