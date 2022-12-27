@@ -34,6 +34,7 @@
 
                   $rows = [];
                   $_POST["productos"] = device_get("3");
+                 
                   while($row = mysqli_fetch_array($_POST["productos"])) {
                     $rows[] = $row;
                   }
@@ -50,12 +51,8 @@
 
                   $resultado.='</p></html>';
                   if($_GET['click']??=""){
-                    delete($_GET['click']);
-                    echo '<script type="text/javascript">
-
-                                window.onload = function () { alert("Your device has been deleted!"); }
-
-                    </script>';
+                    device_delete("3");
+                    
                   }
       
                   /*Imprimimos la variable*/
