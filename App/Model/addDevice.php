@@ -13,5 +13,6 @@ include '../View/devicesManage.php';
     $room_id= $_POST['roomid']??="";
     $sensor_id = $room_id;
 
-    return device_post($sensor_name,  $mode, $s_desc, $type, $date);
+    device_post($sensor_name,  $mode, $s_desc, $type, $date);
+    header('Location: ../View/devicesManage.php');
 ?>

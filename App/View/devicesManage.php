@@ -21,13 +21,13 @@
             <h2>Devices</h2>
           
             <div class="promo_card">
-              <form action = "../Model/addDevice.php" id="form1" method="POST">
+              <form action = "../Model/addDevice.php" method="POST">
                   <input type="text" placeholder ="Enter Device name" class="txtbox" id="sname" name="sname"></br>
                   <input type="text" placeholder ="Enter Device mode" class="txtbox" id="mode" name="mode"></br>
                   <input type="text" placeholder ="Enter description optional" class="txtbox" id="ds" name="ds"></br>
                   <input type="text" placeholder ="Enter type" id="type" class="txtbox" name="type"></br>
                   <input type="text" placeholder ="Enter room id" class="txtbox" id="roomid" name="roomid"></br>
-                  <button type= "submit" form="form1" class= "Add_button">Add</button>
+                  <button type= "submit" class= "Add_button">Add</button>
                   <br/>
               </form>
               <?php 
