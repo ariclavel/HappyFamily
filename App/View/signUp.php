@@ -1,4 +1,5 @@
-<?php date_default_timezone_set("Etc/GMT+8");
+<?php 
+date_default_timezone_set("Etc/GMT+8");
 
 session_start();
 use PHPMailer\PHPMailer\PHPMailer;
@@ -113,6 +114,8 @@ $_SESSION['message'] = "<div class='alert alert-info'>we've sent a verification 
         }   
  }
 
+
+
 ?>
 
 
@@ -143,17 +146,17 @@ $_SESSION['message'] = "<div class='alert alert-info'>we've sent a verification 
          </div>
          <form method="POST">
             
-            <input type="text" placeholder ="Enter first name" class="txtbox" id="fname" name="fname"></br>
-            <input type="text" placeholder ="Enter last name" class="txtbox" id="lname" name="lname"></br>
-             <input type="email" placeholder ="Enter email" class="txtbox" id="email" name="email"></br>
+            <input type="text" placeholder ="First name" class="txtbox" id="fname" name="fname"></br>
+            <input type="text" placeholder ="Last name" class="txtbox" id="lname" name="lname"></br>
+             <input type="email" placeholder ="Email" class="txtbox" id="email" name="email"></br>
                
-             <input type="password" placeholder ="Enter password"id="password" class="txtbox" name="password"></br>
+             <input type="password" placeholder ="Password"id="password" class="txtbox" name="password"></br>
          
              <input type="password" placeholder ="Retype password" class="txtbox" id="cpassword" name="cpassword"></br>
    
            
           
-               <div class="loggin"><a href="signUp.php"><button name="submit" type="submit" >Register</button></a></div><br/>
+               <div class="loggin"><a href="signUp.php"><button name="submit" type="submit">Register</button></a></div><br/>
              <a href="login.php">Click to sign-in</a>
            <br/>
            <?php 

@@ -4,25 +4,6 @@ session_start();
 
 
 require_once'../Model/user.query.php';
-//  if (ISSET($_POST['save']))
-//  {
-//  $productType = $_POST['type'];
-//  $productName = dataFilter($_POST['pname']);
-//  $productInfo = $_POST['pinfo'];
-//  $productPrice = dataFilter($_POST['price']);
-//  $user_id = $_SESSION['id'];
-
-//  $sql = "INSERT INTO product (user_id, product, pcat, pinfo, price)
-//       VALUES ('$user_id', '$productName', '$productType', '$productInfo', '$productPrice')";
-//  $result = mysqli_query($db->conn, $sql);
-//  if(!$result)
-//  {
-//    $_SESSION['message'] = "Unable to upload Product !!!";
-//    header("Location: Product.php");
-//  }
-//  else {
-//    $_SESSION['message'] = "successfull !!!";
-//  }
 if (ISSET($_POST['update']))
   {
  $pic = $_FILES['userPic'];
@@ -73,6 +54,71 @@ if (ISSET($_POST['update']))
    header("Location: userProfile2.php");
  }
 }
+
+if (ISSET($_POST['update_user']))
+  {
+    $userID = $_SESSION['id'];
+     $name= clean($_POST['fname']);
+     $lname=clean($_POST['lname']);
+     $phoneNumber=clean($_POST['phone_no']);
+     $result2 = update_user($db,$userID,$name,$lname,$phoneNumber);
+
+     //for address
+     $address1= clean($_POST['address_1']);
+     $address2=clean($_POST['address_2']);
+     $country=clean($_POST['country']);
+     $city=clean($_POST['state']);
+     $postCode1=clean($_POST['postcode1']);
+     $postCode2=clean($_POST['postcode2']);
+     
+     $arr_postalCode=[];
+     $arr_postalCode[0]=$postCode1;
+     $arr_postalCode[1]=$postCode2;
+     $array_size_post=sizeof($arr_postalCode);
+
+     $arr_address=[];
+     $arr_address[0]=$address1;
+     $arr_address[1]= $address2;
+     
+     $array_size=sizeof($arr_address);
+     
+    //  for($i=0; $i<$array_size; $i++)
+    //  {
+    //   $result =add_user_address($db,$arr_address[$i],$country,$city,$arr_postalCode[$i],$userID);
+
+    //  }
+   
+
+    if($address1 !="" && $postCode1!="")
+    {
+      $result =add_user_address($db,$arr_address[0],$country,$city,$arr_postalCode[0],$userID);
+      if($result2)
+      {
+        
+        $_SESSION['message'] = "<div class='alert alert-info'>User profile updated successfully.</div>";
+
+      }
+      else
+      {
+        $_SESSION['message'] = "<div class='alert alert-danger'>Sorry! error updating profile</div>";
+      }
+    }
+    else
+    {
+      $_SESSION['message'] = "<div class='alert alert-danger'>Sorry! error invalid! address and post code.</div>";
+    }
+
+    if($address1 !=null && $postCode1!=null)
+    {
+      $result =add_user_address($db,$arr_address[1],$country,$city,$arr_postalCode[1],$userID);
+    }
+    else
+    {
+      
+    }
+       
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -156,37 +202,59 @@ include("Dashboard_left_menu.php");
            <h4 class="text-right">Profile Settings</h4>
        </div>
 
-       <form name="form1" id="form1" action="/action_page.php">
+       <form method="POST">
            <div class="both">
                  <div class="both_1">
-                   <div class="col-md-12"><input type="text" class="form-control" placeholder="first name" value="<?php echo $_SESSION['name']?>"></div>
-                   <div class="col-md-12"><input type="text" class="form-control" placeholder="last name " value="<?php echo $_SESSION['surname']?>"></div>
-                   <div class="col-md-12"><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                   <div class="col-md-12"><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                   
+                   <div class="col-md-12"><input type="text" class="form-control" name="fname" placeholder="first name" value="<?php echo $_SESSION['name']?>"></div>
+                   <div class="col-md-12"><input type="text" class="form-control" name="lname" placeholder="last name " value="<?php echo $_SESSION['surname']?>"></div>
+                   <div class="col-md-12"><input type="text" class="form-control" name="phone_no" placeholder="enter phone number" value="<?php echo $fetch['phoneNumber']?>"></div>
+
+
+                   <?php
+                      $user_id = $_SESSION['id'];
+                                           
+											$tbl_address=$db->query("SELECT * FROM `address` WHERE reg_id='$user_id' LIMIT 1");
+											$fetch2=$tbl_address->fetch_array();
+										?>
+
+                   <div class="col-md-12"> <textarea placeholder="Address line one" value="<?php echo $fetch2['address']?>" name="address_1"cols="30" rows="5"></textarea></div>
+                   <div class="col-md-12"><input type="text" class="form-control" name="postcode1" value="<?php echo $fetch2['zip_code']?>" placeholder="Address one Postal code"></div>
+                  
                       
                  
                </div>
 
                  <div class="both_2">
-                   <div class="col-md-12"><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>      
-                   <div class="col-md-12"><select class="form-control" name="subject" id="subject">
+                 <div class="col-md-12"> <textarea placeholder="Address line two(optional)" name="address_2"cols="30" rows="5"></textarea></div>
+                   <div class="col-md-12">
+                    <select class="form-control" name="country" id="country">
                        <option value="" selected="selected">Select country</option>
-                       <option value="" >Nigeria</option>
-                       <option value="" >France</option>
-                       <option value="" >UK</option>
-                     </select></div>  
+                       <option>Nigeria</option>
+                       <option>France</option>
+                       <option>UK</option>
+                     </select>
+                    </div>  
                
-                     <div class="col-md-12"><select class="form-control" name="subject" id="subject">
+                     <div class="col-md-12">
+                      <select class="form-control" name="state" id="state">
                        <option value="" selected="selected">Select State/region</option>
-                       <option value="" >Paris</option>
-                       <option value="" >Touluese</option>
-                       <option value="" >Samtel</option>
-                     </select></div>  
-                 
+                       <option>Paris</option>
+                       <option>Touluese</option>
+                       <option>Samtel</option>
+                     </select>
+                    </div>  
+                     <div class="col-md-12"><input type="text" class="form-control" name="postcode2" placeholder="Address two postal code(optional)" value=""></div>
        
-       <div class="mt-5 text-center"><button class="btnn" type="button">Save Profile</button></div>
+       <div class="mt-5 text-center"><button type="submit" class="btnn" name ="update_user">Save Profile</button></div>
                  </div>
+                 <?php 
+										
+                    if(ISSET($_SESSION['message'])){
+                      echo "<center><label class='text-danger'>".$_SESSION['message']."</label></center>";
+                    }
+
+                                          unset($_SESSION['message']);
+                  ?>
                  </div>
        </form>
            </div>
