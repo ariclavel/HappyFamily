@@ -16,6 +16,8 @@
       <div class="container">
         <?php
           include("Dashboard_left_menu.php");
+          session_start(); // this would start session
+          $user= $_SESSION['id']; // this would store the session in a variable call $user
         ?>
         <div class="main-body">
             <h2>Devices</h2>
@@ -32,7 +34,7 @@
               </form>
               <?php 
                   //$_POST["productos"] = device_get("3");
-                  $result = device_get("3");
+                  $result = device_get($user);
                   /*while($row = mysqli_fetch_array($_POST["productos"])) {
                     $rows[] = $row;
                   }*/
