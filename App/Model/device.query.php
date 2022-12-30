@@ -26,11 +26,28 @@ function device_details($id){
             
     }
 }
+function room_get($userid,$roomid){
+    
+    //WHERE userid='$email'
+    $dbb = connection();
+    //SELECT `sensor_name` FROM `sensor` JOIN rooms ON sensor.room_id = rooms.room_id WHERE rooms.reg_id='3';
+    $query=$dbb->prepare("SELECT EXISTS (SELECT * FROM rooms WHERE reg_id={$userid} AND room_id = {$roomid});") or die($this->conn->error);
+        if($query->execute()){
+            $result=$query->get_result();
+            $row=mysqli_fetch_row($result);
+            echo $row[0];
+            if ($row[0]=="1"){
+                return true;
+            }
+            else return false;
+            
+        }
+}
 function device_get($userid){
     //WHERE userid='$email'
     $dbb = connection();
     //SELECT `sensor_name` FROM `sensor` JOIN rooms ON sensor.room_id = rooms.room_id WHERE rooms.reg_id='3';
-    $query=$dbb->prepare("SELECT sensor_name,sensor_id FROM sensor JOIN rooms ON sensor.room_id = rooms.room_id WHERE rooms.reg_id='8';") or die($this->conn->error);
+    $query=$dbb->prepare("SELECT sensor_name, sensor_id, sensor.room_id FROM sensor JOIN rooms ON sensor.room_id = rooms.room_id WHERE rooms.reg_id={$userid};") or die($this->conn->error);
         if($query->execute()){
             $result=$query->get_result();
             
@@ -72,16 +89,15 @@ function device_delete($deviceid){
            
         }
 }
-function device_post($sensor_name,  $mode, $s_desc, $type, $date){
+function device_post($roomid, $sensor_name, $mode, $s_desc, $type, $date){
     $conn = connection();
     if($conn){
-        $uno = "1";
-        $dos = device_max();
-        echo json_encode($dos);
       
-        
+        $id = device_max();
+        $id = $id+1;
+       
 
-        $request = "INSERT INTO `sensor`(`sensor_id`, `sensor_name`, `mode`, `s_desc`, `type`, `date`, `room_id`) VALUES ('$dos', '$sensor_name', '$mode', '$s_desc', '$type', '$date', '$uno')";
+        $request = "INSERT INTO `sensor`(`sensor_id`, `sensor_name`, `mode`, `s_desc`, `type`, `date`, `room_id`) VALUES ('$id', '$sensor_name', '$mode', '$s_desc', '$type', '$date', '$roomid')";
         //echo $request;
         
         //$request = "INSERT INTO sensor(sensor_id, sensor_name, mode, s_desc, type, date, room_id) VALUES ($dos, $sensor_name, $mode, $s_desc, $type, $date, $uno)";
@@ -89,12 +105,15 @@ function device_post($sensor_name,  $mode, $s_desc, $type, $date){
         
         $statement = $conn->prepare($request);
      
-       
-    
-        return $statement->execute();
+        if($statement->execute()){
+            echo "Records was updated successfully.";
+        } else{
+            echo "ERROR: Could not able to execute $request. " 
+                                                . $conn->error;
+        }
+        //return $statement->execute();
     }else{
-        echo "INSERT INTO sensor(sensor_id, sensor_name, mode, s_desc, type, date, room_id) VALUES (:value1, :value2, :value3, :value4, :value5, :value6, :value7)";
-        return false;
+        echo "no connection!";
     }
     
     

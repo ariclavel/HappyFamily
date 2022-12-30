@@ -24,6 +24,7 @@
             <p>Do not forget to asign the device to an existant room!</p>
             <div class="promo_card">
               <form action = "../Model/addDevice.php" method="POST">
+                  <input type="hidden" placeholder ="Enter new Device name" class="txtbox" id="user" name="user" value = {$user} ></br>
                   <input type="text" placeholder ="Enter Device name" class="txtbox" id="sname" name="sname"></br>
                   <input type="text" placeholder ="Enter Device mode" class="txtbox" id="mode" name="mode"></br>
                   <input type="text" placeholder ="Enter description optional" class="txtbox" id="ds" name="ds"></br>
@@ -33,11 +34,7 @@
                   <br/>
               </form>
               <?php 
-                  //$_POST["productos"] = device_get("3");
                   $result = device_get($user);
-                  /*while($row = mysqli_fetch_array($_POST["productos"])) {
-                    $rows[] = $row;
-                  }*/
                   $myArray=[];
                   while($row = $result->fetch_assoc()) {
                       $myArray[] = $row;
@@ -50,7 +47,7 @@
                   for ($i=0; $i<count($myArray); $i++){
                       $m = $i+1;
                       
-                      $resultado.='<a href="devicesManage.php?click='.json_encode($myArray[$i]["sensor_id"]).'" class="btn">delete &nbsp;&nbsp;&nbsp;&nbsp;</a><a class="btn">'.json_encode($myArray[$i]["sensor_name"]).'</a><a href="devicesManage.php?click2='.json_encode($myArray[$i]["sensor_id"]).'" class="btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;details</a><br>';
+                      $resultado.='<a href="devicesManage.php?click='.json_encode($myArray[$i]["sensor_id"]).'" class="btn">delete &nbsp;&nbsp;&nbsp;&nbsp;</a><a class="btn">'.json_encode($myArray[$i]["sensor_name"]).': ROOM: '.json_encode($myArray[$i]["room_id"]).'</a><a href="devicesManage.php?click2='.json_encode($myArray[$i]["sensor_id"]).'" class="btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;details</a><br>';
                       //echo $rows[i];
                   }
 
