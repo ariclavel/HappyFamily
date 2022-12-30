@@ -67,13 +67,15 @@ function device_max(){
         }
 
     */
-    $dbb->real_query("SELECT sensor_id FROM sensor ORDER BY id ASC");
-    return $result = $dbb->use_result();
-
+    $dbb->real_query("SELECT sensor_id FROM sensor ORDER BY sensor_id DESC");
+    
+    $result = $dbb->use_result();
     echo "Result set order...\n";
     foreach ($result as $row) {
-        echo " id = " . $row['id'] . "\n";
+        return $row['sensor_id'];
+        echo " id = " . $row['sensor_id'] . "\n";
     }
+    
     
 }
 function device_delete($deviceid){
@@ -107,9 +109,11 @@ function device_post($roomid, $sensor_name, $mode, $s_desc, $type, $date){
      
         if($statement->execute()){
             echo "Records was updated successfully.";
+            header('Location: ../View/devicesManage.php');
         } else{
             echo "ERROR: Could not able to execute $request. " 
                                                 . $conn->error;
+            header('Location: ../View/devicesManage.php');
         }
         //return $statement->execute();
     }else{
