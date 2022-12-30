@@ -24,6 +24,7 @@
             <p>Do not forget to asign the device to an existant room!</p>
             <div class="promo_card">
               <form action = "../Model/addDevice.php" method="POST">
+                  <input type="hidden" placeholder ="Enter new Device name" class="txtbox" id="user" name="user" value = {$user} ></br>
                   <input type="text" placeholder ="Enter Device name" class="txtbox" id="sname" name="sname"></br>
                   <input type="text" placeholder ="Enter Device mode" class="txtbox" id="mode" name="mode"></br>
                   <input type="text" placeholder ="Enter description optional" class="txtbox" id="ds" name="ds"></br>

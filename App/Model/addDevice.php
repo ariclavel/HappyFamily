@@ -11,8 +11,35 @@ include '../View/devicesManage.php';
     $type= $_POST['type']??="";
     $date= date("Y-m-d H:i:s");
     $room_id= $_POST['roomid']??="";
-    $sensor_id = $room_id;
+   
+    
+    $userid= $_SESSION['id']; // this would store the session in a variable call $user
+    device_post($room_id, $sensor_name,  $mode, $s_desc, $type, $date);
+    //Verify data
+    if($sensor_name == "" or $room_id == ""){
+        header('Location: ../View/devicesManage.php');
+        echo '<script type="text/javascript">
+            
+                window.onload = function () { alert("You need a device name!!"); }
+            
+        </script>';
+        echo "MIERD";
+        //header('Location: ../View/devicesManage.php');
 
-    device_post($sensor_name,  $mode, $s_desc, $type, $date);
-    header('Location: ../View/devicesManage.php');
+    }
+    elseif(!room_get($userid,$room_id)){
+        header('Location: ../View/devicesManage.php');
+        echo '<script type="text/javascript">
+            
+                window.onload = function () { alert("The room number does not exist!!!"); }
+            
+        </script>';
+        //header('Location: ../View/devicesManage.php');
+
+    }
+    else{
+        device_post($userid, $sensor_name,  $mode, $s_desc, $type, $date);
+        header('Location: ../View/devicesManage.php');
+    } 
+    
 ?>
