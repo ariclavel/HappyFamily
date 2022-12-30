@@ -31,27 +31,54 @@
                   <br/>
               </form>
               <?php 
-
-                  $rows = [];
-                  $_POST["productos"] = device_get("3");
-                 
-                  while($row = mysqli_fetch_array($_POST["productos"])) {
+                  //$_POST["productos"] = device_get("3");
+                  $result = device_get("3");
+                  /*while($row = mysqli_fetch_array($_POST["productos"])) {
                     $rows[] = $row;
+                  }*/
+                  $myArray=[];
+                  while($row = $result->fetch_assoc()) {
+                      $myArray[] = $row;
                   }
-                  //$resultado = '<html><h2>Productos:</h2><p><b>'.implode("<b></b>", $_POST["productos"])'</b></p></html>';
+                 
+                    //$resultado = '<html><h2>Productos:</h2><p><b>'.implode("<b></b>", $_POST["productos"])'</b></p></html>';
                   /*Inicializar variable sobre la cual se irá concatenando*/
                   $resultado = '<html><h2>Devices:</h2><p>';
-
-                  for ($i=0; $i<count($rows); $i++){
+                  
+                  for ($i=0; $i<count($myArray); $i++){
                       $m = $i+1;
                       
-                      $resultado.='<a href="devicesManage.php?click='.$m.'" class="btn">delete    </a><a class="btn">'.$rows[0][$i].'</a>';
+                      $resultado.='<a href="devicesManage.php?click='.json_encode($myArray[$i]["sensor_id"]).'" class="btn">delete &nbsp;&nbsp;&nbsp;&nbsp;</a><a class="btn">'.json_encode($myArray[$i]["sensor_name"]).'</a><a href="devicesManage.php?click2='.json_encode($myArray[$i]["sensor_id"]).'" class="btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;details</a><br>';
                       //echo $rows[i];
                   }
 
                   $resultado.='</p></html>';
                   if($_GET['click']??=""){
-                    device_delete("3");
+
+                    if(device_delete($_GET['click'])==true){ 
+                        echo '<script type="text/javascript">
+            
+                                window.onload = function () { alert("Your device has been deleted!"); }
+            
+                        </script>';
+                        header('Location: ../View/devicesManage.php');
+                        
+                    }
+                    else{ 
+
+                        echo '<script type="text/javascript">
+            
+                                window.onload = function () { alert("Your device COULD NOT being deleted!"); }
+            
+                        </script>';
+                        header('Location: ../View/devicesManage.php');
+                    }
+                    
+                    
+                  }
+                  if($_GET['click2']??=""){
+
+                    
                     
                   }
       
