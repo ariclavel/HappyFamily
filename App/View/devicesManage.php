@@ -77,8 +77,25 @@
                     
                   }
                   if($_GET['click2']??=""){
-
+                    $res = device_details($_GET['click2']);
+                    //echo(json_encode(device_details($_GET['click2'])));
+                    echo
+                    '<form action = "../Model/editDevice.php" method="POST">
+                        
+                        <input type="hidden" placeholder ="Enter new Device name" class="txtbox" id="idsens" name="idsens" value = '.$_GET['click2'].'></br>
+                       
+                        <p> Name : '.$res["name"].'</p><input type="text" placeholder ="Enter new Device name" class="txtbox" id="newname" name="newname"></br>
+                        <p> Mode : '.$res["mode"].'</p><input type="text" placeholder ="Enter new Device mode" class="txtbox" id="newmode" name="newmode"></br>
+                        <p> Description : '.$res["Description"].'</p><input type="text" placeholder ="Enter new description" class="txtbox" id="newds" name="newds"></br>
+                        <p> Type : '.$res["type"].'</p><input type="text" placeholder ="Enter new type" id="newtype" class="txtbox" name="newtype"></br>
+                        <button type= "submit" class= "Add_button">Edit</button>
+                        <button type= "submit" class= "Add_button"><a href="devicesManage.php" class="Add_button"></a>Cancel</button>
+                        
+                        <br/>
+                    </form>';
+                   
                     
+
                     
                   }
       

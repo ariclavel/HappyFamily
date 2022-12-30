@@ -2,6 +2,30 @@
 require 'connectionreturn.php';
 //require '../vendor/autoload.php';
 //include ('../View/filter_string.php');
+
+function device_details($id){
+    //WHERE userid='$email'
+    $dbb = connection();
+    //SELECT `sensor_name` FROM `sensor` JOIN rooms ON sensor.room_id = rooms.room_id WHERE rooms.reg_id='3';
+    $query=$dbb->prepare("SELECT  `sensor_name`, `mode`, `s_desc`, `type` FROM `sensor` WHERE sensor_id = $id;") or die($this->conn->error);
+    
+    if($query->execute()){
+        $query->store_result();
+        $query->bind_result($sensorname, $mode, $description, $type);
+        $rows = [];
+        while ($query->fetch()) {
+            $rows[] = [
+                'name' => $sensorname,
+                'mode' => $mode,
+                'Description' => $description,
+                'type' => $type,
+            ];
+        }
+        
+        return $rows[0];
+            
+    }
+}
 function device_get($userid){
     //WHERE userid='$email'
     $dbb = connection();
@@ -75,6 +99,64 @@ function device_post($sensor_name,  $mode, $s_desc, $type, $date){
     
     
     
+}
+
+function device_update($id, $sensor_name,  $mode, $s_desc, $type){
+    $conn = connection();
+    echo $id;
+    //$id = "10";
+    if($conn){
+        if($sensor_name != ""){
+
+            $sql = "UPDATE `sensor` SET `sensor_name`= '{$sensor_name}'  WHERE sensor_id = {$id}";
+            if($conn->query($sql) === true){
+                echo "Records was updated successfully.";
+            } else{
+                echo "ERROR: Could not able to execute $sql. " 
+                                                    . $conn->error;
+            }
+            $conn->close();
+            
+            
+
+        }
+        if($mode != ""){
+            $sql = "UPDATE `sensor` SET `mode`= '{$mode}'  WHERE sensor_id = {$id}";
+            if($conn->query($sql) === true){
+                echo "Records was updated successfully.";
+            } else{
+                echo "ERROR: Could not able to execute $sql. " 
+                                                    . $conn->error;
+            }
+            $conn->close();
+            
+        }
+        if($s_desc != ""){
+            $sql = "UPDATE `sensor` SET `s_desc`= '{$s_desc}'  WHERE sensor_id = {$id}";
+            if($conn->query($sql) === true){
+                echo "Records was updated successfully.";
+            } else{
+                echo "ERROR: Could not able to execute $sql. " 
+                                                    . $conn->error;
+            }
+            $conn->close();
+            
+            
+        }
+        if($type != ""){
+            $sql = "UPDATE `sensor` SET `type`= '{$type}'  WHERE sensor_id = {$id}";
+            if($conn->query($sql) === true){
+                echo "Records was updated successfully.";
+            } else{
+                echo "ERROR: Could not able to execute $sql. " 
+                                                    . $conn->error;
+            }
+            $conn->close();
+            
+            
+        }
+    }
+
 }
 
 ?>
