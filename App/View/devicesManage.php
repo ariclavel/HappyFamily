@@ -3,76 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <title>Dashboard | Happy Family</title>
-  <link rel="stylesheet" href="style.css" />
+ 
   <!-- Font Awesome Cdn Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/dashboard.css">
-</head>
-<body>
-<?php
-include("Dashboard_header.php");
-include("../Model/device.query.php");
-?>
-
- 
-  <div class="container">
-  <?php
-include("Dashboard_left_menu.php");
-?>
-   
-
-    <div class="main-body">
-      <h2>Devices</h2>
-      <div class="promo_card">
-        <h1>Welcome to HappyFamily</h1>
-        <span>Experience smart life that is pet friendly.</span>
-        <button>Learn More</button>
-      </div>
-      <div class="promo_card">
-      <form action = "../Model/addDevice.php" id="form1" method="POST">
-          <input type="text" placeholder ="Enter Device name" class="txtbox" id="sname" name="sname"></br>
-          <input type="text" placeholder ="Enter Device mode" class="txtbox" id="mode" name="mode"></br>
-          <input type="text" placeholder ="Enter description optional" class="txtbox" id="ds" name="ds"></br>
-          <input type="text" placeholder ="Enter type" id="type" class="txtbox" name="type"></br>
-          <input type="text" placeholder ="Enter room id" class="txtbox" id="roomid" name="roomid"></br>
-          <button type= "submit" form="form1" class= "Add_button">Add</button>
-          
-          <br/>
-       
-    </form>
-    <?php 
-
-          $rows = [];
-          
-          $_POST["productos"] = device_get("3");
-          while($row = mysqli_fetch_array($_POST["productos"])) {
-            $rows[] = $row;
-          }
-          //$resultado = '<html><h2>Productos:</h2><p><b>'.implode("<b></b>", $_POST["productos"])'</b></p></html>';
-          /*Inicializar variable sobre la cual se irá concatenando*/
-          $resultado = '<html><h2>Devices:</h2><p>';
-
-          for ($i=0; $i<count($rows); $i++){
-              $resultado.='<button class= "Device1_button">'.$rows[0][$i].'</button><br>';
-              //echo $rows[i];
-          }
-
-          $resultado.='</p></html>';
-          /*Imprimimos la variable*/
-          echo $resultado;
+  </head>
+    <body>
+      <?php
+        include("Dashboard_header.php");
+        include("../Model/device.query.php");
       ?>
-        
-      </div>
-      
-    
-      
-    </div>
+      <div class="container">
+        <?php
+          include("Dashboard_left_menu.php");
+          session_start(); // this would start session
+          $user= $_SESSION['id']; // this would store the session in a variable call $user
+        ?>
+        <div class="main-body">
+            <h2>Devices</h2>
+            <p>Do not forget to asign the device to an existant room!</p>
+            <div class="promo_card">
+              <form action = "../Model/addDevice.php" method="POST">
+                  <input type="text" placeholder ="Enter Device name" class="txtbox" id="sname" name="sname"></br>
+                  <input type="text" placeholder ="Enter Device mode" class="txtbox" id="mode" name="mode"></br>
+                  <input type="text" placeholder ="Enter description optional" class="txtbox" id="ds" name="ds"></br>
+                  <input type="text" placeholder ="Enter type" id="type" class="txtbox" name="type"></br>
+                  <input type="text" placeholder ="Enter room id" class="txtbox" id="roomid" name="roomid"></br>
+                  <button type= "submit" class= "Add_button">Add</button>
+                  <br/>
+              </form>
+              <?php 
+                  //$_POST["productos"] = device_get("3");
+                  $result = device_get($user);
+                  /*while($row = mysqli_fetch_array($_POST["productos"])) {
+                    $rows[] = $row;
+                  }*/
+                  $myArray=[];
+                  while($row = $result->fetch_assoc()) {
+                      $myArray[] = $row;
+                  }
+                 
+                    //$resultado = '<html><h2>Productos:</h2><p><b>'.implode("<b></b>", $_POST["productos"])'</b></p></html>';
+                  /*Inicializar variable sobre la cual se irá concatenando*/
+                  $resultado = '<html><h2>Devices:</h2><p>';
+                  
+                  for ($i=0; $i<count($myArray); $i++){
+                      $m = $i+1;
+                      
+                      $resultado.='<a href="devicesManage.php?click='.json_encode($myArray[$i]["sensor_id"]).'" class="btn">delete &nbsp;&nbsp;&nbsp;&nbsp;</a><a class="btn">'.json_encode($myArray[$i]["sensor_name"]).'</a><a href="devicesManage.php?click2='.json_encode($myArray[$i]["sensor_id"]).'" class="btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;details</a><br>';
+                      //echo $rows[i];
+                  }
 
-    <?php
-include("Dashboard_right_menu.php");
-?>
-  </div>
-</body>
+                  $resultado.='</p></html>';
+                  if($_GET['click']??=""){
+
+                    if(device_delete($_GET['click'])==true){ 
+                        echo '<script type="text/javascript">
+            
+                                window.onload = function () { alert("Your device has been deleted!"); }
+            
+                        </script>';
+                        header('Location: ../View/devicesManage.php');
+                        
+                    }
+                    else{ 
+
+                        echo '<script type="text/javascript">
+            
+                                window.onload = function () { alert("Your device COULD NOT being deleted!"); }
+            
+                        </script>';
+                        header('Location: ../View/devicesManage.php');
+                    }
+                    
+                    
+                  }
+                  if($_GET['click2']??=""){
+                    $res = device_details($_GET['click2']);
+                    //echo(json_encode(device_details($_GET['click2'])));
+                    echo
+                    '<form action = "../Model/editDevice.php" method="POST">
+                        
+                        <input type="hidden" placeholder ="Enter new Device name" class="txtbox" id="idsens" name="idsens" value = '.$_GET['click2'].'></br>
+                       
+                        <p> Name : '.$res["name"].'</p><input type="text" placeholder ="Enter new Device name" class="txtbox" id="newname" name="newname"></br>
+                        <p> Mode : '.$res["mode"].'</p><input type="text" placeholder ="Enter new Device mode" class="txtbox" id="newmode" name="newmode"></br>
+                        <p> Description : '.$res["Description"].'</p><input type="text" placeholder ="Enter new description" class="txtbox" id="newds" name="newds"></br>
+                        <p> Type : '.$res["type"].'</p><input type="text" placeholder ="Enter new type" id="newtype" class="txtbox" name="newtype"></br>
+                        <button type= "submit" class= "Add_button">Edit</button>
+                        <button type= "submit" class= "Add_button"><a href="devicesManage.php" class="Add_button"></a>Cancel</button>
+                        
+                        <br/>
+                    </form>';
+                   
+                    
+
+                    
+                  }
+      
+                  /*Imprimimos la variable*/
+                  echo $resultado;
+                  
+              ?>
+              
+              
+            </div>
+
+            
+        </div>
+
+          <?php
+            include("Dashboard_right_menu.php");
+          ?>
+      </div>
+  </body>
 </html>
 
   
