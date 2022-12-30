@@ -34,11 +34,7 @@
                   <br/>
               </form>
               <?php 
-                  //$_POST["productos"] = device_get("3");
                   $result = device_get($user);
-                  /*while($row = mysqli_fetch_array($_POST["productos"])) {
-                    $rows[] = $row;
-                  }*/
                   $myArray=[];
                   while($row = $result->fetch_assoc()) {
                       $myArray[] = $row;
@@ -51,7 +47,7 @@
                   for ($i=0; $i<count($myArray); $i++){
                       $m = $i+1;
                       
-                      $resultado.='<a href="devicesManage.php?click='.json_encode($myArray[$i]["sensor_id"]).'" class="btn">delete &nbsp;&nbsp;&nbsp;&nbsp;</a><a class="btn">'.json_encode($myArray[$i]["sensor_name"]).'</a><a href="devicesManage.php?click2='.json_encode($myArray[$i]["sensor_id"]).'" class="btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;details</a><br>';
+                      $resultado.='<a href="devicesManage.php?click='.json_encode($myArray[$i]["sensor_id"]).'" class="btn">delete &nbsp;&nbsp;&nbsp;&nbsp;</a><a class="btn">'.json_encode($myArray[$i]["sensor_name"]).': ROOM: '.json_encode($myArray[$i]["room_id"]).'</a><a href="devicesManage.php?click2='.json_encode($myArray[$i]["sensor_id"]).'" class="btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;details</a><br>';
                       //echo $rows[i];
                   }
 

@@ -47,7 +47,7 @@ function device_get($userid){
     //WHERE userid='$email'
     $dbb = connection();
     //SELECT `sensor_name` FROM `sensor` JOIN rooms ON sensor.room_id = rooms.room_id WHERE rooms.reg_id='3';
-    $query=$dbb->prepare("SELECT sensor_name,sensor_id FROM sensor JOIN rooms ON sensor.room_id = rooms.room_id WHERE rooms.reg_id={$userid};") or die($this->conn->error);
+    $query=$dbb->prepare("SELECT sensor_name, sensor_id, sensor.room_id FROM sensor JOIN rooms ON sensor.room_id = rooms.room_id WHERE rooms.reg_id={$userid};") or die($this->conn->error);
         if($query->execute()){
             $result=$query->get_result();
             
