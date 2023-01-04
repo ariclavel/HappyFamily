@@ -10,10 +10,12 @@
   <link rel="stylesheet" href="../css/user_profile_victor.css">
   
   <!-- Font Awesome Cdn Link -->
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/dashboard.css">
   
-  <style type="text/css">a
+  
+  <style type="text/css">
    .text-danger{
     color:red;
    }
@@ -39,10 +41,27 @@
     margin-left:30px;
    }
 
-   .both{
+   .all-div{
     display:flex;
    }
- 
+   .hedd{
+    
+    width:100%;
+   }
+   .text-title{
+    text-align:center;
+   }
+  
+ .div33{
+  display:none;
+  border-left:1px solid black;
+  border-right:1px solid black;
+ }
+ .image2{
+  border-radius:50%;
+  margin-left: 30px;
+  margin-top: 20px;
+ }
   </style>
 </head>
 <body>
@@ -64,46 +83,74 @@ include("Dashboard_left_menu.php");
    
 <div class="profile">
   <div class="middle_part">
-        <div class="settings">
-            <h4 class="text-right">Edit pet</h4>
-        </div>
+        
+            
+       
 
         <form name="form1" id="form1" action="/action_page.php">
-        <div class="both">
-             <div class="both_1">
-                    <div class="col-md-12">
-                      <select class="form-control" name="subject" id="subject">
+         
+        <div class="all-div">
+        <div class="div2">
+         <div class="profile_pxx">
+                                 <img class="image2" width="120px" height="120px" src="../img/pet2.png"><br/><br/><span class="pet_name">Name: Nanny-p</span>
+                                <div ><button type="button" class="update_pet">change photo</button></div>
+                                
+                            </div>
+
+         </div>
+        <div class="div1">
+         <table>
+         <tr>
+          
+             <td>
+             <h2 class="text-title">Edit pet</h2>
+             </td>
+          </tr>
+          <tr>
+          
+             <td>
+             <select class="form-control" name="subject" id="subject">
                         <option value="" selected="selected">Select category</option>
                         <option value="" >Dogs</option>
                         <option value="" >Cats</option>
     
                       </select>
-                    </div>  
-                  
-                    <div class="col-md-12"><input type="text" class="form-control" placeholder="Pet name" value=""></div>
-                    
-                          <div class="col-md-12">
-                            <label class="labels">Description</label><br/>
+             </td>
+          </tr>
+
+          <tr>
+             <td>
+             <input type="text" class="form-control" placeholder="Pet name" value="">
+             </td>
+          </tr>
+
+          <tr>
+             <td>
+             <label class="labels">Description</label><br/>
                             <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
-                           </div>
-                           <div class="mt-5 text-center"><button class="btnn" type="button">Update</button></div>
-                    </div>
-                    
-                    <div class="both_2">
+             </td>
+          </tr>
+
+          <tr>
+             <td>
+             <button class="btnn" type="button">Update</button><button class="btnn" id="toggle" type="button">View weather</button><a href="petTracker_victor.php"> <i class="fa-solid fa-location-check">  </i>Pet location</a>
+             </td>
+            
+          </tr>
+
+        </table>
+         </div>
+        
+         <div  class="div33" id="div3">
              
                             
-        
-                            <div class="profile_pxx">
-                                 <img class="image2" width="150px" height="150px" src="../img/pet2.png"><br/><br/><span class="pet_name">Name: Nanny-p</span>
-                                <div ><button type="button" class="update_pet">change photo</button></div>
-                                
-                            </div>
-                       
-               </div>
-               </div>
+             <?php require('weather.php');?>
+      
+              </div>
+     
+             
+
                 </div>
-
-
                 
         </form>
          
@@ -114,7 +161,7 @@ include("Dashboard_left_menu.php");
             <div class="modal">
                 <div class="modal-content">
                     <span class="close-button">×</span>
-                    <h1>Update pet photo</h1>
+                    <h4>Update pet photo</h4>
                     <form action="/action_page.php">
                         <input type="file" id="myFile" name="filename">
                         <button type="submit" name ="update">upload</button>
@@ -143,7 +190,18 @@ include("Dashboard_left_menu.php");
 
 
   </div>
-  
+  <script>
+    const targetDiv = document.getElementById("div3");
+    const btn = document.getElementById("toggle");
+     
+    btn.onclick = function () {
+      if (targetDiv.style.display !== "none") {
+        targetDiv.style.display = "none";
+      } else {
+        targetDiv.style.display = "block";
+      }
+    };
+  </script>
 
 <script>
 
