@@ -14,8 +14,7 @@ unset($_SESSION['message']);
      $device_id=clean($_POST['device']);
      $from=clean($_POST['from']);
      $to=clean($_POST['to']);
-     $user= $_SESSION['id'];
-     $schedule_time=date("H:i:s");
+     $user= $_GET['id'];
      $arr1=[];
      $arr2=[];
    
@@ -34,18 +33,18 @@ unset($_SESSION['message']);
    
        
   
-        $result =add_schedule($db,$from,$to,$duration,$device_id,$room_id,$user,$schedule_time);
+        $result =update_schedule($db,$from,$to,$duration,$device_id,$room_id,$user);
         
         
         if($result)
         {
                 
                     
-      $_SESSION['message'] = "<div class='alert alert-info'>Schedule successful.</div>";
+      $_SESSION['message'] = "<div class='alert alert-info'>Schedule updated successful.</div>";
         }
         else
         {
-            $_SESSION['message'] = "<div class='alert alert-danger'>Invalid Schedule, somthing went wrong.</div>";
+            $_SESSION['message'] = "<div class='alert alert-danger'>Invalid Schedule update, somthing went wrong.</div>";
         }
     }
 
@@ -114,12 +113,17 @@ include("Dashboard_left_menu.php");
 <form method="POST">
          <table>
          <tr>
-               <th><h4 class="text-right">DEVICE SCHEDULER</h4></th>
+               <th><h4 class="text-right">EDIT SCHEDULER PAGE</h4></th>
         </tr>
                 <tr>
                             <td> 
+                            <?php
+                                            $id = $_GET['id'];
+                                            $tbl_ltype = get_schedule($db,$id);
+                                            $fetch2=$tbl_ltype->fetch_array();
+                                    ?>
                             <select class="form-control" name="room" id="subject">
-                            <option value="" selected="selected">Select Room</option>
+                            <option selected="selected" value="<?php echo $fetch2['room_id']?>"><?php echo $fetch2['room_name']?></option>
                                      <?php
                                             
                                              $tbl_ltype = display_rooms($db);
@@ -133,8 +137,13 @@ include("Dashboard_left_menu.php");
                                  </select>
                             </td>
                             <td>
+                            <?php
+                                            $id = $_GET['id'];
+                                            $tbl_ltype = get_schedule($db,$id);
+                                            $fetch2=$tbl_ltype->fetch_array();
+                                    ?>
                                         <select class="form-control" name="device" id="subject">
-                                            <option value="" selected="selected">Select Device</option>
+                                            <option selected="selected" value="<?php echo $fetch2['device_id']?>"><?php echo $fetch2['device_name']?></option>
                                             <?php
                                              
                                              $tbl_ltype = display_device($db);
@@ -153,7 +162,12 @@ include("Dashboard_left_menu.php");
                 <tr>
                     
                         <td>
-                        <input type="time" id="appt" class="form-control" name="from"   required>
+                        <?php
+                                            $id = $_GET['id'];
+                                            $tbl_ltype = get_schedule($db,$id);
+                                            $fetch2=$tbl_ltype->fetch_array();
+                                    ?>
+                        <input type="time" id="appt" value="<?php echo $fetch2['from']?>" class="form-control" name="from"   required>
                         
                     
                        </td>
@@ -168,7 +182,7 @@ include("Dashboard_left_menu.php");
                 <tr>
                     <td>
 
-                    <input type="time" id="appt" class="form-control" name="to"   required></td>
+                    <input type="time" id="appt" value="<?php echo $fetch2['to']?>" class="form-control" name="to"   required></td>
                     <td> 
                         <select name="time" class="form-control">
                         <option value="" selected="selected">Time period</option>
@@ -192,7 +206,7 @@ include("Dashboard_left_menu.php");
                 <tr>
                     
                     <td> 
-                    <button type="submit" name="submit" class="btnn">Schedule</button>
+                    <button type="submit" name="submit" class="btnn">update Schedule</button>
                     </td>
                    <td>
                    <a href="ViewSchedule.php">View all Schedules</a><i class="fa-solid fa-arrow-right"></i>
