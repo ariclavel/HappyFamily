@@ -15,6 +15,7 @@ unset($_SESSION['message']);
      $from=clean($_POST['from']);
      $to=clean($_POST['to']);
      $user= $_SESSION['id'];
+     $schedule_time=date("H:i:s");
      $arr1=[];
      $arr2=[];
    
@@ -33,7 +34,7 @@ unset($_SESSION['message']);
    
        
   
-        $result =add_schedule($db,$from,$to,$duration,$device_id,$room_id,$user);
+        $result =add_schedule($db,$from,$to,$duration,$device_id,$room_id,$user,$schedule_time);
         
         
         if($result)

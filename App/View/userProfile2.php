@@ -9,9 +9,7 @@ if (ISSET($_POST['update']))
  $pic = $_FILES['userPic'];
  $picName = $pic['name'];
  $picTmpName = $pic['tmp_name'];
- $picSize = $pic['size'];
  $picError = $pic['error'];
- $picType = $pic['type'];
  $picExt = explode('.', $picName);
  $picActualExt = strtolower(end($picExt));
  $allowed = array('jpg','jpeg','png');
@@ -21,7 +19,7 @@ if (ISSET($_POST['update']))
    {
      $_SESSION['userPic'] = $_SESSION['id'];
      $userName = $_SESSION['name'];
-     $picNameNew = $userName. $_SESSION['id'].".".$picActualExt ;
+     $picNameNew = $userName. $_SESSION['id'].".".$picActualExt;
      $picDestination = "../img/profile_pix/".$picNameNew;
      move_uploaded_file($picTmpName, $picDestination);
      $id = $_SESSION['id'];

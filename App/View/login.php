@@ -5,7 +5,7 @@ date_default_timezone_set("Etc/GMT+8");
 unset($_SESSION['message']);
 if(isset($_SESSION['id']))
 {
-   header("Location:../home.php");
+   header("Location:../View/Dashboard.php");
    die();
 }
 require_once'../Model/user.query.php';

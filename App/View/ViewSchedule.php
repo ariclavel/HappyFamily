@@ -3,18 +3,7 @@ date_default_timezone_set("Etc/GMT+8");
 require_once'../Model/rooms.php';
 
 session_start();
-
-// if(isset($_GET['msg']))
-// {
-//     $msg=$_GET['msg'];
-//     $_SESSION['message']=$msg;
-// }
-
- 
-    
-    
-
-
+$user= $_SESSION['id'];
 ?>
 
 <!DOCTYPE html>
@@ -189,7 +178,7 @@ include("Dashboard_left_menu.php");
                                                 <div class="container timeBar ys1" data=<?php echo $fetch['duration']?> ></div>
                                                 </td>
                                                 <td>
-                                                <a href="editSchedule.php?id=<?php echo $fetch['scheduler_id']?>"><i class="fa-solid fa-pen-to-square"></i></a> <a href="deleteSchedule.php?id=<?php echo $fetch['scheduler_id']?>"><i class="fa-sharp fa-solid fa-delete-left"></i></a>
+                                                <a href="editSchedule.php?id=<?php echo $fetch['scheduler_id']?>"><i class="fa-solid fa-pen-to-square"></i></a><a onclick="return checkDelete()" href="deleteSchedule.php?id=<?php echo $fetch['scheduler_id']?>"><i class="fa-sharp fa-solid fa-delete-left"></i></a>
                                                 </td>
                                             </tr>
 										
@@ -230,7 +219,11 @@ include("Dashboard_left_menu.php");
            
 
 
-
+<script language="JavaScript" type="text/javascript">
+function checkDelete(){
+    return confirm('Are you sure you want to delete this schedule?');
+}
+</script>
 
 <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <script src="countdown.js"></script>
@@ -261,7 +254,6 @@ include("Dashboard_left_menu.php");
 <script type="text/javascript">
  /** 
  * Plugin
- * @author Tungse
  * @param dayTag           show day html
  * @param hourTag          show hour html
  * @param minTag           show minutes html
