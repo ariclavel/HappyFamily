@@ -18,6 +18,19 @@
           include("Dashboard_left_menu.php");
           session_start(); // this would start session
           $user= $_SESSION['id']; // this would store the session in a variable call $user
+          $rooms = room_get_all($user);
+          $myRooms=[];
+          while($row1 = $rooms->fetch_assoc()) {
+                $myRooms[] = $row1;
+          }
+          for ($i=0; $i<count($myRooms); $i++){
+            //echo $rooms[$i];
+            //echo $myRooms[$i];
+            
+          } 
+          
+          
+          
         ?>
         <div class="main-body">
             <h2>Devices</h2>
@@ -28,12 +41,36 @@
                   <input type="text" placeholder ="Enter Device name" class="txtbox" id="sname" name="sname"></br>
                   <input type="text" placeholder ="Enter Device mode" class="txtbox" id="mode" name="mode"></br>
                   <input type="text" placeholder ="Enter description optional" class="txtbox" id="ds" name="ds"></br>
-                  <input type="text" placeholder ="Enter type" id="type" class="txtbox" name="type"></br>
-                  <input type="text" placeholder ="Enter room id" class="txtbox" id="roomid" name="roomid"></br>
+                  
+                  
+                  <select name="customer" id="customer_id">
+                      <option value="">-- Select Type -- </option>
+                      <option value="For Pet">For pet</option>
+                      <option value="Clean">Cleanning</option>
+                      <option value="Air conditionner">Air conditionner</option>
+                      <option value="Heating">Heating</option> 
+                      <option value="Door">Door</option>                              
+                  </select>
+
+                  
+                  <select name="roomid" id="roomid">
+                      <option value="">-- Select Room -- </option>
+                      <?php
+                        $r ="";
+                        for ($i=0; $i<count($myRooms); $i++){
+                            //echo $rooms[$i]["room_name"];
+                            $r.='<option value='.json_encode($myRooms[$i]["room_id"]).'>'.json_encode($myRooms[$i]["room_name"]).'</option>';
+                            
+                        }
+                        echo $r;
+                      ?>
+                                                    
+                  </select>
                   <button type= "submit" class= "Add_button">Add</button>
                   <br/>
               </form>
               <?php 
+                  
                   $result = device_get($user);
                   $myArray=[];
                   while($row = $result->fetch_assoc()) {
@@ -100,7 +137,7 @@
       
                   /*Imprimimos la variable*/
                   echo $resultado;
-                  
+
               ?>
               
               
