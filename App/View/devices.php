@@ -16,7 +16,7 @@ include("header.php");
    <div class="content">
     <a href=""><button class= "Camera_button">Camera</button></a>
     <a href="doors.php"><button class= "Door_button">Door</button></a>
-      <a href=""><button class= "AirCon_button">Air Conditioner</button></a>
+      <a href=""><button class= "AirCon_button">One Air Conditioner</button></a>
     <a href="lights.php"><button class= "Light_button">Lights</button></a>
     <a href=""><button class= "Clean_button">Cleaning</button></a>
       <a href=""><button class= "Alarm_button">Alarm</button></a>
