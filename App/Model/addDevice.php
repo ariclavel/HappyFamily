@@ -17,28 +17,53 @@ include '../View/devicesManage.php';
     //device_post($room_id, $sensor_name,  $mode, $s_desc, $type, $date);
     //Verify data
     if($sensor_name == "" or $room_id == ""){
-        //header('Location: ../View/devicesManage.php');
-        echo '<script type="text/javascript">
-            
-                window.onload = function () { alert("You need a device name and a room id!!"); }
-            
-        </script>';
-        //header('Location: ../View/devicesManage.php');
+        
+        echo "<script>alert(\"You need a room and a sensor name!!!\")</script>";
+        echo "<script> location.replace('../View/devicesManage.php'); </script>";
+        $podra = false;
+      
+        
 
     }
     elseif(!room_get($userid,$room_id)){
-        //header('Location: ../View/devicesManage.php');
-        echo '<script type="text/javascript">
-            
-                window.onload = function () { alert("The room number does not exist!!!"); }
-            
-        </script>';
-        //header('Location: ../View/devicesManage.php');
+        
+        echo "<script>alert(\"The room does not exist!!!\")</script>";
+        echo "<script> location.replace('../View/devicesManage.php'); </script>";
+        $podra = false;
+       
+     
 
     }
     else{
-        device_post($room_id, $sensor_name,  $mode, $s_desc, $type, $date);
-        //header('Location: ../View/devicesManage.php');
+        $podra = true;
+        if(strlen($s_desc)>50 or strlen($mode)>50 or strlen($sensor_name)>50){
+            echo "<script>alert(\"Max of 50 characters for mode,description and name!!!\")</script>";
+            echo "<script> location.replace('../View/devicesManage.php'); </script>";
+            $podra = false;
+            
+
+        }
+
+
+
+                 
+        for ($i=0; $i<count($myArray); $i++){
+                     
+            
+            if(json_encode($myArray[$i]["sensor_name"]) == $sensor_name){
+                echo "<script>alert(\"Name already exists!!!\")</script>";
+                echo "<script> location.replace('../View/devicesManage.php'); </script>";
+                $podra = false;
+                
+            }
+                      
+        }
+       
+        if($podra == true) device_post($room_id, $sensor_name,  $mode, $s_desc, $type, $date);
+        
+        echo "<script> location.replace('../View/devicesManage.php'); </script>";
     } 
-    
+    //echo "<script> location.replace('../View/devicesManage.php'); </script>";
+   
+   
 ?>

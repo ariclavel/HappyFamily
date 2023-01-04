@@ -43,6 +43,20 @@ function room_get($userid,$roomid){
             
         }
 }
+
+function room_get_all($userid){
+    
+    //WHERE userid='$email'
+    $dbb = connection();
+    //SELECT `sensor_name` FROM `sensor` JOIN rooms ON sensor.room_id = rooms.room_id WHERE rooms.reg_id='3';
+    $query=$dbb->prepare("SELECT * FROM rooms WHERE reg_id={$userid};") or die($this->conn->error);
+        if($query->execute()){
+            $result=$query->get_result();
+            //$row=mysqli_fetch_row($result);
+            return $result;
+            
+        }
+}
 function device_get($userid){
     //WHERE userid='$email'
     $dbb = connection();
@@ -55,6 +69,8 @@ function device_get($userid){
             
         }
 }
+
+
 function device_max(){
     $dbb = connection();
     //SELECT `sensor_name` FROM `sensor` JOIN rooms ON sensor.room_id = rooms.room_id WHERE rooms.reg_id='3';
@@ -108,12 +124,19 @@ function device_post($roomid, $sensor_name, $mode, $s_desc, $type, $date){
         $statement = $conn->prepare($request);
      
         if($statement->execute()){
-            echo "Records was updated successfully.";
-            header('Location: ../View/devicesManage.php');
+           /* echo '<script type="text/javascript">
+            
+                window.onload = function () { alert("CREATED!"); }
+        
+            </script>';*/
+            echo '<script type="text/javascript"> window.location.rel="noopener" target="_blank" href = "http://localhost/happyfamily/App/View/devicesManage.php";
+
+            </script>';
+           
         } else{
             echo "ERROR: Could not able to execute $request. " 
                                                 . $conn->error;
-            header('Location: ../View/devicesManage.php');
+            //header('Location: ../View/devicesManage.php');
         }
         //return $statement->execute();
     }else{
