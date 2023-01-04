@@ -91,23 +91,14 @@
                   $resultado.='</p></html>';
                   if($_GET['click']??=""){
 
-                    if(device_delete($_GET['click'])==true){ 
-                        echo '<script type="text/javascript">
-            
-                                window.onload = function () { alert("Your device has been deleted!"); }
-            
-                        </script>';
-                        header('Location: ../View/devicesManage.php');
-                        
+                    if(device_delete($_GET['click'])==true){
+                        echo "<script>alert(\"Your device has been deleted!\")</script>"; 
+                        echo "<script> location.replace('../View/devicesManage.php'); </script>";
                     }
                     else{ 
 
-                        echo '<script type="text/javascript">
-            
-                                window.onload = function () { alert("Your device COULD NOT being deleted!"); }
-            
-                        </script>';
-                        header('Location: ../View/devicesManage.php');
+                      echo "<script>alert(\"Your device could not being deleted!\")</script>"; 
+                      echo "<script> location.replace('../View/devicesManage.php'); </script>";
                     }
                     
                     
