@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Dashboard | Happy Family</title>
-  <link rel="stylesheet" href="../css/style_doors_mark.css">
+  <link rel="stylesheet" href="../css/style_doors&lights_mark.css">
   
   <!-- Font Awesome Cdn Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
