@@ -58,7 +58,25 @@ include("Dashboard_left_menu.php");
    
 
 <div class="main-body">
-   
+<script>
+function switch0() {
+document.getElementById('changeimg0').src=(document.getElementById('check0').checked)? 
+   '../img/entry_door.png': '../img/entrancedoorclosed.png'
+}
+function switch1() {
+document.getElementById('changeimg1').src=(document.getElementById('check1').checked)? 
+   '../img/back_door.png': '../img/closeddoor.png'
+}
+function switch2() {
+document.getElementById('changeimg2').src=(document.getElementById('check2').checked)? 
+   '../img/garage.png': '../img/garage_gates.jpg'
+}
+function switch3() {
+document.getElementById('changeimg3').src=(document.getElementById('check3').checked)? 
+   '../img/pet_door.jpg': '../img/closedpetdoor.png'
+}
+</script>
+
 <div class="content">
 
 <h2 class="h2">Door system</h2>
@@ -69,33 +87,33 @@ include("Dashboard_left_menu.php");
   
  <div class="box">
 <div class="box_header">Entrance Door</div>
-<img class="box_content" src="../img/entry_door.png">
+<img class="box_content" src="../img/entrancedoorclosed.png" id="changeimg0">
   <label class="switch">
-<input type="checkbox">
+<input type="checkbox" id="check0" onclick="switch0()">
 <span class="slider round"></span>
 </label>
 </div>
  <div class="box">
 <div class="box_header">Back Door</div>
-<img class="box_content" src="../img/back_door.png">
+<img class="box_content" src="../img/closeddoor.png" id="changeimg1">
   <label class="switch">
-<input type="checkbox">
+<input type="checkbox" id="check1" onclick="switch1()">
 <span class="slider round"></span>
 </label>
 </div>
  <div class="box">
 <div class="box_header">Garage Gates</div>
-<img class="box_content" src="../img/garage_gates.jpg">
+<img class="box_content" src="../img/garage_gates.jpg" id="changeimg2">
   <label class="switch">
-<input type="checkbox">
+<input type="checkbox" id="check2" onclick="switch2()">
 <span class="slider round"></span>
 </label>
 </div>
  <div class="box">
 <div class="box_header">Door for Pet</div>
-<img class="box_content" src="../img/pet_door.jpg">
+<img class="box_content" src="../img/closedpetdoor.png" id="changeimg3">
   <label class="switch">
-<input type="checkbox">
+<input type="checkbox" id="check3" onclick="switch3()">
 <span class="slider round"></span>
 </label>
 </div>
