@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Dashboard | Happy Family</title>
+  <title>Light System | Happy Family</title>
   <link rel="stylesheet" href="../css/style_doors&lights_mark.css">
   
   <!-- Font Awesome Cdn Link -->
