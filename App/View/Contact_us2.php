@@ -7,12 +7,12 @@
 <head>
   <meta charset="UTF-8" />
   <title>Dashboard | Happy Family</title>
-  <link rel="stylesheet" href="../css/user_profile_victor.css">
+  <link rel="stylesheet" href="../css/contact_victor.css">
   
   <!-- Font Awesome Cdn Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/dashboard.css">
-  
+  <link rel="stylesheet" href="../css/contact_victor.css">
   <style type="text/css">a
    .text-danger{
     color:red;

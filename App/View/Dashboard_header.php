@@ -7,6 +7,9 @@
         <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
       </div>
     </div>
+  
+      <a href = "contact_us2.php">Contact Us</a>
+   
 
     <div class="header-icons">
       <i class="fas fa-bell"></i>
