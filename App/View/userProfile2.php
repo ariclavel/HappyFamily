@@ -124,6 +124,7 @@ if (ISSET($_POST['update_user']))
 <head>
   <meta charset="UTF-8" />
   <title>Dashboard | Happy Family</title>
+ 
   <link rel="stylesheet" href="../css/user_profile_victor.css">
   <link rel="stylesheet" href="style.css" />
   <!-- Font Awesome Cdn Link -->
@@ -146,11 +147,7 @@ if (ISSET($_POST['update_user']))
    #imm{
     padding: 15px;
    }
-   .btnn, #btnn{
-    background: #f85508;
-    border:none;
-    color:white;
-   }
+   
    .user_email
    {
     margin-left:30px;
@@ -190,7 +187,7 @@ include("Dashboard_left_menu.php");
        <span class="User_name"><?php echo $fetch['first_name']; ?> <?php echo $fetch['last_name']; ?></span><br/><span class="user_email">(<?php echo $_SESSION['userEmail']?>)</span>
        
       
-       <div ><button type="button" id="btnn" class="update_photo">change photo</button></div><br/>
+       <div ><button type="button"  class="update_photo">change photo</button></div><br/>
       
    </div>
 
