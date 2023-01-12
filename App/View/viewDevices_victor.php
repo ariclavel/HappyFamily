@@ -4,25 +4,6 @@ require_once'../Model/rooms.php';
 
 session_start();
 
-
- $deviceIDD= $_SESSION['Did'];
- 
-
- if (isset($_POST['form_submit'])) {//Form was submitted
-     (isset($_POST['machine_state'])) ? $status = 1 : $status = 0;
-     //Update DB
-     $result = display_device_status($db, $deviceIDD,$status);
- } else {//Page was loaded
-     $status = $_SESSION['device_status'];
- }
- if ($status) {//status = 1 (on)
-     $status_str = "on";
-     $checked_status = "checked";
- } else {
-     $status_str = "off";
-     $checked_status = "";
- }
-
  ?>
 
 
@@ -81,15 +62,22 @@ session_start();
 }
 
  .productcont { 
-  display: flex;
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
   align-items:center;
+  flex-direction:row;
   
 }
 .product {
-  padding: 1em;
+  
+  
   border: 1px solid #e0e4cc;
   margin-right: 1em;
   border-radius: 5px;
+  width:370px;
+  height: 400px;
+ 
 }
 
 button,
@@ -216,6 +204,7 @@ include("Dashboard_left_menu.php");
                         $tbl_schedule = display_AllDevice($db);
 						while($fetch=$tbl_schedule->fetch_array()){ 
                             $deviceID = $fetch['device_id'];
+                            $deviceStatus = $fetch['device_status'];
 						?>
 
 
@@ -223,7 +212,7 @@ include("Dashboard_left_menu.php");
                         <div class="product">
                               
                        
-                        <img class="imgg"  id="imm" width="200px" height="200px" src="../img/device_pic/<?php echo $fetch['device_image1']; ?>"><br/>
+                        <img class="imgg"  id="imm" width="200px" height="200px" src="../img/device_pic/<?php if($deviceStatus==0){ echo $fetch['device_image1'];}else{ echo $fetch['device_image2'];} ?>"><br/>
                       
                             <table>
                                <tr>
