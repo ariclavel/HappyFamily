@@ -32,9 +32,15 @@ unset($_SESSION['message']);
      $duration = abs($totalSec);
    
    
-       
+    $Hrs;$Min;$Sec;
+    $Hrs = floor($duration / 3600);
+    $Min = floor(($duration /60)%60);
+    $Sec = $duration %60;
+
+    $setTime = $Hrs."hour: ".$Min."Min: ".$Sec."Secs ";
+
   
-        $result =add_schedule($db,$from,$to,$duration,$device_id,$room_id,$user,$schedule_time);
+        $result =add_schedule($db,$from,$to,$duration,$setTime,$device_id,$room_id,$user,$schedule_time);
         
         
         if($result)

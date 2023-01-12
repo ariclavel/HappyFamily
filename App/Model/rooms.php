@@ -134,11 +134,11 @@ function check_activation_status($dbb,$activationCode){
 
 
 
-        function add_schedule($dbb,$from,$to,$duration,$device_id,$room_id,$user_id,$setTime){
-			$query="INSERT INTO `scheduler` (`from`, `to`,`duration`, `device_id`, `room_id`,`reg_id`,`set_Time`) VALUES(?, ?, ?, ?, ?,?,?)" or die($this->conn->error);
+        function add_schedule($dbb,$from,$to,$duration,$timer,$device_id,$room_id,$user_id,$setTime){
+			$query="INSERT INTO `scheduler` (`from`, `to`,`duration`,`setTime`,`device_id`, `room_id`,`reg_id`,`set_Time`) VALUES(?, ?,?, ?, ?, ?,?,?)" or die($this->conn->error);
 			$data = $dbb->prepare($query);
             
-            $data->bind_param("ssiiiis",$from, $to, $duration, $device_id,$room_id,$user_id,$setTime);
+            $data->bind_param("ssisiiis",$from, $to, $duration,$timer,$device_id,$room_id,$user_id,$setTime);
             return $data->execute();
 	
         }
@@ -159,6 +159,44 @@ function check_activation_status($dbb,$activationCode){
         {
             $query=$dbb->prepare("SELECT * FROM scheduler INNER JOIN `device` ON scheduler.device_id=device.device_id INNER JOIN `Rooms` ON scheduler.room_id=Rooms.room_id WHERE reg_id=?") or die($this->conn->error);
             $query->bind_param("i", $user_id);
+            if($query->execute()){
+                $result=$query->get_result();
+                return $result;
+                
+            
+            }
+        }
+
+        //display all users
+        function display_users($dbb)
+        {
+            $query=$dbb->prepare("SELECT * FROM Registration WHERE type NOT IN ('Admin')") or die($this->conn->error);
+            if($query->execute()){
+                $result=$query->get_result();
+                return $result;
+                
+            
+            }
+        }
+
+        //this will return total numbers of rows
+        function get_total_rows($dbb, $device_id)
+        {
+            $query=$dbb->prepare("SELECT * FROM scheduler WHERE device_id=?") or die($this->conn->error);
+            $query->bind_param("i", $device_id);
+            if($query->execute()){
+                $result=$query->get_result();
+                $count =mysqli_num_rows($result);
+                return $count;
+                
+            
+            }
+        }
+
+        function get_duration($dbb, $device_id)
+        {
+            $query=$dbb->prepare("SELECT * FROM scheduler WHERE device_id=?") or die($this->conn->error);
+            $query->bind_param("i", $device_id);
             if($query->execute()){
                 $result=$query->get_result();
                 return $result;
