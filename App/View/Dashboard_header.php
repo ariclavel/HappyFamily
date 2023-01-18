@@ -10,6 +10,9 @@ $lastname=$_SESSION['surname'];
         <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
       </div>
     </div>
+  
+      <a href = "contact_us2.php">Contact Us</a>
+   
 
     <div class="header-icons">
     <p>Welome <?php echo $name." ".$lastname?></p>
