@@ -49,18 +49,17 @@ function message_post($user_id, $message){
     if($conn){
       
 
-        $request = "INSERT INTO `messages`(`id_user`, `message`) VALUES ('$user_id', '$message')";
+        $request = "INSERT INTO `messages`( `message`, `id_user`) VALUES ('$message','$user_id')";
         $statement = $conn->prepare($request);
      
         if($statement->execute()){
            
-            echo '<script type="text/javascript"> window.location.rel="noopener" target="_blank" href = "http://localhost/happyfamily/App/View/devicesManage.php";
-
-            </script>';
+            return true;
            
         } else{
             echo "ERROR: Could not able to execute $request. " 
                                                 . $conn->error;
+            return false;
             //header('Location: ../View/devicesManage.php');
         }
     }else{
