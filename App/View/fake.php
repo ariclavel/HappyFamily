@@ -1,5 +1,6 @@
 <?php
 date_default_timezone_set("Etc/GMT+8");
+
 session_start();
 
 if(!isset($_SESSION['id']))

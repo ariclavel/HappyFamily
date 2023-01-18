@@ -1,11 +1,13 @@
-
 <?php
-    require '../vendor/phpmailer/phpmailer/src/Exception.php';
-    require '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
-    require '../vendor/phpmailer/phpmailer/src/SMTP.php';
+    include '../vendor/phpmailer/phpmailer/src/Exception.php';
+    include '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
+    include '../vendor/phpmailer/phpmailer/src/SMTP.php';
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
     use PHPMailer\PHPMailer\SMTP;
+?>
+<?php
+    
 
 
     //require_once'../Model/user.query.php';
