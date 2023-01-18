@@ -135,6 +135,7 @@ $_SESSION['message'] = "<div class='alert alert-info'>we've sent a verification 
 </head>
 
 <link rel="stylesheet" href="../css/success.css">
+<!-- <link rel="stylesheet" href="../css/dashboard.css"> -->
 <body>
 
 <div class="card">

@@ -3,13 +3,7 @@ date_default_timezone_set("Etc/GMT+8");
 require_once'../Model/rooms.php';
 
 session_start();
-
-
- 
-    
-    
-
-
+$user= $_SESSION['id'];
 ?>
 
 <!DOCTYPE html>
@@ -128,6 +122,14 @@ session_start();
         display: block;
         text-align: center;
     }
+
+      
+   .text-danger{
+    color:red;
+   }
+   .alert-info{
+    color:green;
+   }
    
 }
 </style>
@@ -173,10 +175,11 @@ include("Dashboard_left_menu.php");
 												<td><?php echo $fetch['device_name']?></td>
 												<td><?php echo $fetch['duration']?></td>
 												<td>
-                                                <div class="container timeBar ys1" data=<?php echo $fetch['duration']?> ></div>
+                                                <?php echo $fetch['setTime']?>
+                                                <!-- <div class="container timeBar ys1" data=<?php echo $fetch['duration']?> ></div> -->
                                                 </td>
                                                 <td>
-                                                <a href=""><i class="fa-solid fa-pen-to-square"></i></a>  <a href="">  <i class="fa-sharp fa-solid fa-delete-left"></i></a>
+                                                <a href="editSchedule.php?id=<?php echo $fetch['scheduler_id']?>"><i class="fa-solid fa-pen-to-square"></i></a><a onclick="return checkDelete()" href="deleteSchedule.php?id=<?php echo $fetch['scheduler_id']?>"><i class="fa-sharp fa-solid fa-delete-left"></i></a><a href="viewDevices_victor2.php?deviceID=<?php echo $fetch['device_id']; ?>"><i class="fa-solid fa-eye"></i></a>
                                                 </td>
                                             </tr>
 										
@@ -185,6 +188,7 @@ include("Dashboard_left_menu.php");
 										?>
                                     </tbody>
                                 </table>
+                               
     
  
               
@@ -201,6 +205,26 @@ include("Dashboard_left_menu.php");
 
   </div>
   
+    <!-- delete account-->
+    <div class="modal">
+               <div class="modal-content">
+                   <span class="close-button">×</span>
+                   <h3>Update profile photo</h3>
+                
+               </div>
+              
+										
+                   
+           </div>
+
+           
+
+
+<script language="JavaScript" type="text/javascript">
+function checkDelete(){
+    return confirm('Are you sure you want to delete this schedule?');
+}
+</script>
 
 <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 <script src="countdown.js"></script>
@@ -231,7 +255,6 @@ include("Dashboard_left_menu.php");
 <script type="text/javascript">
  /** 
  * Plugin
- * @author Tungse
  * @param dayTag           show day html
  * @param hourTag          show hour html
  * @param minTag           show minutes html
@@ -282,6 +305,26 @@ include("Dashboard_left_menu.php");
                         min = parseInt(((range % secday) % sechour) / 60),
                         sec = ((range % secday) % sechour) % 60;
             data--;
+               //getting javascript data to php
+
+               var timerData={};
+               timerData.hour =  hours;
+               timerData.minutes =  min;
+               timerData.seconds =  sec;
+
+               console.log(timerData)
+               $.ajax({
+
+                   url:"readphp.php",
+                   method:"post",
+                   data:timerData,
+                   success:function(res){
+                    console.log(res);
+                   }
+               })
+
+
+
             if (range < 0) {
                 window.clearInterval(TIMER); //clear timer
             } else {
@@ -307,5 +350,7 @@ include("Dashboard_left_menu.php");
 })(jQuery);
     
 </script>
+
+
 </body>
 </html>
