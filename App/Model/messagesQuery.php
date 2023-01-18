@@ -1,44 +1,27 @@
 <?php
 require 'connectionreturn.php';
 
-/*
-function message_get($userid,$message){
-    
-    //WHERE userid='$email'
-    $dbb = connection();
-    //SELECT `sensor_name` FROM `sensor` JOIN rooms ON sensor.room_id = rooms.room_id WHERE rooms.reg_id='3';
-    $query=$dbb->prepare("SELECT EXISTS (SELECT * FROM rooms WHERE reg_id={$userid} AND room_id = {$roomid});") or die($this->conn->error);
-        if($query->execute()){
-            $result=$query->get_result();
-            $row=mysqli_fetch_row($result);
-            echo $row[0];
-            if ($row[0]=="1"){
-                return true;
-            }
-            else return false;
-            
-        }
-}*/
-
-function room_get_all($userid){
-    
-    //WHERE userid='$email'
-    $dbb = connection();
-    //SELECT `sensor_name` FROM `sensor` JOIN rooms ON sensor.room_id = rooms.room_id WHERE rooms.reg_id='3';
-    $query=$dbb->prepare("SELECT * FROM rooms WHERE reg_id={$userid};") or die($this->conn->error);
-        if($query->execute()){
-            $result=$query->get_result();
-            //$row=mysqli_fetch_row($result);
-            return $result;
-            
-        }
-}
-
-function message_get($userid){
+function get_user($id){
     //WHERE userid='$email'
     $dbb = connection();
     //$query=$dbb->prepare("SELECT `message` FROM messages JOIN rooms ON sensor.room_id = rooms.room_id WHERE rooms.reg_id={$userid};") or die($this->conn->error);
-    $query=$dbb->prepare("SELECT `message` FROM messages;") or die($this->conn->error);
+    $query=$dbb->prepare("SELECT `first_name`,`last_name` FROM registration WHERE reg_id = $id;") or die($this->conn->error);
+       
+    if($query->execute()){
+            $result=$query->get_result();
+            
+            return $result;
+            
+    }
+
+}
+
+
+function message_get(){
+    //WHERE userid='$email'
+    $dbb = connection();
+    //$query=$dbb->prepare("SELECT `message` FROM messages JOIN rooms ON sensor.room_id = rooms.room_id WHERE rooms.reg_id={$userid};") or die($this->conn->error);
+    $query=$dbb->prepare("SELECT `message`,`id_user`,`id_message` FROM messages;") or die($this->conn->error);
        
     if($query->execute()){
             $result=$query->get_result();
