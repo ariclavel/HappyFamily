@@ -163,7 +163,7 @@ include("Dashboard_left_menu.php");
                                  <option>Doors</option>
                                  <option>Windows</option>
                                  <option>lights</option>
-                                
+                                 <option>Feeder</option>
                                     
                                  </select>
                             </td>

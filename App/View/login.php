@@ -56,7 +56,16 @@ if(isset($verify))
                $_SESSION['name']= $row['first_name'];
                $_SESSION['surname']= $row['last_name'];
                $_SESSION['type']= $row['type'];
-              header("Location:Dashboard.php");
+               if( $_SESSION['type'] == "user")
+               {
+                header("Location:Dashboard.php");
+               }
+               else
+               {
+                header("Location:Admin_Dashboard.php");
+               }
+
+             
         }
         else
         {
@@ -73,7 +82,7 @@ if(isset($verify))
 
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <title>Happy Family</title>
 <style type="text/css">
@@ -83,6 +92,7 @@ if(isset($verify))
    .alert-info{
     color:green;
    }
+   
   </style>
 </head>
     
@@ -99,7 +109,7 @@ if(isset($verify))
          </div>
       <form  method="POST" id="form">
         
-        <input type="email" placeholder ="Email" class="txtbox"  name="email"><br>
+        <input type="email" placeholder ="Email" id="nnn" class="txtbox"  name="email"><br>
         <input type="password" placeholder ="Password" class="txtbox"  name="password"><br/>
        
         
