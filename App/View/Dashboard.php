@@ -1,13 +1,28 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['id']))
+{
+   header("Location:../home.php");
+   die();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Dashboard | Happy Family</title>
+  
   <link rel="stylesheet" href="style.css" />
   <!-- Font Awesome Cdn Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/dashboard.css">
+  
+  
+
+
+
 </head>
 <body>
 <?php
@@ -148,7 +163,9 @@ include("Dashboard_left_menu.php");
             </tbody>
           </table>
         </div>
+        
       </div>
+     
     </div>
 
     <?php

@@ -11,6 +11,12 @@ include '../View/devicesManage.php';
     $type= $_POST['newtype']??="";
     $id = $_POST['idsens'];
     
-    if(device_update($id,$sensor_name,  $mode, $s_desc, $type));
-    header('Location: ../View/devicesManage.php');
+    device_update($id,$sensor_name,  $mode, $s_desc, $type);
+    if($sensor_name != "" or $mode != "" or $s_desc != "" or $type != ""){
+        
+        echo "<script>alert(\"Updated done!!\")</script>";
+    }
+        
+    
+    echo "<script> location.replace('../View/devicesManage.php'); </script>";
 ?>
