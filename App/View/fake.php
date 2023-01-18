@@ -95,9 +95,9 @@ if(!isset($_SESSION['id']))
                     echo
                     '<form action = "../Model/sendMessage.php" method="POST">
                     <input type="hidden" placeholder ="Enter new Device name" class="txtbox" id="idsens" name="idsens" value = '.$_GET['click2'].'></br>
-                        <input type="hidden" placeholder ="Enter new Device name" class="txtbox" id="idmsg" name="idmsg" value = '.$_GET['click2'].'></br>
+                        
                        
-                        <p> Answer</p><input type="text" placeholder ="Enter your answer" class="form-control" id="newname" name="newname"></br>
+                        <p> Answer</p><input type="text" placeholder ="Enter your answer" class="form-control" id="idmsg" name="idmsg"></br>
                         <button type= "submit" class= "Add_button">Send Answer</button>
                       
                         <br/>
