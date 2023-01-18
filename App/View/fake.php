@@ -1,15 +1,14 @@
 <?php
-
+date_default_timezone_set("Etc/GMT+8");
 session_start();
+
 if(!isset($_SESSION['id']))
 {
    header("Location:../home.php");
    die();
 }
+
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,7 +69,7 @@ if(!isset($_SESSION['id']))
                       while($row = $username->fetch_assoc()) {
                         $name = $row;
                       }
-                      $resultado.='<a href="fake.php?click='.json_encode($myArray[$i]["id_message"]).'" class="btn">delete &nbsp;&nbsp;&nbsp;&nbsp;</a><a class="btn">'.json_encode($name["first_name"])." ".json_encode($name["last_name"]).': MESSAGE: '.json_encode($myArray[$i]["message"]).'</a><a href="fake.php?click2='.json_encode($myArray[$i]["id_message"]).'" class="btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;answer</a><br>';
+                      $resultado.='<a href="fake.php?click='.json_encode($myArray[$i]["id_message"]).'" class="btn">delete &nbsp;&nbsp;&nbsp;&nbsp;</a><a class="btn">'.json_encode($name["first_name"])." ".json_encode($name["last_name"]).': MESSAGE: '.json_encode($myArray[$i]["message"]).'</a><a href="fake.php?click2='.json_encode($myArray[$i]["id_user"]).'" class="btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;answer</a><br>';
                       //echo $rows[i];
                   }
 
@@ -78,13 +77,13 @@ if(!isset($_SESSION['id']))
                   if($_GET['click']??=""){
 
                     if(message_delete($_GET['click'])==true){
-                        echo "<script>alert(\"Your device has been deleted!\")</script>"; 
-                        echo "<script> location.replace('../View/devicesManage.php'); </script>";
+                        echo "<script>alert(\"Your message has been deleted!\")</script>"; 
+                        echo "<script> location.replace('../View/fake.php'); </script>";
                     }
                     else{ 
 
-                      echo "<script>alert(\"Your device could not being deleted!\")</script>"; 
-                      echo "<script> location.replace('../View/devicesManage.php'); </script>";
+                      echo "<script>alert(\"Your message could not being deleted!\")</script>"; 
+                      echo "<script> location.replace('../View/fake.php'); </script>";
                     }
                     
                     
@@ -94,7 +93,7 @@ if(!isset($_SESSION['id']))
                     //echo(json_encode(device_details($_GET['click2'])));
                     echo
                     '<form action = "../Model/sendMessage.php" method="POST">
-                        
+                    <input type="hidden" placeholder ="Enter new Device name" class="txtbox" id="idsens" name="idsens" value = '.$_GET['click2'].'></br>
                         <input type="hidden" placeholder ="Enter new Device name" class="txtbox" id="idmsg" name="idmsg" value = '.$_GET['click2'].'></br>
                        
                         <p> Answer</p><input type="text" placeholder ="Enter your answer" class="form-control" id="newname" name="newname"></br>

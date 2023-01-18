@@ -15,6 +15,20 @@ function get_user($id){
     }
 
 }
+function get_email($id){
+    //WHERE userid='$email'
+    $dbb = connection();
+    //$query=$dbb->prepare("SELECT `message` FROM messages JOIN rooms ON sensor.room_id = rooms.room_id WHERE rooms.reg_id={$userid};") or die($this->conn->error);
+    $query=$dbb->prepare("SELECT `email` FROM registration WHERE reg_id = $id;") or die($this->conn->error);
+       
+    if($query->execute()){
+            $result=$query->get_result();
+            
+            return $result;
+            
+    }
+
+}
 
 
 function message_get(){
