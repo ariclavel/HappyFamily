@@ -70,14 +70,14 @@ if(!isset($_SESSION['id']))
                       while($row = $username->fetch_assoc()) {
                         $name = $row;
                       }
-                      $resultado.='<a href="devicesManage.php?click='.json_encode($myArray[$i]["id_message"]).'" class="btn">delete &nbsp;&nbsp;&nbsp;&nbsp;</a><a class="btn">'.json_encode($name["first_name"])." ".json_encode($name["last_name"]).': MESSAGE: '.json_encode($myArray[$i]["message"]).'</a><a href="devicesManage.php?click2='.json_encode($myArray[$i]["id_message"]).'" class="btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;answer</a><br>';
+                      $resultado.='<a href="fake.php?click='.json_encode($myArray[$i]["id_message"]).'" class="btn">delete &nbsp;&nbsp;&nbsp;&nbsp;</a><a class="btn">'.json_encode($name["first_name"])." ".json_encode($name["last_name"]).': MESSAGE: '.json_encode($myArray[$i]["message"]).'</a><a href="fake.php?click2='.json_encode($myArray[$i]["id_message"]).'" class="btn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;answer</a><br>';
                       //echo $rows[i];
                   }
 
                   $resultado.='</p></html>';
                   if($_GET['click']??=""){
 
-                    if(device_delete($_GET['click'])==true){
+                    if(message_delete($_GET['click'])==true){
                         echo "<script>alert(\"Your device has been deleted!\")</script>"; 
                         echo "<script> location.replace('../View/devicesManage.php'); </script>";
                     }
@@ -90,20 +90,16 @@ if(!isset($_SESSION['id']))
                     
                   }
                   if($_GET['click2']??=""){
-                    $res = device_details($_GET['click2']);
+                  
                     //echo(json_encode(device_details($_GET['click2'])));
                     echo
-                    '<form action = "../Model/editDevice.php" method="POST">
+                    '<form action = "../Model/sendMessage.php" method="POST">
                         
-                        <input type="hidden" placeholder ="Enter new Device name" class="txtbox" id="idsens" name="idsens" value = '.$_GET['click2'].'></br>
+                        <input type="hidden" placeholder ="Enter new Device name" class="txtbox" id="idmsg" name="idmsg" value = '.$_GET['click2'].'></br>
                        
-                        <p> Name : '.$res["name"].'</p><input type="text" placeholder ="Enter new Device name" class="form-control" id="newname" name="newname"></br>
-                        <p> Mode : '.$res["mode"].'</p><input type="text" placeholder ="Enter new Device mode" class="form-control" id="newmode" name="newmode"></br>
-                        <p> Description : '.$res["Description"].'</p><input type="text" placeholder ="Enter new description" class="form-control" id="newds" name="newds"></br>
-                        <p> Type : '.$res["type"].'</p><input type="text" placeholder ="Enter new type" id="newtype" class="form-control"  name="newtype"></br>
-                        <button type= "submit" class= "Add_button">Edit</button>
-                        <button type= "submit" class= "Add_button"><a href="devicesManage.php" class="Add_button"></a>Cancel</button>
-                        
+                        <p> Answer</p><input type="text" placeholder ="Enter your answer" class="form-control" id="newname" name="newname"></br>
+                        <button type= "submit" class= "Add_button">Send Answer</button>
+                      
                         <br/>
                     </form>';
                    
