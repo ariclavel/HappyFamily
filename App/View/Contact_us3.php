@@ -1,11 +1,13 @@
+
+
 <?php 
-date_default_timezone_set("Etc/GMT+8");
-session_start();
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-require_once'../Model/user.query.php';
-if(isset($_SESSION['id']))
+  date_default_timezone_set("Etc/GMT+8");
+  session_start();
+  use PHPMailer\PHPMailer\PHPMailer;
+  use PHPMailer\PHPMailer\SMTP;
+  use PHPMailer\PHPMailer\Exception;
+  require_once'../Model/user.query.php';
+  if(isset($_SESSION['id']))
 {
    header("Location:Contact_us2.php");
    die();

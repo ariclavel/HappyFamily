@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+if(!isset($_SESSION['id']))
+{
+   header("Location:../home.php");
+   die();
+}
 ?>
 
 <!DOCTYPE html>
@@ -79,8 +85,7 @@ include("Dashboard_left_menu.php");
                       <div class="grid-50-50">
                         <input type="text" placeholder="First Name">
                         <input type="text" placeholder="Last Name">
-                        <input type="email" placeholder="Email">
-                        <input type="tel" placeholder="Phone/Skype">
+                        
                       </div>
                       <div class="grid-full">
                         <textarea placeholder="About Your Project" cols="30" rows="10"></textarea>
