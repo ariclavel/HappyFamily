@@ -11,7 +11,7 @@ $lastname=$_SESSION['surname'];
       </div>
     </div>
   
-      <a href = "contact_us2.php">Contact Us</a>
+      <a href = "contact.php">Contact Us</a>
    
 
     <div class="header-icons">
