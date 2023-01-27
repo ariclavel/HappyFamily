@@ -328,7 +328,7 @@ $lastname=$_SESSION['surname'];
 									
 								<div style="height:800px;">
                   
-                           <h1>LIST OF ALL USERS</h1>
+                           <h1>LIST OF ALL DEVICES</h1>
 						  
 						   
 	                       <div class="table-wrapper">
@@ -336,11 +336,12 @@ $lastname=$_SESSION['surname'];
                                     <thead>
                                         <tr>
                                             <th>S/N</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Email Address</th>
-                                            <th>Phone number</th>
-                                            <th>Date Registered</th>
+                                            <th>Category</th>
+                                            <th>Pet Name</th>
+                                            <th>Description</th>
+
+                                            <th>Owner</th>
+                                           
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -348,22 +349,19 @@ $lastname=$_SESSION['surname'];
 										<?php
                                          // $user= $_SESSION['id'];
                                             $i=1;
-                                            $tbl_users = display_users($db);
-											while($fetch=$tbl_users->fetch_array()){ 
+                                            $tbl_pets = display_AllPets($db);
+											while($fetch=$tbl_pets->fetch_array()){ 
 										?>
 											<tr>
 												<td><?php echo $i++?></td>
                                                 
-												<td><?php echo $fetch['first_name']?></td>
-												<td><?php echo $fetch['last_name']?></td>
-												<td><?php echo $fetch['email']?></td>
-												<td> <?php echo $fetch['phoneNumber']?> </td>
-                                                <td>
-                                                <?php echo $fetch['date']?>
+												<td><?php echo $fetch['category']?></td>
+												<td><?php echo $fetch['name']?></td>
+												<td><?php echo $fetch['desc']?></td>
+												<td> <?php echo $fetch['first_name']. ' '. $fetch['last_name'] ?> </td>
                                                
-                                                </td>
                                                 <td>
-                                                <a onclick="return checkDelete()" href="delete_user.php?id=<?php echo $fetch['reg_id']?>"><i class="fa-sharp fa-solid fa-delete-left"></i></a>
+                                                <a href="editPets.php?id=<?php echo $fetch['pet_id']?>"><i class="fa-solid fa-pen-to-square"></i></a><a onclick="return checkDelete()" href="delete_pet.php?id=<?php echo $fetch['pet_id']?>"><i class="fa-sharp fa-solid fa-delete-left"></i></a>
                                                 </td>
                                             </tr>
 										
@@ -405,7 +403,7 @@ $lastname=$_SESSION['surname'];
 	<script type='text/javascript' src='../js/admin.js'></script>
     <script language="JavaScript" type="text/javascript">
 function checkDelete(){
-    return confirm('Are you sure you want to delete this schedule?');
+    return confirm('Are you sure you want to delete this device?');
 }
 </script>
 </body>

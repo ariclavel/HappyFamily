@@ -117,7 +117,7 @@ include("Dashboard_left_menu.php");
         </tr>
                 <tr>
                             <td> 
-                            <?php
+                                  <?php
                                             $id = $_GET['id'];
                                             $tbl_ltype = get_schedule($db,$id);
                                             $fetch2=$tbl_ltype->fetch_array();
@@ -170,12 +170,13 @@ include("Dashboard_left_menu.php");
                         <input type="time" id="appt" value="<?php echo $fetch2['from']?>" class="form-control" name="from"   required>
                         
                     
-                       </td>
-                    <td> <select name="time" class="form-control">
-                                    <option value="" selected="selected">Time period</option>
-                                                    <option value="AM">AM</option>
-                                                    <option value="PM">PM</option>
-                                                </select></td>
+                       
+                       <td>
+                    <input type="date" name="sdate" class="form-control" id="start-date"/>
+                    </td>
+                     
+
+                    </td>
                     
                 </tr>
 
@@ -184,24 +185,12 @@ include("Dashboard_left_menu.php");
 
                     <input type="time" id="appt" value="<?php echo $fetch2['to']?>" class="form-control" name="to"   required></td>
                     <td> 
-                        <select name="time" class="form-control">
-                        <option value="" selected="selected">Time period</option>
-                                <option value="AM">AM</option>
-                                    <option value="PM">PM</option>
-                        </select>
-                    </td>
-                    
-                </tr>
-
-                <tr>
-                    <td>
-                    <input type="date" name="sdate" class="form-control" id="start-date"/>
-                    </td>
-                    <td> 
                     <input type="date" name="edate" class="form-control" id="end-date"/>
                     </td>
                     
                 </tr>
+
+               
 
                 <tr>
                     

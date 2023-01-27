@@ -6,53 +6,31 @@ session_start();
 
 
 unset($_SESSION['message']);
-$apart_id=$_GET['id'];
-$getApart=display_apartment($db, $apart_id);
-$fetch=$getApart->fetch_array();
-$number_of_rooms = $fetch['number_of_rooms'];
 
-
-$count = get_total_rooms($db, $apart_id);
-$roomsLeft =$number_of_rooms - $count;
  if(isset($_POST['submit']))
  {
     
-     $roomName= clean($_POST['roomName']);
-     $roomNumber=clean($_POST['roomNumber']);
+     $apartName= clean($_POST['apartmentName']);
+     $apartType=clean($_POST['apartmentType']);
+     $no_of_rooms=clean($_POST['room_no']);
    
+     $user= $_SESSION['id'];
     
-    
-        
 
-        if($count < $number_of_rooms)
-        {
-          $result =add_room($db,$roomName,$roomNumber,$apart_id);
-          $roomsLeft = $number_of_rooms - 1;
-          //$_SESSION['room_left']= $roomsLeft;
+  
+        $result =add_apartment($db,$apartName,$apartType,$no_of_rooms,$user);
+        
         
         if($result)
         {
-        $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-            
-        $_SESSION['message'] = "<div class='alert alert-info'>Room successful added to this apartment.</div>";
-        header("Location:  $actual_link");  
+                
+                    
+      $_SESSION['message'] = "<div class='alert alert-info'>Apartment successful created.</div>";
         }
         else
         {
-          $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-            $_SESSION['message'] = "<div class='alert alert-danger'>Error adding room. Please try again.</div>";
-            header("Location:  $actual_link");  
-          }
+            $_SESSION['message'] = "<div class='alert alert-danger'>Error creating apartment. Please try again.</div>";
         }
-        else
-        {
-
-          
-          $_SESSION['message'] = "<div class='alert alert-danger'>Hello! cannot add any more rooms!.</div>";
-          
-        }
-        
-        
     }
 
 
@@ -180,10 +158,7 @@ $roomsLeft =$number_of_rooms - $count;
         text-align: center;
     }
 
-   
-}
-
-.text-danger{
+   .text-danger{
     color:red;
    }
    .alert-info{
@@ -208,9 +183,9 @@ $roomsLeft =$number_of_rooms - $count;
     background:red;
     
    }
-   #count{
-    color:red;
-   }
+}
+
+  
  
   </style>
 </head>
@@ -233,37 +208,43 @@ include("Dashboard_left_menu.php");
 <form method="POST">
          <table>
          <tr>
-               <th><h4 class="text-right">ADD ROOMS  TO APARTMENT->((<span id="count"><?php echo $roomsLeft ?>) Rooms Left)</span></h4></th>
+               <th><h4 class="text-right">NEW APARTMENT</h4></th>
         </tr>
                 <tr>
                             <td> 
-                            <input type="text" id="roomName" placeholder="room name like (master bedroom)" class="form-control" name="roomName"   required>
+                            <input type="text" id="apartmentName" placeholder="Apartment name like (city home)" class="form-control" name="apartmentName"   required>
                             </td>
                            
                 
                 </tr>
                 <tr>
                 <td>
-                <select name="roomNumber" class="form-control">
-                            <option value="" selected="selected">Room number</option>
-                                                    <option value="01">01</option>
-                                                    <option value="02">02</option>
-                                                    <option value="03">03</option>
-                                                    <option value="04">04</option>
-                                                    <option value="05">05</option>
+                <select name="apartmentType" class="form-control">
+                            <option value="" selected="selected">Apartment type</option>
+                                                    <option value="Duplex/Triplex">Duplex/Triplex</option>
+                                                    <option value="Railroad Apartment">Railroad Apartment</option>
+                                                    <option value="Wing Two Bedroom">Wing Two Bedroom</option>
+                                                    <option value="Studio">Studio</option>
+                                                    <option value="Convertible">Convertible</option>
                                                    
                                                 </select> </td>
                 </tr>
                 
                 <tr>
-               
-                <td>
-                  <?php 
-                         
-                         if(ISSET($_SESSION['message'])){
-                           echo "<center><label class='text-danger'>".$_SESSION['message']."</label></center>";
-                         }
-                       ?></td>
+                    
+                        
+                    <td> <select name="room_no" class="form-control">
+                                    <option value="" selected="selected">Nmber of rooms</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                </select></td>
+                    
+                </tr>
+
                 
 
                
@@ -279,31 +260,42 @@ include("Dashboard_left_menu.php");
                     <td> 
                    
                     <br/>
-                    
+                    <?php 
+                         
+                         if(ISSET($_SESSION['message'])){
+                           echo "<center><label class='text-danger'>".$_SESSION['message']."</label></center>";
+                         }
+                       ?>
                     </td>
                     
                 </tr>
                
-          </table> <br/>
+                                    </table> <br/><br/>
                            
                         
         </form>
        
 
+
+        
+
+ 
         
 </div>
   
  <div class="apart_view">
-  <h4>LIST OF ROOMS ADDED</h4>
+  
  <div class="table-wrapper">
         <table class="fl-table" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>S/N</th>
-                                            <th>Room Name</th>
-                                            <th>Room No</th>
-                                           
+                                            <th>Apartment Name</th>
+                                            <th>Apartment Type</th>
                                 
+                                            <th>Number of Rooms</th>
+                                            <th>Add Rooms</th>
+
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -311,14 +303,14 @@ include("Dashboard_left_menu.php");
 
 
                                     <?php
-                                           $apartID=$_GET['id'];
-                                           $_SESSION['aptid']=$apartID;
-                                          $stmt1 = "SELECT * FROM rooms WHERE apartment_id='$apartID'";
+                                           $u_id= $_SESSION['id'];
+                                          $stmt1 = "SELECT * FROM apartment WHERE reg_id='$u_id'";
                                                   $result=mysqli_query($db,$stmt1);
+                                                  
                                                   if(mysqli_num_rows($result)<=0)
                                                   {
                                               ?>
-                                              <tr ><td id="empty">There are no rooms belonging to this apartment</td></tr>
+                                              <tr ><td id="empty">There are no any apartments recorded at the moment</td></tr>
                                                 <?php
                                                   }
 
@@ -326,20 +318,25 @@ include("Dashboard_left_menu.php");
 										<?php
                                           
                                             $i=1;
-                                           
-                                            $tbl_schedule = display_apart_room($db, $apartID);
-											                    while($fetch=$tbl_schedule->fetch_array()){ 
+                                            $tbl_schedule = display_Customers_AllApartments($db, $u_id );
+											while($fetch=$tbl_schedule->fetch_array()){ 
 										?>
 											<tr>
 												<td><?php echo $i++?></td>
                                                 
-												<td><?php echo $fetch['room_name']?></td>
-												<td><?php echo $fetch['room_number']?></td>
+												<td><?php echo $fetch['apartment_name']?></td>
+												<td><?php echo $fetch['apartment_type']?></td>
 												
-												
-                                            
+												<td>
+                                                <?php echo $fetch['number_of_rooms']?>
+                                               
+                                                </td>
                                                 <td>
-                                                <a onclick="return checkDelete()" href="delete_room.php?id=<?php echo $fetch['room_id']?>"><i class="fa-sharp fa-solid fa-delete-left"></i></a>
+                                                <a href="room.php?id=<?php echo $fetch['apartment_id']?>">Add Rooms</a>
+                                               
+                                                </td>
+                                                <td>
+                                                <a onclick="return checkDelete()" href="deleteApartment.php?id=<?php echo $fetch['apartment_id']?>"><i class="fa-sharp fa-solid fa-delete-left"></i></a>
                                                 </td>
                                             </tr>
 										
@@ -366,10 +363,9 @@ include("Dashboard_left_menu.php");
 
   <script language="JavaScript" type="text/javascript">
 function checkDelete(){
-    return confirm('Are you sure you want to delete this room?');
+    return confirm('Are you sure you want to delete this apartment?');
 }
 </script>
 
 </body>
 </html>
-

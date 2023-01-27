@@ -1,9 +1,44 @@
 <?php
 date_default_timezone_set("Etc/GMT+8");
-require_once'../Model/rooms.php';
 session_start();
+require_once'../Model/rooms.php';
+
+
+
 $name =$_SESSION['name'];
 $lastname=$_SESSION['surname'];
+
+unset($_SESSION['message']);
+if (ISSET($_POST['submit']))
+  {
+  
+    //form data
+     $sName= clean($_POST['sensor_name']);
+     $sMode=clean($_POST['sensor_mode']);
+     $sDesc=clean($_POST['sensor_desc']);
+     $sType=clean($_POST['sensortype']);
+     //$room=clean($_POST['room']);
+     $date_created=date("Y-m-d H:i:s");
+
+     $result =add_sensor($db,$sName,$sMode,$sDesc,$sType,$date_created);
+     if($result)
+     {
+
+       $_SESSION['message'] = "<div class='alert alert-info'>Sensor added successfully.</div>";
+       
+       //header("Location: device_add.php");
+     }
+     else
+     {
+       //die("bad");
+       $_SESSION['message'] = " <div class='alert alert-danger'>There was an error adding sensor! Please Try again!</div>";
+      
+       //header("Location: device_add.php");
+     }
+   }
+  
+ 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,161 +52,75 @@ $lastname=$_SESSION['surname'];
     <link rel="stylesheet" href="../css/admin_dash.css">
 
 	<style type="text/css">
-		.rad-info-box {
-    margin-bottom: 16px;
-    box-shadow: 1px 1px 2px 0 #CCCCCC;
-    padding: 20px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-    background: white !important;
-  }
+
+.form-control{
+  width: 300px;
+  height:40px;
+  display: inline-block;
+  font-size: 14px;
+  background: transparent;
+  border: 2px solid;
+  font-weight: 500;
+  padding: 10px 20px;
+  outline: 0;
+  cursor: pointer;
+  color: #103e65;
+
+  outline: 0;
+  transition: box-shadow .15s ease;
+  border: 0;
+  padding: 5px;
+  box-shadow: 0 1px 3px rgb(50 50 93 / 15%), 0 1px 0 rgb(0 0 0 / 2%);
   
-  .rad-info-box i {
-    display: block;
-    background-clip: padding-box;
-    margin-right: 15px;
-    height: 60px;
-    width: 60px;
-    border-radius: 100%;
-    line-height: 60px;
-    text-align: center;
-    font-size: 4.4em;
-    position: absolute;
-  }
   
-  .rad-info-box .value,
-  .rad-info-box .heading {
-    display: block;
-    position: relative;
-    color: #515d6e;
-    text-align: right;
-    z-index: 10;
-  }
-  
-  .rad-info-box .heading {
-    font-size: 1.2em;
-    font-weight: 300;
-    text-transform: uppercase;
-  }
-  
-  .rad-info-box .value {
-    font-size: 2.1em;
-    font-weight: 600;
-    margin-top: 5px;
-  }
-   .fl-table {
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: normal;
-    border: none;
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 100%;
-    white-space: nowrap;
-    background-color: white;
 }
 
-.fl-table td, .fl-table th {
-    text-align: center;
-    padding: 8px;
+button{
+  display: inline-block;
+      font-size: 12px;
+      background: rgb(216, 95, 2);
+      border: 1px solid;
+      width:100px;
+      border-radius: 6px;
+      font-weight: 500;
+      padding: 10px 10px;
+      outline: 0;
+      cursor: pointer;
+      color: #fefefe;
+      transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      -webkit-transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      -moz-transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      -ms-transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      -o-transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
-
-.fl-table td {
-    border-right: 1px solid #f8f8f8;
-    font-size: 12px;
+button:hover {
+  background-color: #f85508;
+      border-color: #f85508;
+      color: #fff;
 }
-
-.fl-table thead th {
-    color: #ffffff;
-    background: #4FC3A1;
-}
-
-
-.fl-table thead th:nth-child(odd) {
-    color: #ffffff;
-    background: #324960;
-}
-
-.fl-table tr:nth-child(even) {
-    background: #F8F8F8;
-}
-
-/* Responsive */
-.main-body{
-    margin-right: 230px;
-   }
-@media (max-width: 767px) {
-    .fl-table {
-        display: block;
-        width: 100%;
-        
-    }
-    .table-wrapper:before{
-        content: "Scroll horizontally >";
-        display: block;
-        text-align: right;
-        font-size: 11px;
-        color: white;
-        padding: 0 0 10px;
-    }
-    .fl-table thead, .fl-table tbody, .fl-table thead th {
-        display: block;
-    }
-    .fl-table thead th:last-child{
-        border-bottom: none;
-    }
-    .fl-table thead {
-        float: left;
-    }
-    .fl-table tbody {
-        width: auto;
-        position: relative;
-        overflow-x: auto;
-    }
-    .fl-table td, .fl-table th {
-        padding: 20px .625em .625em .625em;
-        height: 60px;
-        vertical-align: middle;
-        box-sizing: border-box;
-        overflow-x: hidden;
-        overflow-y: auto;
-        width: 120px;
-        font-size: 13px;
-        text-overflow: ellipsis;
-    }
-    .fl-table thead th {
-        text-align: left;
-        border-bottom: 1px solid #f7f7f9;
-    }
-    .fl-table tbody tr {
-        display: table-cell;
-    }
-    .fl-table tbody tr:nth-child(odd) {
-        background: none;
-    }
-    .fl-table tr:nth-child(even) {
-        background: transparent;
-    }
-    .fl-table tr td:nth-child(odd) {
-        background: #F8F8F8;
-        border-right: 1px solid #E6E4E4;
-    }
-    .fl-table tr td:nth-child(even) {
-        border-right: 1px solid #E6E4E4;
-    }
-    .fl-table tbody td {
-        display: block;
-        text-align: center;
-    }
-
-      
-   .text-danger{
-    color:red;
-   }
-   .alert-info{
-    color:green;
-   }
    
+table {
+  border-collapse: separate;
+  border-spacing: 0 15px;
 }
+
+th {
+  background-color: #4287f5;
+  color: white;
+}
+
+th,
+td {
+  width: 150px;
+  text-align: center;
+  border: 1px solid grey;
+  padding: 5px;
+}
+
+h2 {
+  color: #4287f5;
+}
+
 
 		</style>
 </head>
@@ -288,30 +237,17 @@ $lastname=$_SESSION['surname'];
 		</header> 
 		
 		<section> 
-			<section class="hbox stretch"> 
-				<!-- .aside --> 
+			<section class="hbox stretch"> <!-- .aside --> 
 				<aside class="bg-dark lter aside-md hidden-print" id="nav"> 
 					<section class="vbox"> 
 						
-						
-
-                   <!-- side menu items -->
+						 <!-- side menu items -->
 
 					<?php
 						include("admin_menu.php");
 						?>
 
                   <!-- side menu items -->
-
-
-
-
-
-
-
-
-
-
 						
 						<footer class="footer lt hidden-xs b-t b-dark"> <div id="chat" class="dropup"> <section class="dropdown-menu on aside-md m-l-n"> <section class="panel bg-white"> <header class="panel-heading b-b b-light">Active chats</header> <div class="panel-body animated fadeInRight"> <p class="text-sm">No active chats.</p> <p><a href="#" class="btn btn-sm btn-default">Start a chat</a></p> </div> </section> </section> </div> <div id="invite" class="dropup"> 
 							<section class="dropdown-menu on aside-md m-l-n"> <section class="panel bg-white"> <header class="panel-heading b-b b-light"> John <i class="fa fa-circle text-success"></i> </header> <div class="panel-body animated fadeInRight"> <p class="text-sm">No contacts in your lists.</p> <p><a href="#" class="btn btn-sm btn-facebook"><i class="fa fa-fw fa-facebook"></i> Invite from Facebook</a></p> </div> </section> </section> </div> <a href="#nav" data-toggle="class:nav-xs" class="pull-right btn btn-sm btn-dark btn-icon"> <i class="fa fa-angle-left text"></i> <i class="fa fa-angle-right text-active"></i> </a> 
@@ -328,55 +264,105 @@ $lastname=$_SESSION['surname'];
 									
 								<div style="height:800px;">
                   
-                           <h1>LIST OF ALL USERS</h1>
+                           <h1>ADD NEW SENSOR</h1>
 						  
 						   
 	                       <div class="table-wrapper">
-        <table class="fl-table" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>S/N</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Email Address</th>
-                                            <th>Phone number</th>
-                                            <th>Date Registered</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-										<?php
-                                         // $user= $_SESSION['id'];
-                                            $i=1;
-                                            $tbl_users = display_users($db);
-											while($fetch=$tbl_users->fetch_array()){ 
-										?>
-											<tr>
-												<td><?php echo $i++?></td>
-                                                
-												<td><?php echo $fetch['first_name']?></td>
-												<td><?php echo $fetch['last_name']?></td>
-												<td><?php echo $fetch['email']?></td>
-												<td> <?php echo $fetch['phoneNumber']?> </td>
-                                                <td>
-                                                <?php echo $fetch['date']?>
-                                               
-                                                </td>
-                                                <td>
-                                                <a onclick="return checkDelete()" href="delete_user.php?id=<?php echo $fetch['reg_id']?>"><i class="fa-sharp fa-solid fa-delete-left"></i></a>
-                                                </td>
-                                            </tr>
-										
-										<?php
-											}
-										?>
-                                    </tbody>
-                                </table>
-                               
-    
+        
+                           <form method="POST" enctype="multipart/form-data">
+         <table>
+        
+                <tr>
+                            <td> 
+                            <input type="text" placeholder ="Sensor name" class="form-control"  name="sensor_name">
+                            </td>
+
+							<td>
+                            <input type="text" placeholder ="Sensor mode" class="form-control"  name="sensor_mode">
+                            </td>
+                    
+                </tr>
+                  
+                <tr>
+                <td>
+                           
+                           <textarea id="w3review" placeholder="Describe sensor here..." name="sensor_desc" rows="4" cols="50"></textarea>
+                   
+                      </td>
+
+                      <td>
+                      <select class="form-control" name="sensortype">
+                                          <option value="1" selected="selected">Select type</option>
+                                          <option value="Position" >Position</option>
+                                          <option value="Temperature" >Temperature</option>
+                                          <option value="Motion" >Motion</option>
+                                          <option value="Light" >Light</option>
+                                          
+                      
+                                      </select>
+                      
+                  
+                     </td>
+                </tr>
+
+                <tr>
+               
+					<td> 
+                   
+                    </td>
+                   
+                    <td> 
+                    <button type="submit" name="submit" class="btnn">Add device</button>
+                  
+                    </td>
+
+					
+                </tr>
+                <tr>
+               
+                   
+                   
+					<td> 
+                    
+                    </td>
+                   
+                    <td> 
+                   
+                   
+                    <?php 
+                         
+                         if(ISSET($_SESSION['message'])){
+                           echo "<center><label>".$_SESSION['message']."</label></center>";
+                         }
+                    
+                       ?>
+                    </td>
+
+					
+                </tr>
+
+                
+				
+               
+
+                <tr>
+				
+				<td>
+						
+                   <a href="admin_sensors_list.php">View all devices</a><i class="fa-solid fa-arrow-right"></i>
+                    </td>
+                    
+                </tr>
+               
+        </table>
+                                     <br/><br/>
+                           
+                        
+        </form>
+       
  
               
-</div>
+                            </div>
 					
 					
 					

@@ -163,36 +163,20 @@ include("Dashboard_left_menu.php");
                         
                     
                        </td>
-                    <td> <select name="time" class="form-control">
-                                    <option value="" selected="selected">Time period</option>
-                                                    <option value="AM">AM</option>
-                                                    <option value="PM">PM</option>
-                                                </select></td>
-                    
+                   
+                       <td>
+                    <input type="date" name="sdate" class="form-control" id="start-date"/>
+                    </td>
                 </tr>
 
                 <tr>
                     <td>
 
                     <input type="time" id="appt" class="form-control" name="to"   required></td>
-                    <td> 
-                        <select name="time" class="form-control">
-                        <option value="" selected="selected">Time period</option>
-                                <option value="AM">AM</option>
-                                    <option value="PM">PM</option>
-                        </select>
-                    </td>
-                    
-                </tr>
-
-                <tr>
-                    <td>
-                    <input type="date" name="sdate" class="form-control" id="start-date"/>
-                    </td>
+                   
                     <td> 
                     <input type="date" name="edate" class="form-control" id="end-date"/>
                     </td>
-                    
                 </tr>
 
                 <tr>
