@@ -328,10 +328,11 @@ $lastname=$_SESSION['surname'];
 									
 								<div style="height:800px;">
                   
-                           <h1>LIST OF ALL DEVICES</h1>
+                           <h1>LIST OF ALL PETS</h1>
 						  
 						   
 	                       <div class="table-wrapper">
+                           
         <table class="fl-table" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -346,6 +347,21 @@ $lastname=$_SESSION['surname'];
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php
+                                    
+                                    $stmt1 = "SELECT * FROM pet";
+                                            $result=mysqli_query($db,$stmt1);
+                                            if(mysqli_num_rows($result)<=0)
+                                            {
+                                        ?>
+                                        <tr ><td id="empty">There are no any pets recorded at the moment</td></tr>
+                                          <?php
+                                            }
+
+                                            ?>
+
+
+
 										<?php
                                          // $user= $_SESSION['id'];
                                             $i=1;

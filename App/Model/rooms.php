@@ -171,6 +171,18 @@ function check_activation_status($dbb,$activationCode){
 	
         }
 
+        //this code would update apartment
+    function Update_apartment($dbb,$apart_name,$apart_type,$numRooms,$id)
+    {
+        $query=$dbb->prepare("UPDATE `apartment` SET `apartment_name` = ?,`apartment_type` = ? ,`number_of_rooms` = ? WHERE `apartment_id`=?") or die($this->conn->error);
+        $query->bind_param("ssii",$apart_name,$apart_type,$numRooms,$id);
+        
+        if($query->execute()){
+            
+            return true;
+        }
+    }
+
         function display_apartment($dbb, $apart_id)
         {
             $query=$dbb->prepare("SELECT * FROM apartment WHERE apartment_id=?") or die($this->conn->error);
@@ -270,6 +282,18 @@ function check_activation_status($dbb,$activationCode){
             return true;
         }
     }
+    //this code would update room
+    function Update_room($dbb,$roomName,$roomNumber,$id)
+    {
+        $query=$dbb->prepare("UPDATE `rooms` SET `room_name` = ?,`room_number` = ? WHERE `room_id`=?") or die($this->conn->error);
+        $query->bind_param("sii",$roomName,$roomNumber,$id);
+        
+        if($query->execute()){
+            
+            return true;
+        }
+    }
+
 
 
     //this will return total numbers of rooms
@@ -286,6 +310,60 @@ function check_activation_status($dbb,$activationCode){
         }
     }
 
+
+    //this will return total numbers of users
+    function get_total_users($dbb, $userType)
+    {
+        $query=$dbb->prepare("SELECT * FROM registration WHERE type=?") or die($this->conn->error);
+        $query->bind_param("s", $userType);
+        if($query->execute()){
+            $result=$query->get_result();
+            $count =mysqli_num_rows($result);
+            return $count;
+            
+        
+        }
+    }
+
+
+    //this will return total numbers of pets
+    function get_total_pets($dbb)
+    {
+        $query=$dbb->prepare("SELECT * FROM pet") or die($this->conn->error);
+        if($query->execute()){
+            $result=$query->get_result();
+            $count =mysqli_num_rows($result);
+            return $count;
+            
+        
+        }
+    }
+
+    //this will return total numbers of devices
+    function get_total_devices($dbb)
+    {
+        $query=$dbb->prepare("SELECT * FROM device") or die($this->conn->error);
+        if($query->execute()){
+            $result=$query->get_result();
+            $count =mysqli_num_rows($result);
+            return $count;
+            
+        
+        }
+    }
+
+     //this will return total numbers of messages
+     function get_total_messages($dbb)
+     {
+         $query=$dbb->prepare("SELECT * FROM message") or die($this->conn->error);
+         if($query->execute()){
+             $result=$query->get_result();
+             $count =mysqli_num_rows($result);
+             return $count;
+             
+         
+         }
+     }
 
 
 

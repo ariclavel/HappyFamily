@@ -29,11 +29,14 @@ if (ISSET($_POST['submit']))
   $picActualExt2 = strtolower(end($picExt2));
 
 
-
  $allowed = array('jpg','jpeg','png');
  
  if(in_array($picActualExt1, $allowed) && in_array($picActualExt2, $allowed))
  {
+  
+
+
+
    if($picError1 === 0  && $picError2 === 0)
    {
      //pic1
@@ -56,7 +59,9 @@ if (ISSET($_POST['submit']))
      $roomID=clean($_POST['room']);
      $user=clean($_POST['user']);
      $date_created=date("Y-m-d H:i:s");
-
+     
+     if(!empty($category) && $deviceName !=" " && !empty($sensorID) && !empty($roomID))
+     {
      $result =add_device($db,$category,$deviceName,$sensorID,$picNameNew1,$picNameNew2,0,$roomID,$user,$date_created);
      if($result)
      {
@@ -64,41 +69,33 @@ if (ISSET($_POST['submit']))
        
        $_SESSION['message'] = "<div class='alert alert-info'>Device added successfully.</div>";
        
-       header("Location: device_add.php");
+       //header("Location: device_add.php");
      }
      else
      {
        //die("bad");
        $_SESSION['message'] = " <div class='alert alert-danger'>There was an error in uploading your devie Image! Please Try again!</div>";
       
-        header("Location: device_add.php");
+        //header("Location: device_add.php");
      }
+    }
+    else
+    {
+      $_SESSION['message'] = "<div class='alert alert-danger'>Error! invalid data not allowed.</div>";
+    }
    }
    else
    {
      $_SESSION['message'] = "<div class='alert alert-danger'>There was an error in uploading your device image! Please Try again!</div>";
-      header("Location: device_add.php");
+      ////header("Location: device_add.php");
    }
  }
  else
  {
    $_SESSION['message'] = "<div class='alert alert-danger'>You cannot upload files with this extension</div>";
-   header("Location: device_add.php");
+   //header("Location: device_add.php");
  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -180,7 +177,31 @@ td {
 h2 {
   color: #4287f5;
 }
-
+.text-danger{
+    color:red;
+   }
+   .alert-info{
+    color:green;
+   }
+   .main-body{
+    margin-right: 230px;
+   }
+   .side_navbar{
+    background-color:#fff;
+   }
+   #imm{
+    padding: 15px;
+   }
+   .btnn, #btnn{
+    background: #f85508;
+    border:none;
+    color:white;
+   }
+   .settings
+   {
+    background:red;
+    
+   }
 
 		</style>
 </head>

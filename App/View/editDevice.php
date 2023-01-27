@@ -39,6 +39,8 @@ if (ISSET($_POST['submit']))
  $allowed = array('jpg','jpeg','png');
  //update when files not uploaded
   if($_FILES["device_pic1"]["error"] == 4 && $_FILES["device_pic2"]["error"] == 4) {
+    if(!empty($category) && $deviceName !=" " && !empty($sensorID) && !empty($roomID))
+     {
       $result_1 =Update_device1($db,$category,$deviceName,$sensorID,$roomID,$idd);
       
       if($result_1)
@@ -55,6 +57,11 @@ if (ISSET($_POST['submit']))
       
        
      }
+    }
+    else
+    {
+      $_SESSION['message'] = "<div class='alert alert-danger'>Error! invalid data not allowed.</div>";
+    }
     
     }
  
@@ -83,7 +90,9 @@ if (ISSET($_POST['submit']))
 
     
  
-    
+     if(!empty($category) && $deviceName !=" " && !empty($sensorID) && !empty($roomID))
+     {
+
      $result =Update_device($db,$category,$deviceName,$sensorID,$picNameNew1,$picNameNew2,$roomID,$idd);
      
      if($result)
@@ -102,6 +111,11 @@ if (ISSET($_POST['submit']))
      }
     
    }
+    else
+    {
+      $_SESSION['message'] = "<div class='alert alert-danger'>Error! invalid data not allowed.</div>";
+    }
+  }
    else
    {
      $_SESSION['message'] = "<div class='alert alert-danger'>There was an error in uploading your device image! Please Try again!</div>";
@@ -116,18 +130,6 @@ if (ISSET($_POST['submit']))
  }
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 ?>
 <!DOCTYPE html>

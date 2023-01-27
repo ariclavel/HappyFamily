@@ -6,56 +6,43 @@ session_start();
 
 
 unset($_SESSION['message']);
-$apart_id=$_GET['id'];
-$getApart=display_apartment($db, $apart_id);
-$fetch=$getApart->fetch_array();
-$number_of_rooms = $fetch['number_of_rooms'];
 
-
-$count = get_total_rooms($db, $apart_id);
-$roomsLeft =$number_of_rooms - $count;
  if(isset($_POST['submit']))
  {
     
      $roomName= clean($_POST['roomName']);
      $roomNumber=clean($_POST['roomNumber']);
-   
+     $room_id = $_GET['id'];
     
     
         
 
-        if($count < $number_of_rooms)
-        {
-          $result =add_room($db,$roomName,$roomNumber,$apart_id);
-          $roomsLeft = $number_of_rooms - 1;
-          //$_SESSION['room_left']= $roomsLeft;
-        
-        if($result)
+          if($roomName !=" " &&  !empty($roomNumber))
+          {
+            $result =Update_room($db,$roomName,$roomNumber,$room_id);
+            if($result)
         {
         $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
             
-        $_SESSION['message'] = "<div class='alert alert-info'>Room successful added to this apartment.</div>";
-        header("Location:  $actual_link");  
+        $_SESSION['message'] = "<div class='alert alert-info'>Room successful updated.</div>";
+       // header("Location:  $actual_link");  
         }
         else
         {
           $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-            $_SESSION['message'] = "<div class='alert alert-danger'>Error adding room. Please try again.</div>";
-            header("Location:  $actual_link");  
+            $_SESSION['message'] = "<div class='alert alert-danger'>Error updating room. Please try again.</div>";
+            //header("Location:  $actual_link");  
           }
-        }
-        else
-        {
-
-          
-          $_SESSION['message'] = "<div class='alert alert-danger'>Hello! cannot add any more rooms!.</div>";
-          
-        }
+          }
+          else
+          {
+            $_SESSION['message'] = "<div class='alert alert-danger'>Error! invalid data not allowed.</div>";
+          }
+         
+         
         
         
-    }
-
-
+        }
 ?>
 
 <!DOCTYPE html>
@@ -231,13 +218,18 @@ include("Dashboard_left_menu.php");
 <div class="content">
 
 <form method="POST">
+                                    <?php
+                                            $id = $_GET['id'];
+                                            $tbl_ltype = display_room($db,$id);
+                                            $fetch2=$tbl_ltype->fetch_array();
+                                    ?>
          <table>
          <tr>
-               <th><h4 class="text-right">ADD ROOMS  TO APARTMENT->((<span id="count"><?php echo $roomsLeft ?>) Rooms Left)</span></h4></th>
+               <th><h4 class="text-right">Edit Room</h4></th>
         </tr>
                 <tr>
                             <td> 
-                            <input type="text" id="roomName" placeholder="room name like (master bedroom)" class="form-control" name="roomName"   required>
+                            <input type="text" id="roomName" placeholder="room name like (master bedroom)" value="<?php echo $fetch2['room_name']?>" class="form-control" name="roomName"   required>
                             </td>
                            
                 
@@ -271,7 +263,7 @@ include("Dashboard_left_menu.php");
                 <tr>
                     
                     <td> 
-                    <button type="submit" name="submit" class="btnn">Submit</button>
+                    <button type="submit" name="submit" class="btnn">Update room</button>
                     </td>
                    <td>
                    
@@ -293,69 +285,6 @@ include("Dashboard_left_menu.php");
         
 </div>
   
- <div class="apart_view">
-  <h4>LIST OF ROOMS ADDED</h4>
- <div class="table-wrapper">
-        <table class="fl-table" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>S/N</th>
-                                            <th>Room Name</th>
-                                            <th>Room No</th>
-                                           
-                                
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-
-                                    <?php
-                                           $apartID=$_GET['id'];
-                                           $_SESSION['aptid']=$apartID;
-                                          $stmt1 = "SELECT * FROM rooms WHERE apartment_id='$apartID'";
-                                                  $result=mysqli_query($db,$stmt1);
-                                                  if(mysqli_num_rows($result)<=0)
-                                                  {
-                                              ?>
-                                              <tr ><td id="empty">There are no rooms belonging to this apartment</td></tr>
-                                                <?php
-                                                  }
-
-                                                  ?>
-										<?php
-                                          
-                                            $i=1;
-                                           
-                                            $tbl_schedule = display_apart_room($db, $apartID);
-											                    while($fetch=$tbl_schedule->fetch_array()){ 
-										?>
-											<tr>
-												<td><?php echo $i++?></td>
-                                                
-												<td><?php echo $fetch['room_name']?></td>
-												<td><?php echo $fetch['room_number']?></td>
-												
-												
-                                            
-                                                <td>
-                                                <a href="editRoom.php?id=<?php echo $fetch['room_id']?>"><i class="fa-solid fa-pen-to-square"></i> <a onclick="return checkDelete()" href="delete_room.php?id=<?php echo $fetch['room_id']?>"><i class="fa-sharp fa-solid fa-delete-left"></i></a>
-                                                </td>
-                                            </tr>
-										
-										<?php
-											}
-										?>
-                                    </tbody>
-                                </table>
-                               
-    
- 
-              
-</div>
-
-</div>
-
    
 
 

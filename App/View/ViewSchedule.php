@@ -267,20 +267,7 @@ function checkDelete(){
 
 
 <script type="text/javascript">
- /** 
- * Plugin
- * @param dayTag           show day html
- * @param hourTag          show hour html
- * @param minTag           show minutes html
- * @param secTag           show second html
- * @param dayClass         bind day tag ClassName
- * @param hourClass        bind hours tag ClassName
- * @param minClass         bind minutes tag ClassName
- * @param secClass         bind seconds tag ClassName
- * @param isDefault        whether use default tagTemp
- * @param showTemp         show template 0：(day hour min sec) 1：(hour min sec)
- * @param backfun          finish callback
- */
+
 (function ($) {
       $.fn.countdownsync = function (tagTemp, backfun) {
         var data = "";

@@ -3,7 +3,7 @@ date_default_timezone_set("Etc/GMT+8");
 require_once'../Model/rooms.php';
 
 session_start();
-
+$apart_id= $_GET['id'];
 
 unset($_SESSION['message']);
 
@@ -14,19 +14,19 @@ unset($_SESSION['message']);
      $apartType=clean($_POST['apartmentType']);
      $no_of_rooms=clean($_POST['room_no']);
    
-     $user= $_SESSION['id'];
+     
     
 
      if($apartName !=" " &&  !empty($apartType) && !empty($no_of_rooms))
      {
-        $result =add_apartment($db,$apartName,$apartType,$no_of_rooms,$user);
+        $result =Update_apartment($db,$apartName,$apartType,$no_of_rooms,$apart_id);
         
         
         if($result)
         {
                 
                     
-      $_SESSION['message'] = "<div class='alert alert-info'>Apartment successful created.</div>";
+      $_SESSION['message'] = "<div class='alert alert-info'>Apartment successful updated.</div>";
         }
         else
         {
@@ -211,13 +211,18 @@ include("Dashboard_left_menu.php");
 <div class="content">
 
 <form method="POST">
+                                <?php
+                                            
+                                            $tbl_ltype = display_apartment($db,$apart_id);
+                                            $fetch2=$tbl_ltype->fetch_array();
+                                    ?>
          <table>
          <tr>
                <th><h4 class="text-right">NEW APARTMENT</h4></th>
         </tr>
                 <tr>
                             <td> 
-                            <input type="text" id="apartmentName" placeholder="Apartment name like (city home)" class="form-control" name="apartmentName"   required>
+                            <input type="text" id="apartmentName" value="<?php echo $fetch2['apartment_name']?>" placeholder="Apartment name like (city home)" class="form-control" name="apartmentName"   required>
                             </td>
                            
                 
@@ -257,7 +262,7 @@ include("Dashboard_left_menu.php");
                 <tr>
                     
                     <td> 
-                    <button type="submit" name="submit" class="btnn">Submit</button>
+                    <button type="submit" name="submit" class="btnn">Update Apartment</button>
                     </td>
                    <td>
                    
@@ -284,85 +289,7 @@ include("Dashboard_left_menu.php");
                         
         </form>
        
-
-
-        
-
- 
-        
 </div>
-  
- <div class="apart_view">
-  
- <div class="table-wrapper">
-        <table class="fl-table" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>S/N</th>
-                                            <th>Apartment Name</th>
-                                            <th>Apartment Type</th>
-                                
-                                            <th>Number of Rooms</th>
-                                            <th>Add Rooms</th>
-
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-
-                                    <?php
-                                           $u_id= $_SESSION['id'];
-                                          $stmt1 = "SELECT * FROM apartment WHERE reg_id='$u_id'";
-                                                  $result=mysqli_query($db,$stmt1);
-
-                                                  if(mysqli_num_rows($result)<=0)
-                                                  {
-                                              ?>
-                                              <tr ><td id="empty">There are no any apartments recorded at the moment</td></tr>
-                                                <?php
-                                                  }
-
-                                                  ?>
-										<?php
-                                          
-                                            $i=1;
-                                            $tbl_schedule = display_Customers_AllApartments($db, $u_id );
-											while($fetch=$tbl_schedule->fetch_array()){ 
-										?>
-											<tr>
-												<td><?php echo $i++?></td>
-                                                
-												<td><?php echo $fetch['apartment_name']?></td>
-												<td><?php echo $fetch['apartment_type']?></td>
-												
-												<td>
-                                                <?php echo $fetch['number_of_rooms']?>
-                                               
-                                                </td>
-                                                <td>
-                                                <a href="room.php?id=<?php echo $fetch['apartment_id']?>">Add Rooms</a>
-                                               
-                                                </td>
-                                                <td>
-                                                <a href="editApartment.php?id=<?php echo $fetch['apartment_id']?>"><i class="fa-solid fa-pen-to-square"></i> <a onclick="return checkDelete()" href="deleteApartment.php?id=<?php echo $fetch['apartment_id']?>"><i class="fa-sharp fa-solid fa-delete-left"></i></a>
-                                                </td>
-                                            </tr>
-										
-										<?php
-											}
-										?>
-                                    </tbody>
-                                </table>
-                               
-    
- 
-              
-</div>
-
-</div>
-
-   
 
 
     </div>

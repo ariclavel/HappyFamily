@@ -1,7 +1,18 @@
 <?php
+require_once'../Model/rooms.php';
 session_start();
 $name =$_SESSION['name'];
 $lastname=$_SESSION['surname'];
+
+ $countUsers = get_total_users($db, "user");
+ $countDevices = get_total_devices($db);
+ $countPets = get_total_pets($db);
+ $countMessages = get_total_messages($db);
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -202,32 +213,33 @@ $lastname=$_SESSION['surname'];
                            <h1>WELCOME TO ADMIN DASHBOARD</h1>
 						  
 						   <div class="row">
+						
 	<div class="col-lg-3 col-xs-6">
 						<div class="rad-info-box rad-txt-success">
 							<i class="fa fa-user"></i>
 							<span class="heading">Users</span>
-							<span class="value"><span>10</span></span>
+							<span class="value"><span><?php echo $countUsers ?></span></span>
 						</div>
 					</div>
 					<div class="col-lg-3 col-xs-6">
 						<div class="rad-info-box rad-txt-primary">
 						<i class="fa fa-shield-dog"></i>
 							<span class="heading">All Pets</span>
-							<span class="value"><span>12</span></span>
+							<span class="value"><span><?php echo $countPets ?></span></span>
 						</div>
 					</div>
 					<div class="col-lg-3 col-xs-6">
 						<div class="rad-info-box rad-txt-danger">
 							<i class="fa fa-computer"></i>
 							<span class="heading">Control devices</span>
-							<span class="value"><span>5</span></span>
+							<span class="value"><span><?php echo $countDevices ?></span></span>
 						</div>
 					</div>
 					<div class="col-lg-3 col-xs-6">
 						<div class="rad-info-box">
 							<i class="fa fa-message"></i>
 							<span class="heading">Msg</span>
-							<span class="value"><span>11</span></span>
+							<span class="value"><span><?php echo $countMessages ?></span></span>
 						</div>
 					</div>
 				</div>

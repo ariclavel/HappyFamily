@@ -42,7 +42,7 @@
 										<a href="#pages" > <i class="fa fa-file-text icon"><b class="bg-primary"></b></i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span><span>Manage pets</span> </a> 
 										<ul class="nav lt"> 
 											<li > <a href="manage_pets.php" > <i class="fa fa-angle-right"></i> <span>Manage pets</span> </a> </li> 
-											<li > <a href="profile.html" > <i class="fa fa-angle-right"></i> <span>Profile</span> </a> </li> 
+											
 							
 										</ul> 
 									</li> 
