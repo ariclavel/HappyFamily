@@ -213,7 +213,6 @@ include("Dashboard_left_menu.php");
    
 <div class="content">
    
-   
     
    <div class="profile">
       
@@ -252,10 +251,10 @@ include("Dashboard_left_menu.php");
                                            
 											$tbl_address=$db->query("SELECT * FROM `address` WHERE reg_id='$user_id' LIMIT 1");
 											$fetch2=$tbl_address->fetch_array();
-										?>
+										   ?>
 
                    <div class="col-md-12"> <textarea placeholder="Address line one" value="<?php echo $fetch2['address']?>" name="address_1"cols="30" rows="5"></textarea></div>
-                   <div class="col-md-12"><input type="text" class="form-control" name="postcode1" value="<?php echo $fetch2['zip_code']?>" placeholder="Address one Postal code"></div>
+                   <div class="col-md-12"><input type="text" class="form-control" name="postcode1" value="<?php if(!$fetch2){}else {echo $fetch2['zip_code'];}?>" placeholder="Address one Postal code"></div>
                   
                       
                  

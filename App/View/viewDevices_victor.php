@@ -175,6 +175,9 @@ input:checked + .slider:before {
   .text-center{
     font-weight:bold;
   }
+  #empty_list{
+    color:green;
+  }
  
   </style>
 </head>
@@ -199,13 +202,24 @@ include("Dashboard_left_menu.php");
    <h1>CONTROL DEVICES PAGE</h1>
 <div class="productcont">
                       <?php
-                                         
-                        
-                        $tbl_schedule = display_AllDevice($db);
-						while($fetch=$tbl_schedule->fetch_array()){ 
+                          $user= $_SESSION['id'];
+                         //this would display empty list message
+                         $stmt1 = "SELECT * FROM device WHERE user_id='$user'";
+                            $result=mysqli_query($db,$stmt1);
+                            if(mysqli_num_rows($result)<=0)
+                            {
+                          ?>
+                          <p id="empty_list">No control devicies added to your device lists</p>
+                          <?php
+                        }
+                        else
+                        {
+                        $tbl_schedule = display_AllDevice($db,$user);
+						            while($fetch=$tbl_schedule->fetch_array()){ 
                             $deviceID = $fetch['device_id'];
                             $deviceStatus = $fetch['device_status'];
-						?>
+                       
+					                	?>
 
 
 
@@ -267,6 +281,7 @@ include("Dashboard_left_menu.php");
                                                 
                             </div>
                             <?php
+                             }
 								}
 							?>
 

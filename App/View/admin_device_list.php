@@ -328,7 +328,7 @@ $lastname=$_SESSION['surname'];
 									
 								<div style="height:800px;">
                   
-                           <h1>LIST OF ALL USERS</h1>
+                           <h1>LIST OF ALL DEVICES</h1>
 						  
 						   
 	                       <div class="table-wrapper">
@@ -336,34 +336,47 @@ $lastname=$_SESSION['surname'];
                                     <thead>
                                         <tr>
                                             <th>S/N</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Email Address</th>
-                                            <th>Phone number</th>
-                                            <th>Date Registered</th>
+                                            <th>Category</th>
+                                            <th>Device Name</th>
+                                            <th>Sensor name</th>
+                                            <th>On-Image </th>
+                                            <th>Off-image</th>
+                                            <th>Room name</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 										<?php
-                                         // $user= $_SESSION['id'];
+                                    
+                                          $stmt1 = "SELECT * FROM device";
+                                                  $result=mysqli_query($db,$stmt1);
+                                                  if(mysqli_num_rows($result)<=0)
+                                                  {
+                                              ?>
+                                              <tr ><td id="empty">There are no any registered devices recorded at the moment</td></tr>
+                                                <?php
+                                                  }
+
+                                                  ?>
+                                                  
+                                            <?php    
+                                        
                                             $i=1;
-                                            $tbl_users = display_users($db);
-											while($fetch=$tbl_users->fetch_array()){ 
+                                            $tbl_device = AllDevices($db);
+											while($fetch=$tbl_device->fetch_array()){ 
 										?>
 											<tr>
 												<td><?php echo $i++?></td>
                                                 
-												<td><?php echo $fetch['first_name']?></td>
-												<td><?php echo $fetch['last_name']?></td>
-												<td><?php echo $fetch['email']?></td>
-												<td> <?php echo $fetch['phoneNumber']?> </td>
-                                                <td>
-                                                <?php echo $fetch['date']?>
+												<td><?php echo $fetch['device_category']?></td>
+												<td><?php echo $fetch['device_name']?></td>
+												<td><?php echo $fetch['sensor_name']?></td>
+												<td> <img class="imgg"  id="imm" width="50px" height="50px" src="../img/device_pic/<?php  echo $fetch['device_image1'];?>"> </td>
+                                                <td><img class="imgg"  id="imm" width="50px" height="50px" src="../img/device_pic/<?php  echo $fetch['device_image2'];?>"> </td>
+												<td> <?php echo $fetch['room_name']?> </td>
                                                
-                                                </td>
                                                 <td>
-                                                <a onclick="return checkDelete()" href="delete_user.php?id=<?php echo $fetch['reg_id']?>"><i class="fa-sharp fa-solid fa-delete-left"></i></a>
+                                                <a href="editDevice.php?id=<?php echo $fetch['device_id']?>"><i class="fa-solid fa-pen-to-square"></i></a><a onclick="return checkDelete()" href="delete_device.php?id=<?php echo $fetch['device_id']?>"><i class="fa-sharp fa-solid fa-delete-left"></i></a>
                                                 </td>
                                             </tr>
 										
@@ -405,7 +418,7 @@ $lastname=$_SESSION['surname'];
 	<script type='text/javascript' src='../js/admin.js'></script>
     <script language="JavaScript" type="text/javascript">
 function checkDelete(){
-    return confirm('Are you sure you want to delete this schedule?');
+    return confirm('Are you sure you want to delete this device?');
 }
 </script>
 </body>

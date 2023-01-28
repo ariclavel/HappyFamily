@@ -154,7 +154,7 @@ include("Dashboard_left_menu.php");
 
 </div>
 
-<div class="footer">&copy; Smart Home group - Smarthome.com</div>
+
 
 </div>
   
