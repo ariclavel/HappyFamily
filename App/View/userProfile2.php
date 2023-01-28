@@ -126,7 +126,7 @@ if (ISSET($_POST['update_user']))
   <title>Dashboard | Happy Family</title>
  
   <link rel="stylesheet" href="../css/user_profile_victor.css">
-  <link rel="stylesheet" href="style.css" />
+  
   <!-- Font Awesome Cdn Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/dashboard.css">
@@ -152,7 +152,49 @@ if (ISSET($_POST['update_user']))
    {
     margin-left:30px;
    }
-  
+   @media (max-width: 1200px) {
+  .logo a{margin: 0px;}
+  .titt{margin-left: 30px;}
+  .search_box{margin-left: 60px;}
+  .both{display: block;}
+  .profile{display: -webkit-box;}
+
+}
+@media (max-width: 950px) {
+  .logo a{margin: 0px;}
+  .titt{margin-left: 30px;}
+  .search_box{margin-left: 60px;}
+  .both{display: block;}
+  .profile{display: -webkit-box;}
+  .search_box input{width: 200px;}
+  .content{width: 500px;}
+}
+@media (max-width: 715px) {
+  .logo a{margin: 0px;}
+  .titt{margin-left: 30px;}
+  .search_box{margin-left: 60px;}
+  .both{display: block;}
+  .profile{display: -webkit-box;}
+  .search_box input{width: 200px;}
+  .content{width: 500px;}
+  .side_navbar{width: 120px;}
+  .side_navbar a{padding: 10px;}
+}
+@media (max-width: 650px) {
+  .logo a{margin: 0px;}
+  .titt{margin-left: 15px;}
+  .search_box{margin-left: 15px;}
+  .both{display: block;}
+  .profile{display: -webkit-box;}
+  .search_box input{width: 200px;}
+  .content{width: 350px;}
+  .middle_part{width: 150px;}
+.form-control{width:150px;}
+  .both{margin: 0px;}
+}
+
+
+
   </style>
 </head>
 <body>
