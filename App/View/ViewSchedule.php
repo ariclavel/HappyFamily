@@ -156,12 +156,26 @@ include("Dashboard_left_menu.php");
                                             <th>S/N</th>
                                             <th>Room</th>
                                             <th>Device</th>
-                                            <th>Duration</th>
+                                
                                             <th>Timer</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+
+
+                                    <?php
+                                    
+                                          $stmt1 = "SELECT * FROM scheduler";
+                                                  $result=mysqli_query($db,$stmt1);
+                                                  if(mysqli_num_rows($result)<=0)
+                                                  {
+                                              ?>
+                                              <tr ><td id="empty">There are no any schedule devices recorded at the moment</td></tr>
+                                                <?php
+                                                  }
+
+                                                  ?>
 										<?php
                                           $user= $_SESSION['id'];
                                             $i=1;
@@ -173,13 +187,13 @@ include("Dashboard_left_menu.php");
                                                 
 												<td><?php echo $fetch['room_name']?></td>
 												<td><?php echo $fetch['device_name']?></td>
-												<td><?php echo $fetch['duration']?></td>
+												
 												<td>
                                                 <?php echo $fetch['setTime']?>
-                                                <!-- <div class="container timeBar ys1" data=<?php echo $fetch['duration']?> ></div> -->
+                                               
                                                 </td>
                                                 <td>
-                                                <a href="editSchedule.php?id=<?php echo $fetch['scheduler_id']?>"><i class="fa-solid fa-pen-to-square"></i></a><a onclick="return checkDelete()" href="deleteSchedule.php?id=<?php echo $fetch['scheduler_id']?>"><i class="fa-sharp fa-solid fa-delete-left"></i></a><a href="viewDevices_victor2.php?deviceID=<?php echo $fetch['device_id']; ?>"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="editSchedule.php?id=<?php echo $fetch['scheduler_id']?>"><i class="fa-solid fa-pen-to-square"></i></a>   <a onclick="return checkDelete()" href="deleteSchedule.php?id=<?php echo $fetch['scheduler_id']?>">   <i class="fa-sharp fa-solid fa-delete-left"></i></a>  <a href="viewDevices_victor2.php?deviceID=<?php echo $fetch['device_id']; ?>">    <i class="fa-solid fa-eye"></i></a>
                                                 </td>
                                             </tr>
 										
@@ -253,20 +267,7 @@ function checkDelete(){
 
 
 <script type="text/javascript">
- /** 
- * Plugin
- * @param dayTag           show day html
- * @param hourTag          show hour html
- * @param minTag           show minutes html
- * @param secTag           show second html
- * @param dayClass         bind day tag ClassName
- * @param hourClass        bind hours tag ClassName
- * @param minClass         bind minutes tag ClassName
- * @param secClass         bind seconds tag ClassName
- * @param isDefault        whether use default tagTemp
- * @param showTemp         show template 0：(day hour min sec) 1：(hour min sec)
- * @param backfun          finish callback
- */
+
 (function ($) {
       $.fn.countdownsync = function (tagTemp, backfun) {
         var data = "";

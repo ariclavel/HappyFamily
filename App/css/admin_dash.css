@@ -12015,3 +12015,39 @@ fieldset[disabled] .btn-gplus.active {
   
   
 }
+.txtbox{
+  width: 300px;
+  background: #dfe9f5;
+  color: #601752;
+  padding: 14px 20px;
+  margin: 8px 28px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 10px;
+}
+
+
+button{
+  display: inline-block;
+      font-size: 12px;
+      background: rgb(216, 95, 2);
+      border: 1px solid;
+      width:100px;
+      border-radius: 6px;
+      font-weight: 500;
+      padding: 10px 10px;
+      outline: 0;
+      cursor: pointer;
+      color: #fefefe;
+      transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      -webkit-transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      -moz-transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      -ms-transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      -o-transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+button:hover {
+  background-color: #f85508;
+      border-color: #f85508;
+      color: #fff;
+}

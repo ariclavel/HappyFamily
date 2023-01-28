@@ -474,24 +474,7 @@ include("Dashboard_left_menu.php");
 
            
           }
-              //  //getting javascript data to php
-
-              //  var timerData={};
-              //  timerData.hour =  hours;
-              //  timerData.minutes =  min;
-              //  timerData.seconds =  sec;
-
-              //  console.log(timerData)
-              //  $.ajax({
-
-              //      url:"readphp.php",
-              //      method:"post",
-              //      data:timerData,
-              //      success:function(res){
-              //       console.log(res);
-              //      }
-              //  })
-
+             
 
 
             if (range < 0) {
