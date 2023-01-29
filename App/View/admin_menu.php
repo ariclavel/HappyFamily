@@ -13,12 +13,12 @@ require_once'../Model/rooms.php';
 								<!-- nav -->
 								<nav class="nav-primary hidden-xs"> 
 									<ul class="nav"> 
-										<li class="active"> <a href="Admin_Dashboard.php" class="active"> <i class="fa fa-dashboard icon"> <b class="bg-danger"></b> </i> <span>ADMIN PANEL</span> </a> </li> 
+										<li class="active"> <a href="DashboardAdmin.php" class="active"> <i class="fa fa-dashboard icon"> <b class="bg-danger"></b> </i> <span>ADMIN PANEL</span> </a> </li> 
 										<li> 
 											<a href="#layout" > <i class="fa fa-columns icon"><b class="bg-warning"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i><i class="fa fa-angle-up text-active"></i></span> <span>Manage users</span> </a> 
 											<ul class="nav lt"> 
 												<li> 
-													<a href="All_Users.php"> 
+													<a href="UsersAdmin.php"> 
 														<i class="fa fa-angle-right"></i> 
 														<span>View Users</span> 
 													</a> 
@@ -37,7 +37,7 @@ require_once'../Model/rooms.php';
 											</a> 
 											<ul class="nav lt"> 
 												<li> 
-													<a href="device_add.php">
+													<a href="DevicesAddAdmin.php">
 														<i class="fa fa-angle-right"></i> <span>Add devices</span> 
 													</a> 
 												</li> 

@@ -1,6 +1,5 @@
 <?php
-
-
+require_once'../Model/user.query.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,26 +95,9 @@
 										?>
                                     </tbody>
                                 </table>
-                               
-    
- 
-              
 </div>
-					
-					
-					
-				            </div>
-
-             				 </div>
-								
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-						
+	</div>
+        </div>
 						</section> 
 					</section> 
 					<a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a> 
@@ -128,10 +110,10 @@
 	</section> <!-- Bootstrap --> <!-- App --> 
 	<script type='text/javascript' src='../js/admin.js'></script>
     <script language="JavaScript" type="text/javascript">
-function checkDelete(){
-    return confirm('Are you sure you want to delete this user?');
-}
-</script>
+		function checkDelete(){
+			return confirm('Are you sure you want to delete this user?');
+		}
+	</script>
 </body>
 
 </html>

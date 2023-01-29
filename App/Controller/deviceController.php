@@ -97,7 +97,7 @@ if (ISSET($_POST['Add_Device']))
        
        $msg = "<div class='alert alert-info'>Device added successfully.</div>";
        $_SESSION['message']=$msg;
-       header("Location: ../View/device_add.php?msg=$msg");
+       header("Location: ../View/DevicesAddAdmin.php?msg=$msg");
      
      }
      else
@@ -105,28 +105,28 @@ if (ISSET($_POST['Add_Device']))
        //die("bad");
        $msg = " <div class='alert alert-danger'>There was an error in uploading your devie Image! Please Try again!</div>";
        
-       header("Location: ../View/device_add.php?msg=$msg");
+       header("Location: ../View/DevicesAddAdmin.php?msg=$msg");
      }
     }
     else
     {
         $msg =  "<div class='alert alert-danger'>Error! invalid data not allowed.</div>";
      
-      header("Location: ../View/device_add.php?msg=$msg");
+      header("Location: ../View/DevicesAddAdmin.php?msg=$msg");
     }
    }
    else
    {
     $msg = "<div class='alert alert-danger'>There was an error in uploading your device image! Please Try again!</div>";
     
-     header("Location: ../View/device_add.php?msg=$msg");
+     header("Location: ../View/DevicesAddAdmin.php?msg=$msg");
    }
  }
  else
  {
     $msg  = "<div class='alert alert-danger'>You cannot upload files with this extension</div>";
     
-   header("Location: ../View/device_add.php?msg=$msg");
+   header("Location: ../View/DevicesAddAdmin.php?msg=$msg");
  }
 }
 

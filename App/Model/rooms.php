@@ -3,201 +3,123 @@ require_once'conn.php';
 require '../vendor/autoload.php';
 include ('../View/filter_string.php');
 		
-   
-        function add_user($dbb,$firstname,$lastname,$email,$password,$activationCode,$activationStatus,$date){
-			$query="INSERT INTO `Registration` (`first_name`, `last_name`,`email`, `password`, `activation_status`, `activation_code`,`date`) VALUES(?, ?, ?, ?, ?, ?, ?)" or die($this->conn->error);
-			$data = $dbb->prepare($query);
+
+
+
+function check_sensorName($dbb,$sensorName){
             
-            $data->bind_param("ssssiss",$firstname, $lastname, $email, $password,$activationStatus,$activationCode,$date);
-            return $data->execute();
-	
-        }
-    
-
-    function check_email($dbb,$email){
-            
-        $query=$dbb->prepare("SELECT * FROM Registration WHERE email='$email'") or die($this->conn->error);
-			if($query->execute()){
-				$result=$query->get_result();
-				return $result;
-				
-			
-            }
-			}
-
-            function check_sensorName($dbb,$sensorName){
-            
-                $query=$dbb->prepare("SELECT * FROM sensor WHERE sensor_name='$sensorName'") or die($this->conn->error);
-                    if($query->execute()){
-                        $result=$query->get_result();
-                        return $result;
-                        
-                    
-                    }
-                    }
-
-
-
-
-
-            function check_pet($dbb,$pet_name){
-            
-                $query=$dbb->prepare("SELECT * FROM pet WHERE name='$pet_name'") or die($this->conn->error);
-                    if($query->execute()){
-                        $result=$query->get_result();
-                        return $result;
-                        
-                    
-                    }
-                    }
-
-
-
-function email_verification($dbb,$activationStatus,$activationCode){
-            
-$query=$dbb->prepare("UPDATE Registration SET activation_status=? WHERE activation_code=?") or die($this->conn->error);
-
-$query->bind_param("is", $activationStatus, $activationCode);
-			
-			if($query->execute()){
-				
-				return true;
-			}
+    $query=$dbb->prepare("SELECT * FROM sensor WHERE sensor_name='$sensorName'") or die($this->conn->error);
+    if($query->execute()){
+        $result=$query->get_result();
+        return $result;
+    }
 }
 
-function user_login($dbb,$email,$password){
+function check_pet($dbb,$pet_name){
             
-    $query=$dbb->prepare("SELECT * FROM Registration WHERE email='$email' AND password='$password'") or die($this->conn->error);
-        if($query->execute()){
-            $result=$query->get_result();
-            return $result;
-            
-        
-        }
-        }
+    $query=$dbb->prepare("SELECT * FROM pet WHERE name='$pet_name'") or die($this->conn->error);
+    if($query->execute()){
+        $result=$query->get_result();
+        return $result;
+                        
+                    
+                    }
+                    }
+
+
 
         
-function check_activation_status($dbb,$activationCode){
-            
-    $query=$dbb->prepare("SELECT * FROM Registration WHERE activation_code='$activationCode'") or die($this->conn->error);
-        if($query->execute()){
-            $result=$query->get_result();
-            return $result;
-            
-        
-        }
-        }
 
 
-        function display_rooms($dbb)
-        {
-            $query=$dbb->prepare("SELECT * FROM rooms ") or die($this->conn->error);
-            if($query->execute()){
-                $result=$query->get_result();
-                return $result;
-                
-            
-            }
-        }
+function display_rooms($dbb)
+{
+    $query=$dbb->prepare("SELECT * FROM rooms ") or die($this->conn->error);
+    if($query->execute()){
+        $result=$query->get_result();
+        return $result; 
+    }
+}
 
-        function display_device($dbb)
-        {
-            $query=$dbb->prepare("SELECT * FROM device ") or die($this->conn->error);
-            if($query->execute()){
-                $result=$query->get_result();
-                return $result;
-                
-            
-            }
-        }
+function display_device($dbb)
+{
+    $query=$dbb->prepare("SELECT * FROM device ") or die($this->conn->error);
+    if($query->execute()){
+        $result=$query->get_result();
+        return $result;
+    }
+}
 
-        function display_device_status($dbb,$id,$stat)
-        {
-            $query=$dbb->prepare("UPDATE `device` SET `device_status` = ? WHERE `device_id`=?") or die($this->conn->error);
-            $query->bind_param("ii",$stat,$id);
+function display_device_status($dbb,$id,$stat)
+{
+    $query=$dbb->prepare("UPDATE `device` SET `device_status` = ? WHERE `device_id`=?") or die($this->conn->error);
+    $query->bind_param("ii",$stat,$id);
 			
-			if($query->execute()){
+	if($query->execute()){
 				
-				return true;
-			}
-        }
+		return true;
+	}
+}
 
 
-        function select_status($dbb,$id)
-        {
-            $query=$dbb->prepare("SELECT `device_status` FROM `device` WHERE `device_id`='$id' LIMIT 1 ") or die($this->conn->error);
-            if($query->execute()){
-                $result=$query->get_result();
-                return $result;
-                
+function select_status($dbb,$id)
+{
+    $query=$dbb->prepare("SELECT `device_status` FROM `device` WHERE `device_id`='$id' LIMIT 1 ") or die($this->conn->error);
+    if($query->execute()){
+        $result=$query->get_result();
+        return $result;
+    }
+}
+
+function select_date($dbb,$id)
+{
+    $query=$dbb->prepare("SELECT `update_date_time` FROM `device` WHERE `device_id`='$id' LIMIT 1 ") or die($this->conn->error);
+    if($query->execute()){
+        $result=$query->get_result();
+        return $result;
+    }
+}
+function display_sensors($dbb)
+{
+    $query=$dbb->prepare("SELECT * FROM sensor ") or die($this->conn->error);
+    if($query->execute()){
+        $result=$query->get_result();
+        return $result;
+    }
+}
+function add_schedule($dbb,$from,$to,$duration,$timer,$device_id,$room_id,$user_id,$setTime){
+	$query="INSERT INTO `scheduler` (`from`, `to`,`duration`,`setTime`,`device_id`, `room_id`,`reg_id`,`set_Time`) VALUES(?, ?,?, ?, ?, ?,?,?)" or die($this->conn->error);
+	$data = $dbb->prepare($query);
             
-            }
-        }
-
-        function select_date($dbb,$id)
-        {
-            $query=$dbb->prepare("SELECT `update_date_time` FROM `device` WHERE `device_id`='$id' LIMIT 1 ") or die($this->conn->error);
-            if($query->execute()){
-                $result=$query->get_result();
-                return $result;
-                
-            
-            }
-        }
-
-        function display_sensors($dbb)
-        {
-            $query=$dbb->prepare("SELECT * FROM sensor ") or die($this->conn->error);
-            if($query->execute()){
-                $result=$query->get_result();
-                return $result;
-                
-            
-            }
-        }
-
-     
-
-
-
-
-
-        function add_schedule($dbb,$from,$to,$duration,$timer,$device_id,$room_id,$user_id,$setTime){
-			$query="INSERT INTO `scheduler` (`from`, `to`,`duration`,`setTime`,`device_id`, `room_id`,`reg_id`,`set_Time`) VALUES(?, ?,?, ?, ?, ?,?,?)" or die($this->conn->error);
-			$data = $dbb->prepare($query);
-            
-            $data->bind_param("ssisiiis",$from, $to, $duration,$timer,$device_id,$room_id,$user_id,$setTime);
-            return $data->execute();
+    $data->bind_param("ssisiiis",$from, $to, $duration,$timer,$device_id,$room_id,$user_id,$setTime);
+        return $data->execute();
 	
-        }
-
-
-        function add_device($dbb,$category,$device_name,$sensor_id,$device_image1,$device_image2,$status,$roomID,$user_id,$apart_id,$dateTime){
-			$query="INSERT INTO `device` (`device_category`, `device_name`,`sensor_id`, `device_image1`, `device_image2`,`device_status`,`room_id`,`userID`,`apart_id`,`update_date_time`) VALUES(?, ?, ?, ?, ?,?,?,?,?,?)" or die($this->conn->error);
-			$data = $dbb->prepare($query);
-            
-            $data->bind_param("ssissiiiis",$category, $device_name, $sensor_id, $device_image1,$device_image2,$status,$roomID,$user_id,$apart_id,$dateTime);
-            return $data->execute();
+}
+function add_device($dbb,$category,$device_name,$sensor_id,$device_image1,$device_image2,$status,$roomID,$user_id,$apart_id,$dateTime){
+	$query="INSERT INTO `device` (`device_category`, `device_name`,`sensor_id`, `device_image1`, `device_image2`,`device_status`,`room_id`,`userID`,`apart_id`,`update_date_time`) VALUES(?, ?, ?, ?, ?,?,?,?,?,?)" or die($this->conn->error);
+	$data = $dbb->prepare($query);
+    $data->bind_param("ssissiiiis",$category, $device_name, $sensor_id, $device_image1,$device_image2,$status,$roomID,$user_id,$apart_id,$dateTime);
+    return $data->execute();
 	
-        }
+ }
 
 
         
-        function add_sensor($dbb,$sensor_name,$mode,$desc,$type,$dateTime){
-			$query="INSERT INTO `sensor` (`sensor_name`, `mode`,`s_desc`, `type`,`date`) VALUES(?, ?, ?, ?, ?)" or die($this->conn->error);
-			$data = $dbb->prepare($query);
-            $data->bind_param("sssss",$sensor_name,$mode,$desc,$type,$dateTime);
-            return $data->execute();
+        
+ function add_sensor($dbb,$sensor_name,$mode,$desc,$type,$dateTime){
+	$query="INSERT INTO `sensor` (`sensor_name`, `mode`,`s_desc`, `type`,`date`) VALUES(?, ?, ?, ?, ?)" or die($this->conn->error);
+	$data = $dbb->prepare($query);
+    $data->bind_param("sssss",$sensor_name,$mode,$desc,$type,$dateTime);
+    return $data->execute();
 	
-        }
-            //Apartment queries
-        function add_apartment($dbb,$apart_name,$apart_type,$numRooms,$user_id){
-			$query="INSERT INTO `apartment` (`apartment_name`, `apartment_type`,`number_of_rooms`, `reg_id`) VALUES(?, ?, ?, ?)" or die($this->conn->error);
-			$data = $dbb->prepare($query);
-            $data->bind_param("ssii",$apart_name,$apart_type,$numRooms,$user_id);
-            return $data->execute();
+}
+//Apartment queries
+function add_apartment($dbb,$apart_name,$apart_type,$numRooms,$user_id){
+		$query="INSERT INTO `apartment` (`apartment_name`, `apartment_type`,`number_of_rooms`, `reg_id`) VALUES(?, ?, ?, ?)" or die($this->conn->error);
+		$data = $dbb->prepare($query);
+        $data->bind_param("ssii",$apart_name,$apart_type,$numRooms,$user_id);
+        return $data->execute();
 	
-        }
+}
 
         //this code would update apartment
     function Update_apartment($dbb,$apart_name,$apart_type,$numRooms,$id)
@@ -477,7 +399,7 @@ function check_activation_status($dbb,$activationCode){
      //this will return total numbers of messages
      function get_total_messages($dbb)
      {
-         $query=$dbb->prepare("SELECT * FROM message") or die($this->conn->error);
+         $query=$dbb->prepare("SELECT * FROM messages") or die($this->conn->error);
          if($query->execute()){
              $result=$query->get_result();
              $count =mysqli_num_rows($result);
@@ -537,17 +459,7 @@ function check_activation_status($dbb,$activationCode){
             }
         }
 
-        //display all users
-        function display_users($dbb)
-        {
-            $query=$dbb->prepare("SELECT * FROM Registration WHERE type NOT IN ('Admin')") or die($this->conn->error);
-            if($query->execute()){
-                $result=$query->get_result();
-                return $result;
-                
-            
-            }
-        }
+
 
         //this will return total numbers of rows
         function get_total_rows($dbb, $device_id)
@@ -693,14 +605,6 @@ function check_activation_status($dbb,$activationCode){
 			}
 		}
         
-        function delete_user($dbb, $user_id){
-			$query=$dbb->prepare("DELETE FROM `Registration` WHERE reg_id=?") or die($this->conn->error);
-			$query->bind_param("i", $user_id);
-            if($query->execute()){
-				
-				return true;
-			}
-		}
 
         function delete_sensor($dbb, $s_id){
 			$query=$dbb->prepare("DELETE FROM `sensor` WHERE sensor_id=?") or die($this->conn->error);

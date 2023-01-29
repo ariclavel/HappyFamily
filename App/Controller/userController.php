@@ -173,12 +173,12 @@ if(isset($verify))
                $_SESSION['type']= $row['type'];
                if( $_SESSION['type'] == "user")
                {
-                header("Location:../View/Dashboard.php");
+                header("Location:../View/DashboardUser.php");
                 
                }
                else
                {
-                header("Location:../View/Admin_Dashboard.php");
+                header("Location:../View/DashboardAdmin.php");
                }
 
              

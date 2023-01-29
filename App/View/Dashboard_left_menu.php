@@ -3,16 +3,8 @@
         <span>Main Menu</span>
         <a href="Dashboard.php" class="active">Dashboard</a>
         <a href="userprofile2.php">Profile</a>
-<<<<<<< HEAD
-
-        <a href="petDashboard_victor.php">Pet Dashboard</a>
-        <a href="Add_pet.php">Add Pet</a>
-=======
         <a href="petDashboard_victor.php">Pets</a>
-
->>>>>>> 9150fd04aa674a7677b17763067adecbe90df45e
         <a href="viewDevices_victor.php">Devices</a>
-
         <a href="scheduler.php">Scheduler</a>
         <a href="Alarm.php">Alarm</a>
         <a href="history.php" >Reports</a>

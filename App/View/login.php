@@ -4,14 +4,13 @@ session_start();
 unset($_SESSION['message']);
 if(isset($_SESSION['id']))
 {
-   header("Location:../View/Dashboard.php");
+   if($_SESSION['type']=="Admin") header("Location:../View/DashboardAdmin.php");
+   else header("Location:../View/DashboardUser.php");
    die();
 }
 
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,16 +57,5 @@ if(isset($_SESSION['id']))
         New User?<a href="signUp.php">Click To Register</a><br/>
         <a href="forgotpass.php">Forgot Password?</a>
       </div><br/>
-        
- 
-
-
-  
-    
-
-      
-    
-
-
 </body>
 </html> 
