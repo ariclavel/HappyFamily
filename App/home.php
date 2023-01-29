@@ -89,7 +89,7 @@
                 </video>
             </div>
             <div class="card">
-                <h1 class="header-text">2-Programming Fundamental</h1>
+                <h1 class="header-text">Lighting</h1>
                     <div class="start-container">
                     <div class="start-item">
                     
@@ -109,10 +109,7 @@
                     </div>
                     <div class="description">
                         <p>
-                            Programming languages are often classified based on their syntax,
-                            features, and execution models. This course introduces you to the
-                            idea of programming paradigms and gives you an in-depth look into
-                            one of the most popular ways to think about and organize your programs.
+                        Easily and quickly control and adapt your lights in any situation.
                         </p>
                         <div class="grey-container">
                             <div class="left">
@@ -137,7 +134,7 @@
             </div>
 
             <div class="card">
-                <h1 class="header-text">2-Programming Fundamental</h1>
+                <h1 class="header-text">Blinds</h1>
                     <div class="start-container">
                     <div class="start-item">
                     
@@ -157,10 +154,7 @@
                     </div>
                     <div class="description">
                         <p>
-                            Programming languages are often classified based on their syntax,
-                            features, and execution models. This course introduces you to the
-                            idea of programming paradigms and gives you an in-depth look into
-                            one of the most popular ways to think about and organize your programs.
+                        Accurate remote control over all of your blinds and roller shutters..
                         </p>
                         <div class="grey-container">
                             <div class="left">

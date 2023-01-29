@@ -7,6 +7,7 @@ session_start();
 
 unset($_SESSION['message']);
 $apart_id=$_GET['id'];
+$user_id=$_SESSION['id'];
 $getApart=display_apartment($db, $apart_id);
 $fetch=$getApart->fetch_array();
 $number_of_rooms = $fetch['number_of_rooms'];
@@ -26,7 +27,7 @@ $roomsLeft =$number_of_rooms - $count;
 
         if($count < $number_of_rooms)
         {
-          $result =add_room($db,$roomName,$roomNumber,$apart_id);
+          $result =add_room($db,$roomName,$roomNumber,$apart_id,$user_id);
           $roomsLeft = $number_of_rooms - 1;
           //$_SESSION['room_left']= $roomsLeft;
         
@@ -365,9 +366,6 @@ include("Dashboard_left_menu.php");
   </div>
 
   <script language="JavaScript" type="text/javascript">
-function checkDelete(){
-    return confirm('Are you sure you want to delete this room?');
-}
 </script>
 
 </body>

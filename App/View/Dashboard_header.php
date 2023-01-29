@@ -1,6 +1,8 @@
 <?php
+
 $name =$_SESSION['name'];
 $lastname=$_SESSION['surname'];
+
 ?>
 <header class="header">
     <div class="logo">
