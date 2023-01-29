@@ -3,7 +3,11 @@ session_start();
 
 date_default_timezone_set("Etc/GMT+8");
 
-   header("Location:../View/Dashboard.php");
+unset($_SESSION['message']);
+if(isset($_SESSION['id']))
+{
+  if($_SESSION['type']=="Admin") header("Location:../View/DashboardAdmin.php");
+  else header("Location:../View/DashboardUser.php");
    die();
 }
 require_once'../Model/user.query.php';
@@ -56,11 +60,11 @@ if(isset($verify))
                $_SESSION['type']= $row['type'];
                if( $_SESSION['type'] == "user")
                {
-                header("Location:Dashboard.php");
+                header("Location:DashboardUser.php");
                }
                else
                {
-                header("Location:Admin_Dashboard.php");
+                header("Location:DashboardAdmin.php");
                }
 
              
@@ -131,16 +135,6 @@ if(isset($verify))
         New User?<a href="signUp.php">Click To Register</a><br/>
         <a href="forgotpass.php">Forgot Password?</a>
       </div><br/>
-
-        
- 
-
-
-  
-    
-
-      
-    
 
 
 </body>

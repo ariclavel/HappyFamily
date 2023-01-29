@@ -95,7 +95,7 @@ include("Dashboard_left_menu.php");
 
 
                 <td> 
-                             <a class="weather">   
+                             <a href="display_camera.php">   
                             <div id="wead" class="wrap">
         <img class="image2" width="100px" height="100px" src="../img/camera.png">
         
@@ -103,14 +103,7 @@ include("Dashboard_left_menu.php");
         </div>
                 </a>
                             </td>
-                            <td>
-                            <a href="viewDevices_victor.php">
-                            <div class="wrap">
-        <img class="image2" width="100px" height="100px" src="../img/feedpet.png">
-        <p class="tit">ROOMS <br/>PET</p>
-        </div>    
-        </a>
-                            </td>
+                           
 
 
 
