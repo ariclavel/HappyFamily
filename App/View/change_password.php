@@ -1,47 +1,6 @@
 <?php
-session_start();
-date_default_timezone_set("Etc/GMT+8");
-require_once'../Model/user.query.php';
-$msg="";
-unset($_SESSION['message']);
-if(isset($_GET['reset-code']))
-{
-    $query1 = "SELECT * FROM Registration WHERE activation_code='{$_GET['reset-code']}'";
-    $result1 = $db->query($query1);
-    if($result1->num_rows>0)
-    {
-       if(isset($_POST['submit']))
-       {
-         $password=clean(md5($_POST['password']));
-         $confirm_password=clean(md5($_POST['confirm-password']));
-          if($password==$confirm_password)
-          {
-               $query2="UPDATE Registration SET password='{$password}' WHERE activation_code='{$_GET['reset-code']}'";
-               $result2 = $db->query($query2);
-               if($result2)
-               {
-                $_SESSION['message'] = "<div class='alert alert-success'>Password reset successfully.</div>";
-                  //header("Location:login.php");
 
-               }
-          }
-          else
-          {
-            $_SESSION['message'] = "<div class='alert alert-danger'>Error! Password and confirm password do not match.</div>";
-          }
-       }
-    }
-    else
-    {
-        $_SESSION['message'] = "<div class='alert alert-danger'>Sorry! your reset password link do not match.</div>";
-        
-    }
 
-}
-else
-{
-    header("Location:forgotpass.php");
-}
 ?>
 
 
@@ -75,21 +34,19 @@ else
             
             
          </div>
-      <form  method="POST" id="form">
+      <form  method="POST" id="form" action="../Controller/userController.php">
         
         <input type="password" placeholder ="enter new password" class="txtbox"  name="password"><br>
         <input type="password" placeholder =" confirm new password" class="txtbox"  name="confirm-password"><br/>
        
         
-        <div class="loggin"><button type="submit" name="submit" >Reset</button></div><br/>
+        <div class="loggin"><button type="submit" name="change_password" >Reset</button></div><br/>
         
         <?php 
 										
-                    if(ISSET($_SESSION['message'])){
-                      echo "<center><label class='text-danger'>".$_SESSION['message']."</label></center>";
+                    if(ISSET($_GET['msg'])){
+                      echo "<center><label>".$_GET['msg']."</label></center>";
                     }
-
-                                          unset($_SESSION['message']);
                   ?>
       </form>
         <p>Back to! <a href="login.php">Login</a>.</p>

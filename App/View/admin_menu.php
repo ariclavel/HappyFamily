@@ -1,3 +1,13 @@
+
+<?php
+require_once'../Model/rooms.php';
+ $countMessages = get_total_messages($db);
+
+
+
+
+
+?>
 <section class="w-f scrollable"> 
 							<div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="5px" data-color="#333333">
 								<!-- nav -->
@@ -56,7 +66,7 @@
 							
 										</ul> 
 									</li> 
-									<li > <a href="mail.html" > <b class="badge bg-danger pull-right">3</b> <i class="fa fa-envelope-o icon"> <b class="bg-primary dker"></b> </i> <span>Message</span> </a> </li> 
+									<li > <a href="mail.html" > <b class="badge bg-danger pull-right"><?php echo $countMessages ?></b> <i class="fa fa-envelope-o icon"> <b class="bg-primary dker"></b> </i> <span>Message</span> </a> </li> 
 									
 								</ul>
 							</nav> <!-- / nav --> 
