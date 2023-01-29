@@ -66,7 +66,7 @@ require_once'../Model/rooms.php';
 							
 										</ul> 
 									</li> 
-									<li > <a href="mail.html" > <b class="badge bg-danger pull-right"><?php echo $countMessages ?></b> <i class="fa fa-envelope-o icon"> <b class="bg-primary dker"></b> </i> <span>Message</span> </a> </li> 
+									<li > <a href="messagesGetAdmin.php" > <b class="badge bg-danger pull-right"><?php echo $countMessages ?></b> <i class="fa fa-envelope-o icon"> <b class="bg-primary dker"></b> </i> <span>Message</span> </a> </li> 
 									
 								</ul>
 							</nav> <!-- / nav --> 

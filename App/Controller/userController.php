@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 require_once'../Model/user.query.php';
-
+include ('../View/filter_string.php');
 
  
  $msg="";

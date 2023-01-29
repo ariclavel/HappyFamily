@@ -4,12 +4,12 @@
 
 
     //require_once'../Model/user.query.php';
-    include '../View/fake.php';
+    include '../View/messagesGetAdmin.php';
     $reply= $_POST['idmsg']??="";
     $idmessage= $_POST['idsens']; 
     if($reply == ""){
         echo "<script>alert(\"Message empty\")</script>";
-        echo "<script> location.replace('../View/fake.php'); </script>";
+        echo "<script> location.replace('../View/messagesGetAdmin.php'); </script>";
 
     }
     $res = get_email($idmessage,$reply);
@@ -66,7 +66,7 @@ try {
    
    
     echo "<script>alert(\"Answer sended! $email\")</script>";
-    echo "<script> location.replace('../View/fake.php'); </script>";
+    echo "<script> location.replace('../View/messagesGetAdmin.php'); </script>";
     
     //echo "<script> location.replace('../View/devicesManage.php'); </script>";
    

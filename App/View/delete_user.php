@@ -1,6 +1,6 @@
 <?php 
 
-require_once'../Model/rooms.php';
+require_once'../Model/user.query.php';
  if(isset($_GET['id']))
  {
     $id =$_GET['id'];
@@ -9,7 +9,7 @@ require_once'../Model/rooms.php';
     $result =delete_user($db,$id);
     if($result)
     {
-      header("Location:All_Users.php?msg=user deleted successfully");
+      header("Location:UsersAdmin.php?msg=user deleted successfully");
     }
     else
     {

@@ -1,7 +1,7 @@
 <nav>
       <div class="side_navbar">
         <span>Main Menu</span>
-        <a href="Dashboard.php" class="active">Dashboard</a>
+        <a href="DashboardUser.php" class="active">Dashboard</a>
         <a href="userprofile2.php">Profile</a>
         <a href="petDashboard_victor.php">Pets</a>
         <a href="viewDevices_victor.php">Devices</a>

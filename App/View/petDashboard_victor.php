@@ -92,6 +92,29 @@ include("Dashboard_left_menu.php");
                
     
                 <tr>
+
+
+                <td> 
+                             <a class="weather">   
+                            <div id="wead" class="wrap">
+        <img class="image2" width="100px" height="100px" src="../img/camera.png">
+        
+        <p class="tit">CAMERA <br/>REPORT</p>
+        </div>
+                </a>
+                            </td>
+                            <td>
+                            <a href="viewDevices_victor.php">
+                            <div class="wrap">
+        <img class="image2" width="100px" height="100px" src="../img/feedpet.png">
+        <p class="tit">ROOMS <br/>PET</p>
+        </div>    
+        </a>
+                            </td>
+
+
+
+
                             <td> 
                              <a class="weather">   
                             <div id="wead" class="wrap">
