@@ -1,10 +1,8 @@
 <?php
 session_start();
+
 date_default_timezone_set("Etc/GMT+8");
 
-unset($_SESSION['message']);
-if(isset($_SESSION['id']))
-{
    header("Location:../View/Dashboard.php");
    die();
 }
@@ -81,11 +79,14 @@ if(isset($verify))
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Happy Family</title>
+
 <script src="../js/checkvalue.js" type="text/javascript"></script>
+
 <style type="text/css">
    .text-danger{
     color:red;
@@ -108,6 +109,7 @@ if(isset($verify))
             
             
          </div>
+
       <form  method="POST" id="form">
         
         <input type="email" placeholder ="Email" id="nnn" class="txtbox"  name="email" onblur="IsEmaillog()"><br>
@@ -122,12 +124,14 @@ if(isset($verify))
                     }
 
                                           unset($_SESSION['message']);
+
                   ?>
       </form>
         
         New User?<a href="signUp.php">Click To Register</a><br/>
         <a href="forgotpass.php">Forgot Password?</a>
       </div><br/>
+
         
  
 

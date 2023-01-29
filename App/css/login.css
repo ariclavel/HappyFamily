@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.log{
+margin-right: 50px;
+}
+ 
+.hed{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1em;
+    
+    background-color: #390346;
+}
+
+#hfamily{
+    color:#601752;
+    font-family: fantasy;
+   
+    margin-top: 60px;
+    margin-left: 450px;
+}
+
+#title{
+    
+   font-size:x-large;
+   font-weight: bolder;
+   color: #fff;
+    
+   
+ }    
+
+
+ .miniti{
+    font-size: larger;
+  
+    padding-top: 60%;
+    font-weight: 40%;
+    color:#601752;
+    font-family: Montserrat, sans-serif;
+    
+
+ }
+ input[type=text], input[type=text], input[type=email], input[type=password] {
+            width: 300px;
+            background-color:#CE93d8;
+            color: #601752;
+            padding: 14px 20px;
+            margin: 8px 28px;
+            border: 1px solid #000;
+            cursor: pointer;
+            outline: none;
+            background: transparent;
+            border-radius: 5px;
+            
+        
+        
+            
+        }
+button {
+
+    
+        display: inline-block;
+        font-size: 12px;
+        background: transparent;
+        border: 1px solid;
+        font-weight: 500;
+        padding: 10px 10px;
+        outline: 0;
+        cursor: pointer;
+        color: #0a0c0d;
+        transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        -webkit-transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        -moz-transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        -ms-transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        -o-transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  
+}
+.base{
+    
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   gap:10px;
+}
+button:hover {
+    background-color: #f85508;
+        border-color: #f85508;
+        color: #fff;
+}
+
+a {
+    font-size: medium;
+    margin-top: 20px;
+    margin-left: 110px;
+    
+   
+}
+

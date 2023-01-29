@@ -1,0 +1,25 @@
+.text-danger{
+    color:red;
+   }
+   .alert-info{
+    color:green;
+   }
+   .main-body{
+    margin-right: 230px;
+   }
+   .side_navbar{
+    background-color:#fff;
+   }
+   #imm{
+    padding: 15px;
+   }
+   .btnn, #btnn{
+    background: #f85508;
+    border:none;
+    color:white;
+   }
+   .settings
+   {
+    background:red;
+    
+   }

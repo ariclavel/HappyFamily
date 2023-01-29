@@ -1,4 +1,5 @@
 <?php 
+
 date_default_timezone_set("Etc/GMT+8");
 
 session_start();
@@ -6,11 +7,13 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 require_once'../Model/user.query.php';
+
 if(isset($_SESSION['id']))
 {
    header("Location:home.php");
    die();
 }
+
 
  
  $msg="";
@@ -119,6 +122,7 @@ $_SESSION['message'] = "<div class='alert alert-info'>we've sent a verification 
 
 
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,7 +136,9 @@ $_SESSION['message'] = "<div class='alert alert-info'>we've sent a verification 
    }
   </style>
 </head>
+
 <script src="../js/checkvalue.js" type="text/javascript"></script>
+
 <link rel="stylesheet" href="../css/success.css">
 <!-- <link rel="stylesheet" href="../css/dashboard.css"> -->
 <body>
@@ -144,6 +150,7 @@ $_SESSION['message'] = "<div class='alert alert-info'>we've sent a verification 
             
             
          </div>
+
          <form method="POST">
             
          <input type="text" placeholder ="First name" class="txtbox" id="fname" name="fname" onblur="IsfName()"></br>
@@ -158,13 +165,16 @@ $_SESSION['message'] = "<div class='alert alert-info'>we've sent a verification 
              <span id = "cpwdSpan" style="color:red"></span>
           
                <div class="loggin"><a href="signUp.php"><button name="submit" type="submit">Register</button></a></div><br/>
+
              <a href="login.php">Click to sign-in</a>
            <br/>
            <?php 
                          
+
                          if(ISSET($_SESSION['message'])){
                            echo "<center><label class='text-danger'>".$_SESSION['message']."</label></center>";
                          }
+
                        ?>
            </form>
            <br/>
