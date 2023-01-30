@@ -23,7 +23,7 @@
 
         <nav class="menu">
           <div class="menu-items">
-            <a href="View/Dashboard.php">Dashboard</a>
+            <a href="View/DashboardUser.php">Dashboard</a>
           </div>
           <div class="menu-items">
             <a href="">All-Pets
