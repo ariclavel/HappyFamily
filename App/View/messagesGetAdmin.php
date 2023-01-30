@@ -53,7 +53,7 @@ require_once'../Model/messagesQuery.php';
 								<div style="height:800px;">
 
 								<div class="main-body">
-            <h2>MESSAGES</h2>
+            
             
             <div class="promo_card">
              
