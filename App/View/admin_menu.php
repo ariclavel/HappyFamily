@@ -2,11 +2,6 @@
 <?php
 require_once'../Model/rooms.php';
  $countMessages = get_total_messages($db);
-
-
-
-
-
 ?>
 <section class="w-f scrollable"> 
 							<div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="5px" data-color="#333333">
@@ -44,7 +39,11 @@ require_once'../Model/rooms.php';
 												
 												
 												
-											<li > <a href="admin_device_list.php" > <i class="fa fa-angle-right"></i> <span>View deviecs</span> </a> </li> 
+											<li > 
+													<a href="admin_device_list.php" >
+													 <i class="fa fa-angle-right"></i> <span>View deviecs</span> 
+													</a> 
+												</li> 
 											
 										</ul> 
 									</li> 

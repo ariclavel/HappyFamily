@@ -151,5 +151,11 @@
    .alert-info{
     color:green;
    }
+   .alert-success{
+    color:green;
+   }
+   .alert-danger{
+    color:red;
+   }
    
 }

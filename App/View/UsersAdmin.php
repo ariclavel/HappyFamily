@@ -96,6 +96,14 @@ require_once'../Model/user.query.php';
                                     </tbody>
                                 </table>
 </div>
+<br/>
+<?php 
+                           
+                           if(ISSET($_GET['msg'])){
+                            echo "<center><label>".$_GET['msg']."</label></center>";
+                          }
+                  
+                       ?>
 	</div>
         </div>
 						</section> 

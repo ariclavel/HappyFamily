@@ -172,6 +172,12 @@ unset($_SESSION['message']);
    .alert-info{
     color:green;
    }
+   .alert-success{
+    color:green;
+   }
+   .alert-danger{
+    color:red;
+   }
    .main-body{
     margin-right: 230px;
    }
@@ -358,8 +364,12 @@ include("Dashboard_left_menu.php");
     
  
               
-</div>
-
+</div><br/>
+<?php
+if(ISSET($_GET['msg'])){
+                            echo "<center><label>".$_GET['msg']."</label></center>";
+                          }
+?>
 </div>
 
    

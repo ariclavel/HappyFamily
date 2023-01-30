@@ -181,6 +181,9 @@ function add_apartment($dbb,$apart_name,$apart_type,$numRooms,$user_id){
             }
         }
 
+
+      
+
         function display_Customers_AllApartments($dbb, $user_id)
         {
             $query=$dbb->prepare("SELECT * FROM apartment WHERE reg_id =?") or die($this->conn->error);
@@ -192,9 +195,78 @@ function add_apartment($dbb,$apart_name,$apart_type,$numRooms,$user_id){
             
             }
         }
-
+        
         function delete_apart($dbb, $A_id){
 			$query=$dbb->prepare("DELETE FROM `apartment` WHERE apartment_id=?") or die($this->conn->error);
+			$query->bind_param("i", $A_id);
+            if($query->execute()){
+				
+				return true;
+			}
+		}
+
+        //delete user apart
+        function delete_user_apart($dbb, $A_id){
+			$query=$dbb->prepare("DELETE FROM `apartment` WHERE reg_id=?") or die($this->conn->error);
+			$query->bind_param("i", $A_id);
+            if($query->execute()){
+				
+				return true;
+			}
+		}
+
+        //delete user apart
+        function delete_user_apart_rooms($dbb, $A_id){
+			$query=$dbb->prepare("DELETE FROM `rooms` WHERE user_id=?") or die($this->conn->error);
+			$query->bind_param("i", $A_id);
+            if($query->execute()){
+				
+				return true;
+			}
+		}
+
+        //delete user apart
+        function delete_user_address($dbb, $A_id){
+			$query=$dbb->prepare("DELETE FROM `address` WHERE reg_id=?") or die($this->conn->error);
+			$query->bind_param("i", $A_id);
+            if($query->execute()){
+				
+				return true;
+			}
+		}
+
+         //delete user apart
+         function delete_user_devices($dbb, $A_id){
+			$query=$dbb->prepare("DELETE FROM `device` WHERE userID=?") or die($this->conn->error);
+			$query->bind_param("i", $A_id);
+            if($query->execute()){
+				
+				return true;
+			}
+		}
+
+         //delete user pet
+         function delete_user_pet($dbb, $A_id){
+			$query=$dbb->prepare("DELETE FROM `pet` WHERE reg_id=?") or die($this->conn->error);
+			$query->bind_param("i", $A_id);
+            if($query->execute()){
+				
+				return true;
+			}
+		}
+
+         //delete user schedule
+         function delete_user_schedule($dbb, $A_id){
+			$query=$dbb->prepare("DELETE FROM `scheduler` WHERE reg_id=?") or die($this->conn->error);
+			$query->bind_param("i", $A_id);
+            if($query->execute()){
+				
+				return true;
+			}
+		}
+
+        function delete_address($dbb, $Address_id){
+			$query=$dbb->prepare("DELETE FROM `address` WHERE reg_id=?") or die($this->conn->error);
 			$query->bind_param("i", $A_id);
             if($query->execute()){
 				
@@ -399,7 +471,7 @@ function add_apartment($dbb,$apart_name,$apart_type,$numRooms,$user_id){
      //this will return total numbers of messages
      function get_total_messages($dbb)
      {
-         $query=$dbb->prepare("SELECT * FROM messages") or die($this->conn->error);
+         $query=$dbb->prepare("SELECT * FROM message") or die($this->conn->error);
          if($query->execute()){
              $result=$query->get_result();
              $count =mysqli_num_rows($result);
