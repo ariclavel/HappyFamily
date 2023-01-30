@@ -337,6 +337,10 @@ if(isset($verify))
 //This code would update user profile details
 if (ISSET($_POST['update_user_profile']))
   {
+    /*if(strlen($_POST['postcode2'])> 5 || strlen($_POST['postcode2'])< 5 ){
+      echo "<script>alert(\"Postal code has to be 5 digits\")</script>";
+      echo "<script> location.replace('../View/userprofile2.php'); </script>";
+    }*/
     $userID = $_SESSION['id'];
      $name= clean($_POST['fname']);
      $lname=clean($_POST['lname']);
@@ -349,6 +353,7 @@ if (ISSET($_POST['update_user_profile']))
      $country=clean($_POST['country']);
      $city=clean($_POST['state']);
      $postCode1=clean($_POST['postcode1']);
+     
      $postCode2=clean($_POST['postcode2']);
      
      $arr_postalCode=[];
