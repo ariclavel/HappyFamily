@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 require_once'../Model/user.query.php';
-
+require_once'filter_string.php';
 if(isset($_SESSION['id']))
 {
    header("Location:home.php");

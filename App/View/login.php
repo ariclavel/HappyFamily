@@ -2,6 +2,7 @@
 session_start();
 
 date_default_timezone_set("Etc/GMT+8");
+require_once'filter_string.php';
 
 unset($_SESSION['message']);
 if(isset($_SESSION['id']))
