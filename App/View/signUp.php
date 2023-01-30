@@ -23,6 +23,10 @@ if(isset($_SESSION['id']))
  unset($_SESSION['message']);
  if(isset($_POST['submit']))
  {
+    if($_POST['fname']=="" || $_POST['lname']=="" || $_POST['email']=="" || $_POST['password']=="" || $_POST['cpassword'] ){
+        echo "<script>alert(\"You have to fill all the inputs\")</script>";
+        echo "<script> location.replace('signUp.php'); </script>";
+    }
     
      $name= clean($_POST['fname']);
      $lname=clean($_POST['lname']);
