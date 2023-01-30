@@ -1,5 +1,5 @@
 <?php
-require_once'../Model/user.query.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -235,6 +235,18 @@ function add_apartment($dbb,$apart_name,$apart_type,$numRooms,$user_id){
 			}
 		}
 
+        //display all users
+        function display_users($dbb)
+        {
+            $query=$dbb->prepare("SELECT * FROM Registration WHERE type NOT IN ('Admin')") or die($this->conn->error);
+            if($query->execute()){
+                $result=$query->get_result();
+                return $result;
+                
+            
+            }
+        }
+
          //delete user apart
          function delete_user_devices($dbb, $A_id){
 			$query=$dbb->prepare("DELETE FROM `device` WHERE userID=?") or die($this->conn->error);
@@ -471,7 +483,7 @@ function add_apartment($dbb,$apart_name,$apart_type,$numRooms,$user_id){
      //this will return total numbers of messages
      function get_total_messages($dbb)
      {
-         $query=$dbb->prepare("SELECT * FROM message") or die($this->conn->error);
+         $query=$dbb->prepare("SELECT * FROM messages") or die($this->conn->error);
          if($query->execute()){
              $result=$query->get_result();
              $count =mysqli_num_rows($result);

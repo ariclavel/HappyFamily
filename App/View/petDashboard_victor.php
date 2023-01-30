@@ -64,6 +64,15 @@ if(!isset($_SESSION['id']))
     font-weight:bold;
     font-size:20px;
    } 
+
+   .tit2{
+    margin-left:20px;
+    color:white;
+    position:absolute;
+    top:280px;
+    font-weight:bold;
+    font-size:20px;
+   } 
     #wead{
         cursor:grab;
     }
@@ -138,17 +147,19 @@ include("Dashboard_left_menu.php");
 
 
 
-                            <td>
+                           
+                
+                </tr>
+                <tr>
+                <td>
                             <a href="health_report_victor.php">
                             <div class="wrap">
         <img class="image2" width="100px" height="100px" src="../img/pet-health.png">
-        <p class="tit">HEALTH <br/>MONITOR</p>
+        <p class="tit2">HEALTH <br/>MONITOR</p>
         </div>      
         </a>
                             </td>
-                
                 </tr>
-               
 
                 
 
