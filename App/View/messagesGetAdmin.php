@@ -84,7 +84,7 @@ require_once'../Model/messagesQuery.php';
                                            
                                             <th>id message</th>
                                             <th>Message</th>
-                                            <th>Email Address</th>
+                                            <th>From:</th>
 											<th>Send your answer here</th>
                                             
                                         </tr>
